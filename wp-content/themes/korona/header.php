@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" class="govuk-template app-no-canvas-background">
+<html lang="sk" class="govuk-template app-no-canvas-background">
 <head>
     <meta charset="utf-8" />
-    <title>Opatrenia pre pomoc zamestnancom, podnikateľom a živnostníkom</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#0b0c0c" />
 
