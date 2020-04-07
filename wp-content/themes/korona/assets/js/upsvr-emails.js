@@ -25,73 +25,76 @@ for (var i = 0; i < MUNICIPALITY_TO_UPSVR.length; i++) {
 }
 
 var autocompleteInit = function (name) {
-    var $municipalityEmailHolder = document.getElementById('municipality-email-holder-' + name);
-    var $municipalityEmail = document.getElementById('municipality-email-' + name);
-    var $municipalityError = document.getElementById('municipality-error-' + name);
+    var element = document.getElementById('municipality-field-' + name);
 
-    var onNotFound = function () {
-        $municipalityError.style.display = 'block';
-        $municipalityEmailHolder.style.display = 'none';
-        $municipalityEmail.value = '';
-        return 'Obec sa nenašla.'
-    };
+    if (element) {
+        var $municipalityEmailHolder = document.getElementById('municipality-email-holder-' + name);
+        var $municipalityEmail = document.getElementById('municipality-email-' + name);
+        var $municipalityError = document.getElementById('municipality-error-' + name);
 
-    var onConfirm = function (value) {
-        if (upsvrCodes[value]) {
-            $municipalityError.style.display = 'none';
-            $municipalityEmailHolder.style.display = 'block';
-            $municipalityEmail.textContent = 'pomahameludom.' + upsvrCodes[value] + '@upsvr.gov.sk';
-        }
-        else {
-            onNotFound(value);
-        }
-    };
+        var onNotFound = function () {
+            $municipalityError.style.display = 'block';
+            $municipalityEmailHolder.style.display = 'none';
+            $municipalityEmail.value = '';
+            return 'Obec sa nenašla.'
+        };
 
-    var settings = {
-        element: document.getElementById('municipality-field-' + name),
-        id: 'municipality-inner-' + name,
-        displayMenu: 'overlay',
-        showAllValues: true,
-        confirmOnBlur: false,
-        autoselect: true,
-        tNoResults: onNotFound,
-        onConfirm: onConfirm,
-        source: function (query, populateResults) {
-            var results = [];
-
-            if (query === '') {
-                results = municipalities
+        var onConfirm = function (value) {
+            if (upsvrCodes[value]) {
+                $municipalityError.style.display = 'none';
+                $municipalityEmailHolder.style.display = 'block';
+                $municipalityEmail.textContent = 'pomahameludom.' + upsvrCodes[value] + '@upsvr.gov.sk';
             } else {
-                var term = replaceDiacritics(query.replace(/[ -]+/g, ' ')).toLowerCase();
+                onNotFound(value);
+            }
+        };
 
-                for (var i = 0; i < municipalities.length && results.length < 50; i++) {
-                    var municipality = MUNICIPALITY_TO_UPSVR[i];
+        var settings = {
+            element: element,
+            id: 'municipality-inner-' + name,
+            displayMenu: 'overlay',
+            showAllValues: true,
+            confirmOnBlur: false,
+            autoselect: true,
+            tNoResults: onNotFound,
+            onConfirm: onConfirm,
+            source: function (query, populateResults) {
+                var results = [];
 
-                    if (municipality[4] === query) {
-                        results.push(municipality[4])
-                    } else {
-                        var index = municipality[3].indexOf(term);
+                if (query === '') {
+                    results = municipalities
+                } else {
+                    var term = replaceDiacritics(query.replace(/[ -]+/g, ' ')).toLowerCase();
 
-                        if (index > -1 && (index === 0 || municipality[3][index - 1] === ' ')) {
+                    for (var i = 0; i < municipalities.length && results.length < 50; i++) {
+                        var municipality = MUNICIPALITY_TO_UPSVR[i];
+
+                        if (municipality[4] === query) {
                             results.push(municipality[4])
+                        } else {
+                            var index = municipality[3].indexOf(term);
+
+                            if (index > -1 && (index === 0 || municipality[3][index - 1] === ' ')) {
+                                results.push(municipality[4])
+                            }
                         }
                     }
                 }
+
+                results = results.sort(function (a, b) {
+                    return ((a < b) ? -1 : ((a > b) ? 1 : 0))
+                });
+
+                populateResults(results)
             }
+        };
 
-            results = results.sort(function (a, b) {
-                return ((a < b) ? -1 : ((a > b) ? 1 : 0))
-            });
+        accessibleAutocomplete(settings);
 
-            populateResults(results)
-        }
-    };
-
-    accessibleAutocomplete(settings);
-
-    document.getElementById(settings.id).addEventListener('change', function (event) {
-        onConfirm(event.target.value);
-    });
+        document.getElementById(settings.id).addEventListener('change', function (event) {
+            onConfirm(event.target.value);
+        });
+    }
 };
 
 autocompleteInit('standalone');
