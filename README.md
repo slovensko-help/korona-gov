@@ -1,0 +1,1 @@
+#korona.gov.sk
