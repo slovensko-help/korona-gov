@@ -39,3 +39,5 @@ function korona_register_scripts() {
 }
 
 add_action( 'wp_enqueue_scripts', 'korona_register_scripts' );
+
+add_theme_support( 'title-tag' );

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="govuk-template app-no-canvas-background">
+<html lang="sk" class="govuk-template app-no-canvas-background">
 <head>
     <meta charset="utf-8" />
     <title>Opatrenia pre pomoc zamestnancom, podnikateľom a živnostníkom</title>
