@@ -1,8 +1,0 @@
-/category/uncategorized/feed/
-/hello-world/feed/
-/sample-page/feed/
-/vyhladavac-emailovej-adresy-upsvar/feed/
-/wp-admin/
-/wp-includes/css/dist/block-library/style.min.css
-/wp-json/
-/wp-json/oembed/1.0/embed
