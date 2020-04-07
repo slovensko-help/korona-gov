@@ -20,19 +20,19 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'database_name_here' );
+define( 'DB_NAME', 'korona' );
 
 /** MySQL database username */
-define( 'DB_USER', 'username_here' );
+define( 'DB_USER', 'root' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', 'password_here' );
+define( 'DB_PASSWORD', 'root' );
 
 /** MySQL hostname */
 define( 'DB_HOST', 'localhost' );
 
 /** Database Charset to use in creating database tables. */
-define( 'DB_CHARSET', 'utf8' );
+define( 'DB_CHARSET', 'utf8mb4' );
 
 /** The Database Collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
@@ -46,14 +46,14 @@ define( 'DB_COLLATE', '' );
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',         'put your unique phrase here' );
-define( 'SECURE_AUTH_KEY',  'put your unique phrase here' );
-define( 'LOGGED_IN_KEY',    'put your unique phrase here' );
-define( 'NONCE_KEY',        'put your unique phrase here' );
-define( 'AUTH_SALT',        'put your unique phrase here' );
-define( 'SECURE_AUTH_SALT', 'put your unique phrase here' );
-define( 'LOGGED_IN_SALT',   'put your unique phrase here' );
-define( 'NONCE_SALT',       'put your unique phrase here' );
+define( 'AUTH_KEY',         'LIKQXF3p`x|V&{{bY*kcEN(}:|07:|HaGTL; K?C@fy]1/F`:yuE4d8egs*rR#}r' );
+define( 'SECURE_AUTH_KEY',  'FJ&pqi$hBW ;ek2Z^9W^]nu?X~>YoFR`;)Q[0qg#*#M]2m8823r,Lj~!c<(_hOBO' );
+define( 'LOGGED_IN_KEY',    '/hX@_CP4.[.L/<{Yi9egd`H^j<@#PE+yF,(?ZXz^ 0EV}Ta$dFl98JfzSgtLe1 K' );
+define( 'NONCE_KEY',        'frI]&y$m.;KU&LpDEv=N< d)Q tBt?~MY/W8S-4BEuf_ZSlbO>ua&  (/u__wXh!' );
+define( 'AUTH_SALT',        ' nH6;.bm0b>:$13YR>~4!Nu]8k[YI`F:hWuM?Ex<[3R]6D;zy)m6]^#{sJS+tO5[' );
+define( 'SECURE_AUTH_SALT', 'q&YkKrZ!P0.y4h_tK;^OS)!4A]]ln>I[jVD*Ne-@Bxk~Ff|I,pZrE=I?xOTuO2{f' );
+define( 'LOGGED_IN_SALT',   '7^J~S54tM>iLsO3l!R?DHXU79>~J_bt+^q@qX0s|orXMVWj9D|~[ucZpm^$F?DtH' );
+define( 'NONCE_SALT',       ']{LU;<XZ9h/^Yh!OuL3d2!BJ<Y%`ozr0*^H88v`mUW*,?$z/DG$;<ec;v5~etpo{' );
 
 /**#@-*/
 
@@ -83,7 +83,7 @@ define( 'WP_DEBUG', false );
 
 /** Absolute path to the WordPress directory. */
 if ( ! defined( 'ABSPATH' ) ) {
-	define( 'ABSPATH', __DIR__ . '/' );
+    define( 'ABSPATH', __DIR__ . '/' );
 }
 
 /** Sets up WordPress vars and included files. */
