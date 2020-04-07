@@ -1,1 +1,1 @@
-#korona.gov.sk
+# korona.gov.sk
