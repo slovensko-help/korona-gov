@@ -1,0 +1,17 @@
+/
+/category/uncategorized/feed/
+/hello-world/
+/hello-world/feed/
+/hrasko/
+/sample-page/
+/sample-page/feed/
+/vyhladavac-emailovej-adresy-upsvar/
+/vyhladavac-emailovej-adresy-upsvar/feed/
+/wp-admin/
+/wp-content/themes/korona/assets/js/autocomplete.js
+/wp-content/themes/korona/assets/js/index.js
+/wp-content/themes/korona/assets/js/upsvr-emails.js
+/wp-content/themes/korona/style.css
+/wp-includes/css/dist/block-library/style.min.css
+/wp-json/
+/wp-json/oembed/1.0/embed
