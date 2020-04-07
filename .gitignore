@@ -1,1 +1,6 @@
-wp-content/uploads
+/wp-content/uploads/
+/wp-config.php
+/.htaccess
+.idea
+.htpasswd
+
