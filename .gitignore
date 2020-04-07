@@ -1,6 +1,7 @@
-/wp-content/uploads/
-/wp-config.php
-/.htaccess
-.idea
+wp-content/uploads/
+wp-config.php
+.htaccess
 .htpasswd
+.idea
+.DS_Store
 
