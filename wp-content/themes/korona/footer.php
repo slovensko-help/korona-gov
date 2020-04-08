@@ -269,10 +269,5 @@
 <?php wp_footer(); ?>
 
 <script>window.GOVUKFrontend.initAll()</script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.15/iframeResizer.min.js" integrity="sha256-NZjCYaMfryuJQRMgekHuC02c/Wv4sMRzHG2zyhrVwKU=" crossorigin="anonymous"></script>
-<!--[if lte IE 8]>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.15/ie8.polyfils.min.js"></script>
-<![endif]-->
 </body>
 </html>
