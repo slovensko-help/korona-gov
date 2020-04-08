@@ -21,7 +21,7 @@
             <a href="/" class="idsk-header__link idsk-header__link--homepage">
                 <span class="idsk-header__logotype">
                     <svg role="presentation" focusable="false" class="idsk-header__logotype-crown"
-                    xmlns="http://www.w3.org/2000/svg" width="277" height="44" viewBox="0 0 277 44" fill="none">
+                    xmlns="http://www.w3.org/2000/svg" width="188" height="30" viewBox="0 0 277 44" fill="none">
                                     <style>
                                         .a {
                                             fill: white;
