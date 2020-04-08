@@ -54,10 +54,26 @@
                 </span>
             </a>
         </div>
+        <div class="idsk-header__content">
+
+            <a href="/" class="idsk-header__link idsk-header__link--service-name">
+                Prvá a druhá pomoc
+            </a>
+
+            <button type="button" role="button" class="idsk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+            <nav>
+                <ul id="navigation" class="idsk-header__navigation " aria-label="Top Level Navigation">
+                    <li class="idsk-header__navigation-item idsk-header__navigation-item--active">
+                        <a class="idsk-header__link" href="https://korona.gov.sk/">
+                            Späť na korona.gov.sk
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
     </div>
 </header>
-
-
 
 <div class="govuk-width-container">
     <main class="govuk-main-wrapper govuk-main-wrapper--auto-spacing" id="main-content" role="main">
