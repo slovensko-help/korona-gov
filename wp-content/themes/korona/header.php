@@ -15,7 +15,7 @@
 <a href="#main-content" class="govuk-skip-link">Preskočiť na hlavný obsah</a>
 
 
-<header class="idsk-header " role="banner" data-module="idsk-header">
+<header class="idsk-header " role="banner" data-module="govuk-header">
     <div class="idsk-header__container govuk-width-container">
         <div class="idsk-header__logo">
             <a href="/" class="idsk-header__link idsk-header__link--homepage">
@@ -44,17 +44,17 @@
             </a>
         </div>
         <div class="idsk-header__content">
-
-            <a href="/" class="idsk-header__link idsk-header__link--service-name">
-                Prvá a druhá pomoc
-            </a>
-
-            <button type="button" role="button" class="idsk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+            <button type="button" role="button" class="idsk-header__menu-button govuk-js-header-toggle" aria-controls="aa-navigation" aria-label="Skryť alebo zobraziť hlavnú navigáciu">Menu</button>
             <nav>
-                <ul id="navigation" class="idsk-header__navigation " aria-label="Top Level Navigation">
-                    <li class="idsk-header__navigation-item idsk-header__navigation-item--active">
+                <ul id="aa-navigation" class="idsk-header__navigation " aria-label="Top Level Navigation">
+                    <li class="idsk-header__navigation-item">
                         <a class="idsk-header__link" href="https://korona.gov.sk/">
-                            Späť na korona.gov.sk
+                            Hlavná stránka
+                        </a>
+                    </li>
+                    <li class="idsk-header__navigation-item">
+                        <a class="idsk-header__link" href="/">
+                            Prvá a druhá pomoc
                         </a>
                     </li>
                 </ul>

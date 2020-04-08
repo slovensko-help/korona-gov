@@ -5,3 +5,20 @@
 .govuk-accordion__open-all {
     display: none !important;
 }
+
+/* dirty fix */
+.js-enabled .govuk-header__navigation--open {
+    display: block;
+}
+
+.govuk-header__menu-button--open::after {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent;
+    -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    border-width: 0 5px 8.66px 5px;
+    border-bottom-color: inherit;
+}
