@@ -53,7 +53,7 @@
                         </a>
                     </li>
                     <li class="idsk-header__navigation-item">
-                        <a class="idsk-header__link" href="/">
+                        <a class="idsk-header__link" href="/prva-a-druha-pomoc/">
                             Prvá a druhá pomoc
                         </a>
                     </li>
