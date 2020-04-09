@@ -24,3 +24,4 @@
      * Register ACF blocks
      */
     //require get_template_directory() . '/blocks/block-example/block.php'; //example
+    require get_template_directory() . '/blocks/block-hidden/block.php';

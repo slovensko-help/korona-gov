@@ -35,9 +35,9 @@ include 'inc/frontend.php';
 
         $theme_version = wp_get_theme()->get( 'Version' );
 
-        wp_enqueue_script( 'korona-js', get_template_directory_uri() . '/assets/js/index.js', array (), $theme_version, TRUE );
-        wp_enqueue_script( 'korona-js-autocomplete', get_template_directory_uri() . '/assets/js/autocomplete.js', array (), $theme_version, TRUE );
-        wp_enqueue_script( 'korona-js-upsvr-emails', get_template_directory_uri() . '/assets/js/upsvr-emails.js', array (), $theme_version, TRUE );
+        wp_enqueue_script( 'korona-js', '/wp-content/themes/korona/assets/js/index.js', array (), $theme_version, TRUE );
+        wp_enqueue_script( 'korona-js-autocomplete', '/wp-content/themes/korona/assets/js/autocomplete.js', array (), $theme_version, TRUE );
+        wp_enqueue_script( 'korona-js-upsvr-emails', '/wp-content/themes/korona/assets/js/upsvr-emails.js', array (), $theme_version, TRUE );
     }
 
     add_action( 'wp_enqueue_scripts', 'korona_register_scripts' );
