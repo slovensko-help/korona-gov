@@ -27,3 +27,15 @@
     width: 100%;
     max-width: 100%;
 }
+
+.govuk-footer__copyright-logo,
+.idsk-footer__copyright-logo {
+    display:inline-block;min-width:125px;padding-top:112px;background-image:none;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min-device-pixel-ratio:2),only screen and (min-resolution:2dppx),only screen and (min-resolution:192dpi){
+    .govuk-footer__copyright-logo,
+    .idsk-footer__copyright-logo {
+        background-image:none;
+    }
+}
