@@ -18,7 +18,7 @@
 <header class="idsk-header " role="banner" data-module="govuk-header">
     <div class="idsk-header__container govuk-width-container">
         <div class="idsk-header__logo">
-            <a href="/" class="idsk-header__link idsk-header__link--homepage">
+            <a href="https://www.korona.gov.sk/" class="idsk-header__link idsk-header__link--homepage">
                 <span class="idsk-header__logotype">
                     <svg role="presentation" focusable="false" class="idsk-header__logotype-crown"
                     xmlns="http://www.w3.org/2000/svg" width="188" height="30" viewBox="0 0 277 44" fill="none">
@@ -48,7 +48,7 @@
             <nav>
                 <ul id="aa-navigation" class="idsk-header__navigation " aria-label="Top Level Navigation">
                     <li class="idsk-header__navigation-item">
-                        <a class="idsk-header__link" href="https://korona.gov.sk/">
+                        <a class="idsk-header__link" href="https://www.korona.gov.sk/">
                             Hlavná stránka
                         </a>
                     </li>
