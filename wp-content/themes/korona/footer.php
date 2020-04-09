@@ -260,6 +260,11 @@
                             Čo je COVID-19
                         </a>
                     </li>
+                    <li class="idsk-footer__inline-list-item">
+                        <a class="idsk-footer__link" href="/ludia/">
+                            Ľudia
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
