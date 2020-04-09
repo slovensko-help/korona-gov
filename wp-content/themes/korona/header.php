@@ -53,7 +53,7 @@
                         </a>
                     </li>
                     <li class="idsk-header__navigation-item">
-                        <a class="idsk-header__link" href="/">
+                        <a class="idsk-header__link" href="/prva-a-druha-pomoc/">
                             Prvá a druhá pomoc
                         </a>
                     </li>
@@ -65,5 +65,5 @@
 </header>
 
 <div class="govuk-width-container">
-    <main class="govuk-main-wrapper govuk-main-wrapper--auto-spacing" id="main-content" role="main">
+    <main class="govuk-main-wrapper govuk-!-padding-top-6 govuk-!-padding-bottom-6" id="main-content" role="main">
         <div class="govuk-width-container">
