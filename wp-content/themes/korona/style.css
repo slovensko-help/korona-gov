@@ -22,3 +22,8 @@
     border-width: 0 5px 8.66px 5px;
     border-bottom-color: inherit;
 }
+
+.govuk-main-wrapper img {
+    width: 100%;
+    max-width: 100%;
+}
