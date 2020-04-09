@@ -1,4 +1,6 @@
 <?php
+include 'inc/frontend.php';
+
 
     //add_action('get_header', 'korona_filter_head');
     //
