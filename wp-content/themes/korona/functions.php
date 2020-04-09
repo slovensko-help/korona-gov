@@ -119,3 +119,8 @@ include 'inc/frontend.php';
     }
 
     add_action( 'save_post', 'gov_back_button_save' );
+
+    /**
+     * Block functions
+     */
+    require get_template_directory() . '/inc/register-blocks.php';
