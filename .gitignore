@@ -4,4 +4,4 @@ wp-config.php
 .htpasswd
 .idea
 .DS_Store
-
+wp-content/plugins/acf-php-recovery.php
