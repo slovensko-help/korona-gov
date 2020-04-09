@@ -19,7 +19,7 @@ function consent_necessary_shortcode($atts, $content)
               <div class="govuk-checkboxes">
                     <div class="govuk-checkboxes__item">
                       <input class="govuk-checkboxes__input" id="consent_necessary"  type="checkbox" checked="" disabled>
-                      <label class="govuk-label govuk-checkboxes__label" for="colours-3">
+                      <label class="govuk-label govuk-checkboxes__label" for="consent_necessary">
                     ' . $a['name'] . '
                   </label>
                     </div>
@@ -46,7 +46,7 @@ function consent_performance_shortcode($atts, $content)
               <div class="govuk-checkboxes">
                     <div class="govuk-checkboxes__item">
                       <input class="govuk-checkboxes__input" id="consent_performance" type="checkbox">
-                      <label class="govuk-label govuk-checkboxes__label" for="colours-3">
+                      <label class="govuk-label govuk-checkboxes__label" for="consent_performance">
                     ' . $a['name'] . '
                   </label>
                     </div>
@@ -72,7 +72,7 @@ function consent_marketing_shortcode($atts, $content)
               <div class="govuk-checkboxes">
                     <div class="govuk-checkboxes__item">
                       <input class="govuk-checkboxes__input" id="consent_marketing" type="checkbox">
-                      <label class="govuk-label govuk-checkboxes__label" for="colours-3">
+                      <label class="govuk-label govuk-checkboxes__label" for="consent_marketing">
                     ' . $a['name'] . '
                   </label>
                     </div>
@@ -98,7 +98,7 @@ function consent_targeting_shortcode($atts, $content)
               <div class="govuk-checkboxes">
                     <div class="govuk-checkboxes__item">
                       <input class="govuk-checkboxes__input" id="consent_targeting" type="checkbox">
-                      <label class="govuk-label govuk-checkboxes__label" for="colours-3">
+                      <label class="govuk-label govuk-checkboxes__label" for="consent_targeting">
                     ' . $a['name'] . '
                   </label>
                     </div>

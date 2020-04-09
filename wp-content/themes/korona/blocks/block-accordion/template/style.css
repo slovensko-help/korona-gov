@@ -1,0 +1,17 @@
+.wp-block[data-type="acf/section-accordion-close"],
+.wp-block[data-type="acf/section-accordion-open"],
+.wp-block[data-type="acf/section-accordion-close-body"],
+.wp-block[data-type="acf/section-accordion-open-body"]{
+    text-align: center;
+    padding:10px;
+}
+
+.wp-block[data-type="acf/section-accordion-close"],
+.wp-block[data-type="acf/section-accordion-open"]{
+    background: #bdc3c7;
+}
+
+.wp-block[data-type="acf/section-accordion-close-body"],
+.wp-block[data-type="acf/section-accordion-open-body"]{
+    background: #f2f2f2;
+}
