@@ -41,3 +41,19 @@
     require get_template_directory() . '/blocks/block-button/block.php';
     require get_template_directory() . '/blocks/block-lists/block.php';
 
+
+    /**
+     * Light editor toolbar
+     *
+     * @param $toolbars
+     * @return mixed
+     */
+    function my_toolbars( $toolbars )
+    {
+        $toolbars['ID-GOV Toolbar' ] = array();
+        $toolbars['ID-GOV Toolbar' ][1] = array( 'bold' , 'italic' , 'underline', 'link' );
+
+        // return $toolbars - IMPORTANT!
+        return $toolbars;
+    }
+    add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
