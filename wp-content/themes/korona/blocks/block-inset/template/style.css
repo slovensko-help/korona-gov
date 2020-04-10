@@ -1,0 +1,4 @@
+.wp-block[data-type="acf/section-inset"] {
+    padding:10px;
+    background: rgba(245, 245, 245, 0.75);
+}
