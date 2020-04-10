@@ -1,0 +1,35 @@
+.wp-block[data-type="acf/section-button"] {
+    padding:10px;
+    font-family: "Source Sans Pro", "Arial", sans-serif;
+}
+
+.wp-block[data-type="acf/section-button"] .govuk-button {
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.1875;
+    box-sizing: border-box;
+    display: inline-block;
+    position: relative;
+    width: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 8px 10px 7px;
+    border: 2px solid transparent;
+    border-radius: 0;
+    color: #ffffff;
+    background-color: #006435;
+    box-shadow: 0 2px 0 #002815;
+    text-align: center;
+    vertical-align: top;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+.wp-block[data-type="acf/section-button"] .govuk-button.govuk-button--secondary {
+    color: #0B0C0C;
+    background-color: #c8cacb;
+    box-shadow: 0 2px 0 #858688;
+
+}

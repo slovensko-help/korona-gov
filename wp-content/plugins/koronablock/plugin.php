@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: GUV - modify core block
+ * Plugin Name: GOV - modify core block
  * Plugin URI: https://github.com/ahmadawais/create-guten-block/
  * Description: koronablock
  * Version: 1.0.0
