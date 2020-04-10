@@ -1,0 +1,48 @@
+.wp-block[data-type="acf/section-heading"] {
+    padding:10px;
+    font-family: "Source Sans Pro", "Arial", sans-serif;
+}
+.wp-block[data-type="acf/section-heading"] h1,
+.wp-block[data-type="acf/section-heading"] h2,
+.wp-block[data-type="acf/section-heading"] h3,
+.wp-block[data-type="acf/section-heading"] h4,
+.wp-block[data-type="acf/section-heading"] h5,
+.wp-block[data-type="acf/section-heading"] h6{
+    margin:0;
+}
+.wp-block[data-type="acf/section-heading"] h1.govuk-heading-xl,
+.wp-block[data-type="acf/section-heading"] h2.govuk-heading-xl,
+.wp-block[data-type="acf/section-heading"] h3.govuk-heading-xl,
+.wp-block[data-type="acf/section-heading"] h4.govuk-heading-xl,
+.wp-block[data-type="acf/section-heading"] h5.govuk-heading-xl,
+.wp-block[data-type="acf/section-heading"] h6.govuk-heading-xl
+{
+    font-size:48px;
+}
+.wp-block[data-type="acf/section-heading"] h1.govuk-heading-l,
+.wp-block[data-type="acf/section-heading"] h2.govuk-heading-l,
+.wp-block[data-type="acf/section-heading"] h3.govuk-heading-l,
+.wp-block[data-type="acf/section-heading"] h4.govuk-heading-l,
+.wp-block[data-type="acf/section-heading"] h5.govuk-heading-l,
+.wp-block[data-type="acf/section-heading"] h6.govuk-heading-l
+{
+    font-size:36px;
+}
+.wp-block[data-type="acf/section-heading"] h1.govuk-heading-m,
+.wp-block[data-type="acf/section-heading"] h2.govuk-heading-m,
+.wp-block[data-type="acf/section-heading"] h3.govuk-heading-m,
+.wp-block[data-type="acf/section-heading"] h4.govuk-heading-m,
+.wp-block[data-type="acf/section-heading"] h5.govuk-heading-m,
+.wp-block[data-type="acf/section-heading"] h6.govuk-heading-m
+{
+    font-size:24px;
+}
+.wp-block[data-type="acf/section-heading"] h1.govuk-heading-s,
+.wp-block[data-type="acf/section-heading"] h2.govuk-heading-s,
+.wp-block[data-type="acf/section-heading"] h3.govuk-heading-s,
+.wp-block[data-type="acf/section-heading"] h4.govuk-heading-s,
+.wp-block[data-type="acf/section-heading"] h5.govuk-heading-s,
+.wp-block[data-type="acf/section-heading"] h6.govuk-heading-s
+{
+    font-size:9px;
+}

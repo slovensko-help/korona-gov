@@ -1,0 +1,18 @@
+.wp-block[data-type="acf/section-inset"] {
+    padding: 10px;
+    font-family: "Source Sans Pro", "Arial", sans-serif;
+}
+
+.wp-block[data-type="acf/section-inset"] .govuk-inset-text {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #0B0C0C;
+    padding: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    clear: both;
+    border-left: 10px solid #BFC1C3;
+}

@@ -1,0 +1,10 @@
+.wp-block[data-type="core/html"],
+.wp-block[data-type="core/shortcode"],
+.wp-block[data-type="core/paragraph"],
+.wp-block[data-type="core/freeform"] {
+    font-family: "Source Sans Pro", "Arial", sans-serif;
+}
+
+.editor-styles-wrapper p{
+    margin: 0 !important;
+}

@@ -1,0 +1,40 @@
+.wp-block[data-type="acf/section-accordion-close"],
+.wp-block[data-type="acf/section-accordion-open"],
+.wp-block[data-type="acf/section-accordion-close-body"],
+.wp-block[data-type="acf/section-accordion-open-body"]{
+    padding:10px;
+    font-family: "Source Sans Pro", "Arial", sans-serif;
+}
+
+.wp-block[data-type="acf/section-accordion-close"],
+.wp-block[data-type="acf/section-accordion-open"]{
+    max-width: 60%;
+}
+
+
+.wp-block[data-type="acf/section-accordion-open"],
+.wp-block[data-type="acf/section-accordion-open-body"]{
+    border-top:2px solid #000;
+    border-right:2px solid #000;
+    border-left:2px solid #000;
+}
+
+.wp-block[data-type="acf/section-accordion-close"],
+.wp-block[data-type="acf/section-accordion-close-body"]{
+    border-bottom:2px solid #000;
+    border-right:2px solid #000;
+    border-left:2px solid #000;
+}
+
+.wp-block[data-type="acf/section-accordion-open-body"] h2{
+    color:#005ea5;
+    text-align: left;
+    margin: 0;
+}
+.wp-block[data-type="acf/section-accordion-open-body"] h2:after{
+    content: '+';
+    float:right;
+    font-weight: bold;
+    color:#000;
+    font-size:2rem;
+}

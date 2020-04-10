@@ -1,4 +1,7 @@
 <?php
+    if (!defined('ABSPATH')) {
+        exit;
+    }
 
     if( function_exists('acf_add_local_field_group') ):
 
@@ -40,8 +43,8 @@
                                               ),
                                               'default_value' => '',
                                               'tabs' => 'all',
-                                              'toolbar' => 'full',
-                                              'media_upload' => 1,
+                                              'toolbar' => 'id_gov_toolbar',
+                                              'media_upload' => 0,
                                               'delay' => 0,
                                           ),
                                       ),

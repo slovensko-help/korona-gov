@@ -1,0 +1,10 @@
+.wp-block[data-type="acf/section-lists"] {
+    max-width: 60%;
+    margin-bottom: 60px;
+}
+
+@media ( max-width: 1300px ) {
+    .wp-block[data-type="acf/section-lists"] {
+        max-width: 100%;
+    }
+}
