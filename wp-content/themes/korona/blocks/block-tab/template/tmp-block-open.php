@@ -31,7 +31,7 @@
                 <?php
                     if( is_admin() ) {
                         echo '<br>';
-                        echo '<span>ID: <code>' . $list_id . '</code></span><br><a href="#' . $list_id . '">obsah</a>';
+                        echo '(TAB) <span>ID: <code>' . $list_id . '</code></span><br><a href="#' . $list_id . '">obsah</a>';
                     }
                 ?>
             </li>

@@ -10,7 +10,7 @@
     }
 
     if( is_admin() && !empty( $section_id ) ) {
-        echo '<span>Jednoznačný identifikátor obsahu: <code>' . $section_id . '</code></span>';
+        echo '(Tab) <span>Jednoznačný identifikátor obsahu: <code>' . $section_id . '</code></span>';
     }
 
     ?>
