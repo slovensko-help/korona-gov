@@ -10,6 +10,12 @@
     function gov_page_block_category ( $categories, $post ) {
         return array_reverse(array_merge(
             $categories,
+            array (
+                array (
+                    'slug'  => 'gov-blocks-tabs',
+                    'title' => __( 'GOV ID-SK tab element', 'gov' ),
+                ),
+            ),
             array(
                 array(
                     'slug' => 'gov-blocks-accordion',
