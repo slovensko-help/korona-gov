@@ -12,7 +12,7 @@
 
         acf_register_block( [
             'name'            => 'section-accordion-open',
-            'title'           => __( 'Otvorenie accordionu hlavná časť', 'gov' ),
+            'title'           => __( 'Otvorenie accordionu', 'gov' ),
             'description'     => __( 'Otvorenie accordionu hlavná časť, vždy sa ukladá na prvé miesto pri skladaní accordionu.', 'gov' ),
             'render_callback' => 'render_callback_accordion',
             'category'        => 'gov-blocks-accordion',
@@ -25,7 +25,7 @@
 
         acf_register_block( [
             'name'            => 'section-accordion-close',
-            'title'           => __( 'Zatvorenie accordionu hlavná časť', 'gov' ),
+            'title'           => __( 'Zatvorenie accordionu', 'gov' ),
             'description'     => __( 'Otvorenie accordionu hlavná časť, vždy sa ukladá na posledné miesto pri skladaní accordionu.', 'gov' ),
             'render_callback' => 'render_callback_accordion_close',
             'category'        => 'gov-blocks-accordion',
@@ -38,8 +38,8 @@
 
         acf_register_block( [
             'name'            => 'section-accordion-open-body',
-            'title'           => __( 'Otvorenie a hlavička accordionu v hlavnej časti', 'gov' ),
-            'description'     => __( 'Otvorenie a hlavička accordionu v hlavnej časti.', 'gov' ),
+            'title'           => __( 'Otvorenie sekcie', 'gov' ),
+            'description'     => __( 'Otvorenie sekcie a accordionu v hlavnej časti.', 'gov' ),
             'render_callback' => 'render_callback_accordion_open_body',
             'category'        => 'gov-blocks-accordion',
             'icon'            => 'format-aside',
@@ -51,8 +51,8 @@
 
         acf_register_block( [
             'name'            => 'section-accordion-close-body',
-            'title'           => __( 'Zatvorenie accordionu v hlavnej časti', 'gov' ),
-            'description'     => __( 'Zatvorenie accordionu v hlavnej časti.', 'gov' ),
+            'title'           => __( 'Zatvorenie sekcie', 'gov' ),
+            'description'     => __( 'Zatvorenie sekcie accordionu v hlavnej časti.', 'gov' ),
             'render_callback' => 'render_callback_accordion_close_body',
             'category'        => 'gov-blocks-accordion',
             'icon'            => 'format-aside',

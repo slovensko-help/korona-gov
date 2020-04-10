@@ -73,10 +73,10 @@ if( function_exists('acf_add_local_field_group') ):
                     'id' => '',
                 ),
                 'choices' => array(
-                    'govuk-heading-xl' => '48 px Tučný nadpis',
-                    'govuk-heading-l' => '36 px Tučný nadpis',
-                    'govuk-heading-m' => '24 px Tučný nadpis',
-                    'govuk-heading-s' => '9 px Tučný nadpis',
+                    'govuk-heading-xl' => '48 px Tučný nadpis (XL)',
+                    'govuk-heading-l' => '36 px Tučný nadpis (L)',
+                    'govuk-heading-m' => '24 px Tučný nadpis (M)',
+                    'govuk-heading-s' => '9 px Tučný nadpis (S)',
                 ),
                 'default_value' => array(
                     0 => 'govuk-heading-m',

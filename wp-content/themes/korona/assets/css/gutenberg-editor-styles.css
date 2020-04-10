@@ -1,0 +1,10 @@
+.wp-block[data-type="core/html"],
+.wp-block[data-type="core/shortcode"],
+.wp-block[data-type="core/paragraph"],
+.wp-block[data-type="core/freeform"] {
+    font-family: "Source Sans Pro", "Arial", sans-serif;
+}
+
+#block-editor-inserter__search-1:placeholder-shown + .editor-inserter__results .components-panel__body:first-of-type {
+    display: none;
+}

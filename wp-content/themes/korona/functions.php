@@ -1,6 +1,30 @@
 <?php
 include 'inc/frontend.php';
 
+add_filter( 'allowed_block_types', 'allowed_block_types' );
+
+function allowed_block_types( $allowed_blocks ) {
+
+    return array(
+        'core/html',
+        'core/paragraph',
+        'core/spacer',
+        'core/separator',
+        'core/shortcode',
+        'core/freeform',
+        'acf/section-accordion-open',
+        'acf/section-accordion-open-body',
+        'acf/section-accordion-close',
+        'acf/section-accordion-close-body',
+        'acf/section-announce',
+        'acf/section-button',
+        'acf/section-heading',
+        'acf/section-hidden',
+        'acf/section-lists',
+        'acf/section-inset'
+    );
+
+}
 
     //add_action('get_header', 'korona_filter_head');
     //
@@ -43,7 +67,13 @@ include 'inc/frontend.php';
     add_action( 'wp_enqueue_scripts', 'korona_register_scripts' );
 
     add_theme_support( 'title-tag' );
+    // Add backend styles for Gutenberg.
+    add_action('enqueue_block_editor_assets', 'gutenberg_editor_assets');
 
+    function gutenberg_editor_assets() {
+        // Load the theme styles within Gutenberg.
+        wp_enqueue_style('my-gutenberg-editor-styles', '/wp-content/themes/korona/assets/css/gutenberg-editor-styles.css', FALSE);
+    }
     /**
      * get values of meta boxes
      *
