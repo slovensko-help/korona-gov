@@ -3,8 +3,11 @@
         exit;
     }
 
-    $block_id  = $block['id'];
+    $block_name  = $block['title'];
 
+    if(is_admin()){
+        echo $block_name;
+    }
     ?>
 
     </section>
