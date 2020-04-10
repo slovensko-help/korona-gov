@@ -40,7 +40,6 @@
 
     //require get_template_directory() . '/blocks/block-example/block.php';
     //require get_template_directory() . '/blocks/block-images/block.php';
-    require get_template_directory() . '/blocks/block-hidden/block.php';
     require get_template_directory() . '/blocks/block-accordion/block.php';
     require get_template_directory() . '/blocks/block-heading/block.php';
     require get_template_directory() . '/blocks/block-announce/block.php';
