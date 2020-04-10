@@ -5,7 +5,7 @@
 
     include_once 'acf-block.php';
 
-    function ledco_register_block_example () { //TODO: zmeniť
+    function id_sk_gov_register_block_example () { //TODO: zmeniť
         if ( !function_exists( 'acf_register_block' ) ) {
             return;
         }
@@ -13,8 +13,8 @@
         //example block
         acf_register_block( [
                                 'name'            => 'section-example', //TODO: zmeniť
-                                'title'           => __( 'Malý blok s textom', 'ledco' ),
-                                'description'     => __( 'Text zarovnaný na stred s nadpisom', 'ledco' ),
+                                'title'           => __( 'Malý blok s textom', 'id_sk_gov' ),
+                                'description'     => __( 'Text zarovnaný na stred s nadpisom', 'id_sk_gov' ),
                                 'render_callback' => 'render_callback_example', //TODO: zmeniť
                                 'enqueue_assets'	=> function(){ //TODO: Enqueue scripts and styles for block - front
                                     wp_enqueue_style( 'slick-slider-css', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', array(), null, 'all');
@@ -30,7 +30,7 @@
 
     }
 
-    add_action( 'acf/init', 'ledco_register_block_example' ); //TODO: zmeniť
+    add_action( 'acf/init', 'id_sk_gov_register_block_example' ); //TODO: zmeniť
 
     function render_callback_example ( $block ) { //TODO: zmeniť
         set_query_var( 'block', $block );

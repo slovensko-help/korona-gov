@@ -15,24 +15,19 @@
                     'slug'  => 'gov-blocks',
                     'title' => __( 'GOV ID-SK bloky', 'gov' ),
                 ),
+                array(
+                    'slug' => 'gov-blocks-accordion',
+                    'title' => __( 'GOV ID-SK accordion', 'gov' ),
+                ),
+                array(
+                    'slug' => 'gov-blocks-tabs',
+                    'title' => __( 'GOV ID-SK tab element', 'gov' ),
+                ),
             )
         );
     }
 
     add_filter( 'block_categories', 'gov_page_block_category', 10, 2 );
-
-    function gov_accordion_block_category( $categories, $post ) {
-        return array_merge(
-            $categories,
-            array(
-                array(
-                    'slug' => 'gov-blocks-accordion',
-                    'title' => __( 'GOV ID-SK accordion', 'gov' ),
-                ),
-            )
-        );
-    }
-    add_filter( 'block_categories', 'gov_accordion_block_category', 10, 2);
 
     /**
      * Register ACF blocks
@@ -47,6 +42,7 @@
     require get_template_directory() . '/blocks/block-hidden/block.php';
     require get_template_directory() . '/blocks/block-button/block.php';
     require get_template_directory() . '/blocks/block-lists/block.php';
+    require get_template_directory() . '/blocks/block-tab/block.php';
 
 
     /**

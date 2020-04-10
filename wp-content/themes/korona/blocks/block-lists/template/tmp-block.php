@@ -5,6 +5,22 @@
 
     $block_id = $block['id'];
 
+    $attributes = [
+            'br' => [],
+            'a' => [
+                    'href' => [],
+                    'class' => [],
+                    'id' => [],
+                    'target' => [],
+                    'rel' => [array()]
+            ],
+            'strong' => [],
+            'em' => [],
+            'span' => [
+                    'style' => [ 'text-decoration' ],
+            ],
+    ];
+
 
     if ( have_rows( 'main_list_items' ) ) {
 
@@ -33,7 +49,7 @@
         while ( have_rows( 'main_list_items' ) ) : the_row();
             echo '<li>';
 
-            echo wp_kses_post( get_sub_field( 'list_main_text' ) );
+            echo wp_kses( get_sub_field( 'list_main_text' ), $attributes );
 
             if ( $sub_type = get_sub_field( 'list_content' ) ) {
                 $list_inner = get_sub_field( 'list_inner' );
@@ -57,7 +73,7 @@
                     }
                     foreach ( $list_inner['list_items'] as $item ) :
                         echo '<li>';
-                        echo wp_kses_post( $item['text'] );
+                        echo wp_kses( $item['text'], $attributes );
                         echo '</li>';
                     endforeach;
 
