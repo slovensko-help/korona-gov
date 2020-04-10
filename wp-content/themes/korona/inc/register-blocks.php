@@ -46,6 +46,7 @@
     require get_template_directory() . '/blocks/block-hidden/block.php';
     require get_template_directory() . '/blocks/block-button/block.php';
     require get_template_directory() . '/blocks/block-lists/block.php';
+    require get_template_directory() . '/blocks/block-tab/block.php';
 
 
     /**
