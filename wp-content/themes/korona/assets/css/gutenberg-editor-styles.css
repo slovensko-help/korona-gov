@@ -5,6 +5,6 @@
     font-family: "Source Sans Pro", "Arial", sans-serif;
 }
 
-#block-editor-inserter__search-1:placeholder-shown + .editor-inserter__results .components-panel__body:first-of-type {
-    display: none;
+.editor-styles-wrapper p{
+    margin: 0 !important;
 }
