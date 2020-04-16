@@ -239,33 +239,9 @@
                 </a>
             </div>
             <div class="idsk-footer__meta-item idsk-footer__meta-item--grow">
-        <span class="idsk-footer__licence-description">
-          Prevádzkovateľom služby je Úrad podpredsedu vlády SR pre investície a informatizáciu.<br>
-          Vytvorené v súlade s Jednotným dizajn manuálom elektronických služieb.
-        </span>
+                <?php dynamic_sidebar( 'sidebar-1' ); ?>
                 <h2 class="govuk-visually-hidden">Dôležité odkazy</h2>
-                <ul class="idsk-footer__inline-list">
-                    <li class="idsk-footer__inline-list-item">
-                        <a class="idsk-footer__link" href="https://korona.gov.sk/">
-                            Hlavná stránka korona.gov.sk
-                        </a>
-                    </li>
-                    <li class="idsk-footer__inline-list-item">
-                        Call centrum: <a class="idsk-footer__link" href="tel:00421800221234">
-                            0800221234
-                        </a>
-                    </li>
-                    <li class="idsk-footer__inline-list-item">
-                        <a class="idsk-footer__link" href="https://www.korona.gov.sk/covid-19.php">
-                            Čo je COVID-19
-                        </a>
-                    </li>
-                    <li class="idsk-footer__inline-list-item">
-                        <a class="idsk-footer__link" href="/ludia/">
-                            Ľudia
-                        </a>
-                    </li>
-                </ul>
+                <?php dynamic_sidebar( 'sidebar-2' ); ?>
             </div>
         </div>
     </div>

@@ -158,3 +158,47 @@ function allowed_block_types( $allowed_blocks ) {
      * Block functions
      */
     require get_template_directory() . '/inc/register-blocks.php';
+
+    function wpb_custom_new_menu() {
+        register_nav_menus(
+            array(
+                'primary_menu' => __( 'Primary menu' ),
+                'footer-menu' => __( 'Footer menu' )
+            )
+        );
+    }
+    add_action( 'init', 'wpb_custom_new_menu' );
+
+    function add_classes_on_li($classes, $item, $args) {
+        $classes[] = 'idsk-header__navigation-item';
+        return $classes;
+    }
+    add_filter('nav_menu_css_class','add_classes_on_li',1,3);
+
+    function add_menuclass($ulclass) {
+        return preg_replace('/<a /', '<a class="idsk-header__link"', $ulclass);
+    }
+    add_filter('wp_nav_menu','add_menuclass');
+
+    remove_filter('widget_text_content', 'wpautop');
+
+    if ( function_exists('register_sidebar') ) {
+        register_sidebar(array(
+                'name' => 'Footer widget first',
+                'id' => 'sidebar-1',
+                'before_widget' => '<span class="idsk-footer__licence-description">',
+                'after_widget' => '</span>',
+                'before_title' => '',
+                'after_title' => '',
+            )
+        );
+        register_sidebar(array(
+                'name' => 'Footer widget second',
+                'id' => 'sidebar-2',
+                'before_widget' => '',
+                'after_widget' => '',
+                'before_title' => '',
+                'after_title' => '',
+            )
+        );
+    }
