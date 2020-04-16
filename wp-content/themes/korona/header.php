@@ -66,5 +66,5 @@
 </header>
 
 <div class="govuk-width-container">
-    <main class="govuk-main-wrapper govuk-!-padding-top-6 govuk-!-padding-bottom-6" id="main-content" role="main">
+    <main class="govuk-main-wrapper govuk-!-padding-top-6 govuk-!-padding-bottom-6 govuk-body" id="main-content" role="main">
         <div class="govuk-width-container">
