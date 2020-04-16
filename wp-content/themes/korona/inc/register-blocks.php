@@ -1,6 +1,45 @@
 <?php
 
     /**
+     * Allowed Gutenberg blocks
+     *
+     * @param $allowed_blocks
+     * @return array
+     */
+    function allowed_block_types( $allowed_blocks ) {
+
+        return array(
+            'core/html',
+            'core/paragraph',
+            'core/spacer',
+            'core/separator',
+            'core/shortcode',
+            'core/freeform',
+            'acf/section-accordion-open',
+            'acf/section-accordion-open-body',
+            'acf/section-accordion-close',
+            'acf/section-accordion-close-body',
+            'acf/section-tab-open',
+            'acf/section-tab-section-open',
+            'acf/section-tab-section-close',
+            'acf/section-tab-close',
+            'acf/section-announce',
+            'acf/section-button',
+            'acf/section-heading',
+            'acf/section-hidden',
+            'acf/section-lists',
+            'acf/section-inset',
+            'acf/section-row-open',
+            'acf/section-row-close',
+            'acf/section-col-open',
+            'acf/section-col-close',
+        );
+
+    }
+
+    add_filter( 'allowed_block_types', 'allowed_block_types' );
+
+    /**
      * new category of blocks
      *
      * @param $categories
@@ -10,6 +49,12 @@
     function gov_page_block_category ( $categories, $post ) {
         return array_reverse(array_merge(
             $categories,
+            array (
+                array (
+                    'slug'  => 'gov-blocks-grid',
+                    'title' => __( 'GOV ID-SK rozloženie stránky', 'gov' ),
+                ),
+            ),
             array (
                 array (
                     'slug'  => 'gov-blocks-tabs',
@@ -47,6 +92,7 @@
     require get_template_directory() . '/blocks/block-button/block.php';
     require get_template_directory() . '/blocks/block-lists/block.php';
     require get_template_directory() . '/blocks/block-tab/block.php';
+    require get_template_directory() . '/blocks/block-grid/block.php';
 
 
     /**
@@ -60,7 +106,6 @@
         $toolbars['ID-GOV Toolbar' ] = array();
         $toolbars['ID-GOV Toolbar' ][1] = array( 'bold' , 'italic' , 'underline', 'link' );
 
-        // return $toolbars - IMPORTANT!
         return $toolbars;
     }
     add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
