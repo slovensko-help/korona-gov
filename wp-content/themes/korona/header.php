@@ -56,21 +56,11 @@
         </div>
         <div class="idsk-header__content">
             <button type="button" role="button" class="idsk-header__menu-button govuk-js-header-toggle" aria-controls="aa-navigation" aria-label="Skryť alebo zobraziť hlavnú navigáciu">Menu</button>
-            <nav>
-                <ul id="aa-navigation" class="idsk-header__navigation " aria-label="Top Level Navigation">
-                    <li class="idsk-header__navigation-item">
-                        <a class="idsk-header__link" href="https://www.korona.gov.sk/">
-                            Hlavná stránka
-                        </a>
-                    </li>
-                    <li class="idsk-header__navigation-item">
-                        <a class="idsk-header__link" href="/prva-a-druha-pomoc/">
-                            Prvá a druhá pomoc
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-
+            <?php wp_nav_menu( array(
+                'theme_location' => 'primary_menu',
+                'container' => '',
+                'items_wrap'        => '<nav><ul id="aa-navigation" class="idsk-header__navigation " aria-label="Top Level Navigation">%3$s</ul></nav>',
+            ) ); ?>
         </div>
     </div>
 </header>
