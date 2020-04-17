@@ -1,15 +1,13 @@
 <?php
 
-include_once '../_functions.php';
-
-define('BASE_PATH', '../../../');
+include_once HOMEPAGE_ROOT_DIR . '../_functions.php';
 
 function updateHpStats($contentFile)
 {
     $result = ['health-check' => true];
 
-    $contentFilePath = BASE_PATH . $contentFile;
-    $dataFilePath = BASE_PATH . 'tools/cache-api/hp-stats.json';
+    $contentFilePath = STATIC_BASE_PATH . $contentFile;
+    $dataFilePath = HOMEPAGE_ROOT_DIR . '../../cache-api/hp-stats.json';
 
     if (!is_file($contentFilePath)) {
         return updateResult($result, 'content-file', false, 'Content file does not exist.');
@@ -52,8 +50,8 @@ function updateHpStats($contentFile)
                 if (false === $lastUpdated) {
                     updateResult($result, $numberType, false, 'Last update date is not available.');
                 } else {
-                    if ($lastUpdated->diff(new DateTimeImmutable('now'))->days > 1) {
-                        updateResult($result, $numberType, false, 'Last update date is more than one day before or after today.');
+                    if ($lastUpdated->diff(new DateTimeImmutable('now'))->days > 2) {
+                        updateResult($result, $numberType, false, 'Last update date is more than two days before or after today.');
                     }
 
                     $stats[$numberType] = [

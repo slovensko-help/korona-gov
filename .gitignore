@@ -10,5 +10,7 @@ wp-content/plugins/acf-php-recovery.php
 /wp-content/plugins/updraftplus
 /wp-content/plugins/sitepress-multilingual-cms
 /wp-content/plugins/wp-seo-multilingual
-/tools/cache-api/*.json
 /wp-content/updraft
+/tools/cache-api/*.json
+/tools/update-content/config.php
+/static/*
