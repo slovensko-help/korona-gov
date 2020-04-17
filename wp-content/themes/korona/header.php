@@ -66,10 +66,12 @@
         </div>
 
         <div class="idsk-header__content">
+
             <div class="language-picker js-language-picker" data-trigger-class="btn btn--subtle js-tab-focus">
                 <form action="" class="x-nua"><label for="language-picker-select">Select your language</label>
                     <select name="language-picker-select" id="language-picker-select">
                         <?php
+                        $languages = apply_filters( 'wpml_active_languages', NULL, 'orderby=id&order=desc' );
                         $languages = icl_get_languages();
                         foreach($languages as $key => $value){
                             $active = null;
