@@ -135,7 +135,7 @@ add_shortcode('consent_submit', 'consent_submit_shortcode');
         //$link_output = preg_replace("/<span\s(.+?)>(.+?)<\/span>/is", "<h1 $1>$2</h1>", $link_output);
         //$output = strip_tags( $link_output, '<a>' );
         if( isset( $link['url'] ) ) {
-            $link_output = '<a href="' . esc_url( $link['url'] ) . '" class="govuk-breadcrumbs__link">' . esc_html( $link['text'] ) . '</a>';
+            $link_output = '<li class="govuk-breadcrumbs__list-item"><a href="' . esc_url( $link['url'] ) . '" class="govuk-breadcrumbs__link">' . esc_html( $link['text'] ) . '</a></li>';
         }
 
         return $link_output;
