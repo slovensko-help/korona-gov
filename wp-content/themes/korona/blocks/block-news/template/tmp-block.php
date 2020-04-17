@@ -19,7 +19,7 @@
             ?>
             <div class="news-list<?php echo $class; ?>">
                 <p class="govuk-body-s govuk-!-margin-bottom-0"><?php echo esc_html( $date ); ?> | <?php echo esc_html( $owner ); ?></p>
-                <h3 class="govuk-heading-m govuk-!-margin-bottom-9"><a href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( $title ); ?></a></h3>
+                <h3 class="govuk-heading-m govuk-!-margin-bottom-9"><a class="govuk-link" href="<?php echo esc_url( $link ); ?>" target="_blank"><?php echo esc_html( $title ); ?></a></h3>
             </div>
             <?php
         endwhile;
