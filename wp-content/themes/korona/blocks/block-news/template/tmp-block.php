@@ -3,7 +3,11 @@
         exit;
     }
 
+    $class = '';
     $block_id  = $block['id'];
+    if( isset( $block['className'] ) && !empty( $block['className'] ) ) {
+        $class = ' ' . $block['className'];
+    }
 
     if( have_rows( 'news' ) ) {
 
@@ -13,9 +17,9 @@
             $title = get_sub_field( 'title' );
             $link = get_sub_field( 'link' );
             ?>
-            <div class="news-list">
-                <p class="govuk-body-s govuk-!-margin-bottom-0">13. apríla 2020 | Ministerstvo zdravotníctva SR</p>
-                <h3 class="govuk-heading-m"><a href="#">Sociálna poisťovňa úpravou webu pomáah žiadateľom o dávky Web dosiahol takmer 2 mil. návštev.</a></h3>
+            <div class="news-list<?php echo $class; ?>">
+                <p class="govuk-body-s govuk-!-margin-bottom-0"><?php echo esc_html( $date ); ?> | <?php echo esc_html( $owner ); ?></p>
+                <h3 class="govuk-heading-m govuk-!-margin-bottom-9"><a href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( $title ); ?></a></h3>
             </div>
             <?php
         endwhile;

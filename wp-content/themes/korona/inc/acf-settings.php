@@ -91,6 +91,25 @@
                                               'append' => '',
                                               'maxlength' => '',
                                           ),
+                                          array(
+                                              'key' => 'field_5e99cf3c82074',
+                                              'label' => 'Dátum poslednej aktualizácie',
+                                              'name' => 'version_date',
+                                              'type' => 'text',
+                                              'instructions' => '',
+                                              'required' => 0,
+                                              'conditional_logic' => 0,
+                                              'wrapper' => array(
+                                                  'width' => '',
+                                                  'class' => '',
+                                                  'id' => '',
+                                              ),
+                                              'default_value' => '',
+                                              'placeholder' => '',
+                                              'prepend' => '',
+                                              'append' => '',
+                                              'maxlength' => '',
+                                          ),
                                       ),
                                       'location' => array(
                                           array(

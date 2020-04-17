@@ -66,18 +66,6 @@
 </header>
 <?php
     if( get_field( 'version_display', 'options' ) ) {
-        $recently_updated_page = new WP_Query( [
-                'post_type'      => [ 'page' ],
-                'posts_per_page' => 1,
-                'orderby'        => 'modified',
-                'no_found_rows'  => true,
-        ] );
-        if( $recently_updated_page->have_posts() ) :
-            while( $recently_updated_page->have_posts() ) : $recently_updated_page->the_post();
-                $latest = get_the_modified_date( 'j. m. Y', $post );
-            endwhile;
-        endif;
-        wp_reset_postdata();
 ?>
     <div class="govuk-width-container">
         <div class="govuk-phase-banner">
@@ -86,10 +74,20 @@
                     <?php echo esc_html( get_field( 'version_phase', 'options' ) ); ?>
                 </strong>
                 <span class="govuk-phase-banner__text">
-                  <?php echo wp_kses( get_field( 'version_info', 'options' ), [ 'a' => [ 'target' => [], 'href' => [], 'class' => [], 'title' => [], 'aria-label' => [], 'id' => [], ] ] ) . $latest; ?>
+                  <?php echo wp_kses( get_field( 'version_info', 'options' ), [ 'a' => [ 'target' => [], 'href' => [], 'class' => [], 'title' => [], 'aria-label' => [], 'id' => [], ] ] ) . esc_html( get_field( 'version_date', 'options' ) ); ?>
                 </span>
             </p>
         </div>
     </div>
-<?php } ?>
+<?php }
+    if ( !is_front_page() && function_exists('yoast_breadcrumb') ) {
+        ?>
+        <div class="govuk-width-container">
+        <?php
+        yoast_breadcrumb( '<div class="govuk-breadcrumbs"><ol class="govuk-breadcrumbs__list">','</ol></div>' );
+        ?>
+        </div>
+        <?php
+    }
+    ?>
 <main class="govuk-main-wrapper govuk-!-padding-top-6 govuk-!-padding-bottom-6 govuk-body" id="main-content" role="main">

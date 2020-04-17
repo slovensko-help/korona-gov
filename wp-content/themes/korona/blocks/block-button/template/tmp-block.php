@@ -3,7 +3,12 @@
         exit;
     }
 
+    $class       = '';
+
     $block_id = $block['id'];
+    if( isset( $block['className'] ) && !empty( $block['className'] ) ) {
+        $class .= $block['className'] . ' ';
+    }
 
     $button_link = get_field( 'button_link' );
     $button_link_ext = get_field( 'button_link_ext' );
@@ -25,7 +30,6 @@
             }
         }
         $icon        = '';
-        $class       = '';
         if ( $button_type !== FALSE ) {
             $button_color = get_field( 'button_color' );
             $button_arrow = get_field( 'button_arrow' );
