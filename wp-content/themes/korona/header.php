@@ -72,7 +72,6 @@
                     <select name="language-picker-select" id="language-picker-select">
                         <?php
                         $languages = apply_filters( 'wpml_active_languages', NULL, 'orderby=id&order=desc' );
-                        $languages = icl_get_languages();
                         foreach($languages as $key => $value){
                             $active = null;
                             if($value['active'] == 1){
