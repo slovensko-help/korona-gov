@@ -91,5 +91,15 @@
             </p>
         </div>
     </div>
-<?php } ?>
+<?php }
+    if ( !is_front_page() && function_exists('yoast_breadcrumb') ) {
+        ?>
+        <div class="govuk-width-container">
+        <?php
+        yoast_breadcrumb( '<div class="govuk-breadcrumbs"><ol class="govuk-breadcrumbs__list"><li class="govuk-breadcrumbs__list-item">','</li></ol></div>' );
+        ?>
+        </div>
+        <?php
+    }
+    ?>
 <main class="govuk-main-wrapper govuk-!-padding-top-6 govuk-!-padding-bottom-6 govuk-body" id="main-content" role="main">
