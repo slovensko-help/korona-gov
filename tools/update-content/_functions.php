@@ -1,5 +1,7 @@
 <?php
 
+include_once 'config.php';
+
 function updateResult(&$result, $section, $isOk, $message = '')
 {
     $result['health-check'] = (bool)$result['health-check'] && $isOk;
@@ -9,19 +11,18 @@ function updateResult(&$result, $section, $isOk, $message = '')
 
 function updatePlaceholder($content, $placeholder, $value, &$result)
 {
-    $count = 0;
-    $updateContent = preg_replace(
-        '/<!--\W*REPLACE:\W*' . $placeholder . '\W*-->(.*)<!--\W*\/REPLACE\W*-->/',
-        '<!-- REPLACE:' . $placeholder . ' -->' . $value . '<!-- /REPLACE -->',
-        $content,
-        -1,
-        $count);
+    $pattern = '/<!--\W*REPLACE:\W*' . $placeholder . '\W*-->(.*)<!--\W*\/REPLACE\W*-->/sU';
 
-    if ($count === 0) {
+    if (preg_match($pattern, $content) !== 1) {
         updateResult($result, $placeholder, false, 'Pattern not found');
+
+        return $content;
     }
 
-    return $updateContent;
+    return preg_replace(
+        $pattern,
+        '<!-- REPLACE:' . $placeholder . ' -->' . $value . '<!-- /REPLACE -->',
+        $content);
 }
 
 function isArrayInTreeEmpty($variable, $path)

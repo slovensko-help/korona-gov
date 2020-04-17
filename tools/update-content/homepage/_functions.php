@@ -1,15 +1,13 @@
 <?php
 
-include_once '../_functions.php';
-
-define('BASE_PATH', '../../../');
+include_once HOMEPAGE_ROOT_DIR . '../_functions.php';
 
 function updateHpStats($contentFile)
 {
     $result = ['health-check' => true];
 
-    $contentFilePath = BASE_PATH . $contentFile;
-    $dataFilePath = BASE_PATH . 'tools/cache-api/hp-stats.json';
+    $contentFilePath = STATIC_BASE_PATH . $contentFile;
+    $dataFilePath = HOMEPAGE_ROOT_DIR . '../../cache-api/hp-stats.json';
 
     if (!is_file($contentFilePath)) {
         return updateResult($result, 'content-file', false, 'Content file does not exist.');
