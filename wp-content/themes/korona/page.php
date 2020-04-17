@@ -2,6 +2,10 @@
 
     get_header();
 
+    ?>
+    <div class="govuk-width-container">
+    <?php
+
     $back_text = get_post_meta( get_the_ID(), 'gov_back_button_text', TRUE );
     $back_link = get_post_meta( get_the_ID(), 'gov_back_button_url', TRUE );
 
@@ -21,5 +25,7 @@
         }
     }
 
-
+    ?>
+    </div>
+    <?php
     get_footer();

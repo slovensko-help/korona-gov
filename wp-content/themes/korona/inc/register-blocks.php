@@ -33,6 +33,9 @@
             'acf/section-row-close',
             'acf/section-col-open',
             'acf/section-col-close',
+            'acf/section-container-open',
+            'acf/section-container-close',
+            'acf/section-news',
         );
 
     }
@@ -48,6 +51,12 @@
      */
     function gov_page_block_category ( $categories, $post ) {
         return array_reverse(array_merge(
+             array (
+                 array (
+                     'slug'  => 'gov-blocks-container',
+                     'title' => __( 'GOV ID-SK kontajner', 'gov' ),
+                 ),
+             ),
             $categories,
             array (
                 array (
@@ -93,6 +102,8 @@
     require get_template_directory() . '/blocks/block-lists/block.php';
     require get_template_directory() . '/blocks/block-tab/block.php';
     require get_template_directory() . '/blocks/block-grid/block.php';
+    require get_template_directory() . '/blocks/block-container/block.php';
+    require get_template_directory() . '/blocks/block-news/block.php';
 
 
     /**

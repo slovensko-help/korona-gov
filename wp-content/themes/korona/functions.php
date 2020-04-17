@@ -126,9 +126,10 @@ include 'inc/frontend.php';
     add_action( 'save_post', 'gov_back_button_save' );
 
     /**
-     * Block functions
+     * Block, ACF functions
      */
     require get_template_directory() . '/inc/register-blocks.php';
+    require get_template_directory() . '/inc/acf-settings.php';
 
     function wpb_custom_new_menu() {
         register_nav_menus(

@@ -10,4 +10,5 @@
         echo '<p style="text-align: right;"><code>' . $block_name . '</code> ';
     }
     ?>
+        </div>
     </div>

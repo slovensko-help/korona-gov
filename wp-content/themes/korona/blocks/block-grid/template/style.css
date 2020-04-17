@@ -1,6 +1,6 @@
 .wp-block[data-type="acf/section-row-open"],
 .wp-block[data-type="acf/section-row-close"]{
-    max-width: 100%;
+    max-width: 90%;
 }
 
 .wp-block[data-type="acf/section-col-open"],
