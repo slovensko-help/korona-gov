@@ -1,0 +1,28 @@
+.js .language-picker__form {
+// if JavaScript is enabled, hide the default form element
+display: none;
+}
+
+.language-picker__dropdown {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 200px;
+    background-color: #f2f2f2;
+    box-shadow: 0 0.3px 0.4px rgba(0, 0, 0, 0.025), 0 0.9px 1.5px rgba(0, 0, 0, 0.05), 0 3.5px 6px rgba(0, 0, 0, 0.1);
+    padding:calc(0.375 * 1rem) 0;
+    border-radius: 0.25em;
+    z-index: 5;
+
+// hide the language list by default
+visibility: hidden;
+    opacity: 0;
+    transition: .2s ease-out;
+}
+
+.language-picker__button[aria-expanded="true"] + .language-picker__dropdown {
+// show the language list when the aria-expanded attribute of the button element is true
+visibility: visible;
+    opacity: 1;
+    transform: translateY(4px);
+}
