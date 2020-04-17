@@ -65,18 +65,19 @@
     </div>
 </header>
 <?php
-    $recently_updated_page = new WP_Query( [
-            'post_type'      => [ 'page' ],
-            'posts_per_page' => 1,
-            'orderby'        => 'modified',
-            'no_found_rows'  => true,
-    ] );
-    if( $recently_updated_page->have_posts() ) :
-        while( $recently_updated_page->have_posts() ) : $recently_updated_page->the_post();
-            $latest = get_the_modified_date( 'j. m. Y', $post );
-        endwhile;
-    endif;
-    wp_reset_postdata();
+    if( get_field( 'version_display', 'options' ) ) {
+        $recently_updated_page = new WP_Query( [
+                'post_type'      => [ 'page' ],
+                'posts_per_page' => 1,
+                'orderby'        => 'modified',
+                'no_found_rows'  => true,
+        ] );
+        if( $recently_updated_page->have_posts() ) :
+            while( $recently_updated_page->have_posts() ) : $recently_updated_page->the_post();
+                $latest = get_the_modified_date( 'j. m. Y', $post );
+            endwhile;
+        endif;
+        wp_reset_postdata();
 ?>
     <div class="govuk-width-container">
         <div class="govuk-phase-banner">
@@ -90,4 +91,5 @@
             </p>
         </div>
     </div>
+<?php } ?>
 <main class="govuk-main-wrapper govuk-!-padding-top-6 govuk-!-padding-bottom-6 govuk-body" id="main-content" role="main">
