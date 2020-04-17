@@ -12,13 +12,32 @@
 
     $width = get_field( 'grid_col_width' );
     $col_background = get_field( 'col_background' );
-    $col_padding = get_field( 'col_padding' );
 
     if( $col_background !== 'no' ) {
         $class .= ' ' . $col_background;
     }
-    if( $col_padding !== 'no' ) {
-        $class .= ' ' . $col_padding;
+
+    if( get_field( 'col_padding' ) ) {
+        $col_padding_top = get_field( 'col_padding_top' );
+        $col_padding_bottom = get_field( 'col_padding_down' );
+        $col_padding_left = get_field( 'col_padding_left' );
+        $col_padding_right = get_field( 'col_padding_right' );
+
+        if( $col_padding_top !== 'no' ) {
+            $class .= ' ' . $col_padding_top;
+        }
+
+        if( $col_padding_bottom !== 'no' ) {
+            $class .= ' ' . $col_padding_bottom;
+        }
+
+        if( $col_padding_right !== 'no' ) {
+            $class .= ' ' . $col_padding_right;
+        }
+
+        if( $col_padding_left !== 'no' ) {
+            $class .= ' ' . $col_padding_left;
+        }
     }
 
     if( is_admin() ) {

@@ -7,3 +7,5 @@ wp-config.php
 wp-content/plugins/acf-php-recovery.php
 /wp-content/themes/korona/blocks/block-example/
 /wp-content/plugins/advanced-custom-fields-pro/
+
+/tools/cache-api/*.json
