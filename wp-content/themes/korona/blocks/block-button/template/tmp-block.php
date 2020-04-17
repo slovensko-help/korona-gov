@@ -3,9 +3,10 @@
         exit;
     }
 
+    $block_id    = $block['id'];
     $class       = '';
+    $icon        = '';
 
-    $block_id = $block['id'];
     if( isset( $block['className'] ) && !empty( $block['className'] ) ) {
         $class .= $block['className'] . ' ';
     }
@@ -29,7 +30,6 @@
                 $title = get_the_title( $selectedID );
             }
         }
-        $icon        = '';
         if ( $button_type !== FALSE ) {
             $button_color = get_field( 'button_color' );
             $button_arrow = get_field( 'button_arrow' );
@@ -47,7 +47,7 @@
             ?>
             <p class="govuk-body">
         <?php endif; ?>
-        <a href="<?php echo esc_url( $url ) ?>" target="<?php echo $target; ?>" <?php echo $button_type !== FALSE ? 'role="button" draggable="false" class="' . esc_attr( $class ) . '" data-module="govuk-button"' : 'class="govuk-link"'; ?>><?php echo esc_html( $title ); ?><?php echo $icon; ?></a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="<?php echo esc_url( $url ) ?>" target="<?php echo $target; ?>" <?php echo $button_type !== FALSE ? 'role="button" draggable="false" class="' . esc_attr( $class ) . '" data-module="govuk-button"' : 'class="govuk-link ' . esc_attr( $class ) . '"'; ?>><?php echo esc_html( $title ); ?><?php echo $icon; ?></a>&nbsp;&nbsp;&nbsp;&nbsp;
         <?php
         if ( $button_type !== TRUE ) :
             ?>

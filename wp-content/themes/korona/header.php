@@ -35,11 +35,14 @@
 
 <a href="#main-content" class="govuk-skip-link">Preskočiť na hlavný obsah</a>
 
+<?php
+    $home_url = apply_filters( 'wpml_home_url', get_option( 'home' ) );
+?>
 
 <header class="idsk-header " role="banner" data-module="govuk-header">
     <div class="idsk-header__container govuk-width-container">
         <div class="idsk-header__logo">
-            <a href="https://www.korona.gov.sk/" class="idsk-header__link idsk-header__link--homepage">
+            <a href="<?php echo esc_url( $home_url ); ?>" class="idsk-header__link idsk-header__link--homepage">
                 <span class="idsk-header__logotype">
                     <svg role="presentation" focusable="false" class="idsk-header__logotype-crown"
                          xmlns="http://www.w3.org/2000/svg" width="188" height="30" viewBox="0 0 277 44" fill="none">
