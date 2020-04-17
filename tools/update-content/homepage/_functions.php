@@ -50,8 +50,8 @@ function updateHpStats($contentFile)
                 if (false === $lastUpdated) {
                     updateResult($result, $numberType, false, 'Last update date is not available.');
                 } else {
-                    if ($lastUpdated->diff(new DateTimeImmutable('now'))->days > 1) {
-                        updateResult($result, $numberType, false, 'Last update date is more than one day before or after today.');
+                    if ($lastUpdated->diff(new DateTimeImmutable('now'))->days > 2) {
+                        updateResult($result, $numberType, false, 'Last update date is more than two days before or after today.');
                     }
 
                     $stats[$numberType] = [
