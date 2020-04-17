@@ -13,7 +13,7 @@
         //announce block
         acf_register_block( [
             'name'            => 'section-announce',
-            'title'           => __( 'Dôležitý oznam', 'gov' ),
+            'title'           => __( 'Upozornenie', 'gov' ),
             'description'     => __( 'Blok pre dôležitý oznam', 'gov' ),
             'render_callback' => 'render_callback_announce',
             'category'        => 'gov-blocks',

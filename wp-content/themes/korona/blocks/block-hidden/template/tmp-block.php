@@ -15,7 +15,7 @@
 
         <details class="govuk-details" data-module="govuk-details">
             <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text" aria-label="<?php echo get_field( 'hidden_aria_label' ); ?>">
+                <span class="govuk-details__summary-text" role="heading" aria-level="3" aria-label="<?php echo get_field( 'hidden_aria_label' ); ?>">
                   <?php echo esc_html( $hidden_text_title ); ?>
                 </span>
             </summary>

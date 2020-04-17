@@ -1,7 +1,6 @@
 
-</div>
+
 </main>
-</div>
 
 <footer class="idsk-footer " role="contentinfo">
     <div class="govuk-width-container ">

@@ -13,7 +13,7 @@
         //lists block
         acf_register_block( [
                                 'name'            => 'section-lists',
-                                'title'           => __( 'ID-SK Zoznam', 'gov' ),
+                                'title'           => __( 'Odrážky', 'gov' ),
                                 'description'     => __( 'ID-SK Zoznam', 'gov' ),
                                 'render_callback' => 'render_callback_lists',
                                 'category'        => 'gov-blocks',

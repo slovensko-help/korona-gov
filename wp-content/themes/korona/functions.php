@@ -1,35 +1,6 @@
 <?php
 include 'inc/frontend.php';
 
-add_filter( 'allowed_block_types', 'allowed_block_types' );
-
-function allowed_block_types( $allowed_blocks ) {
-
-    return array(
-        'core/html',
-        'core/paragraph',
-        'core/spacer',
-        'core/separator',
-        'core/shortcode',
-        'core/freeform',
-        'acf/section-accordion-open',
-        'acf/section-accordion-open-body',
-        'acf/section-accordion-close',
-        'acf/section-accordion-close-body',
-        'acf/section-tab-open',
-        'acf/section-tab-section-open',
-        'acf/section-tab-section-close',
-        'acf/section-tab-close',
-        'acf/section-announce',
-        'acf/section-button',
-        'acf/section-heading',
-        'acf/section-hidden',
-        'acf/section-lists',
-        'acf/section-inset'
-    );
-
-}
-
     //add_action('get_header', 'korona_filter_head');
     //
     //function korona_filter_head() {
@@ -155,9 +126,10 @@ function allowed_block_types( $allowed_blocks ) {
     add_action( 'save_post', 'gov_back_button_save' );
 
     /**
-     * Block functions
+     * Block, ACF functions
      */
     require get_template_directory() . '/inc/register-blocks.php';
+    require get_template_directory() . '/inc/acf-settings.php';
 
     function wpb_custom_new_menu() {
         register_nav_menus(
