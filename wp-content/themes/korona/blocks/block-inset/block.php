@@ -13,7 +13,7 @@
         //inset block
         acf_register_block( [
             'name'            => 'section-inset',
-            'title'           => __( 'Vsadený text', 'gov' ),
+            'title'           => __( 'Poznámka', 'gov' ),
             'description'     => __( 'Blok so vsadeným textom', 'gov' ),
             'render_callback' => 'render_callback_inset',
             'category'        => 'gov-blocks',

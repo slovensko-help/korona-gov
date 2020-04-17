@@ -13,7 +13,7 @@
         //tab-open block
         acf_register_block( [
                                 'name'            => 'section-tab-open',
-                                'title'           => __( 'Tab - otvorenie sekcie + zoznam', 'id_sk_gov' ),
+                                'title'           => __( '1. Tab - začiatok', 'id_sk_gov' ),
                                 'description'     => __( 'Tab element zoznam tabov', 'id_sk_gov' ),
                                 'render_callback' => 'render_callback_tab_open',
                                 'category'        => 'gov-blocks-tabs',
@@ -26,7 +26,7 @@
         //tab-section-open block
         acf_register_block( [
                                 'name'            => 'section-tab-section-open',
-                                'title'           => __( 'Tab - otvorenie', 'id_sk_gov' ),
+                                'title'           => __( '2. Tab - otvorenie sekcie', 'id_sk_gov' ),
                                 'description'     => __( 'Tab element obsah tabu otvorenie', 'id_sk_gov' ),
                                 'render_callback' => 'render_callback_tab_section_open',
                                 'category'        => 'gov-blocks-tabs',
@@ -39,7 +39,7 @@
         //tab-section-close block
         acf_register_block( [
                                 'name'            => 'section-tab-section-close',
-                                'title'           => __( 'Tab - zatvorenie sekcie', 'id_sk_gov' ),
+                                'title'           => __( '3. Tab - zatvorenie sekcie', 'id_sk_gov' ),
                                 'description'     => __( 'Tab element obsah tabou ukončenie', 'id_sk_gov' ),
                                 'render_callback' => 'render_callback_tab_section_close',
                                 'category'        => 'gov-blocks-tabs',
@@ -52,7 +52,7 @@
         //tab-open block
         acf_register_block( [
                                 'name'            => 'section-tab-close',
-                                'title'           => __( 'Tab - zatvorenie', 'id_sk_gov' ),
+                                'title'           => __( '4. Tab - koniec', 'id_sk_gov' ),
                                 'description'     => __( 'Tab element ukončenie', 'id_sk_gov' ),
                                 'render_callback' => 'render_callback_tab_close',
                                 'category'        => 'gov-blocks-tabs',

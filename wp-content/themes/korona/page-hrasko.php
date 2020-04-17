@@ -2,6 +2,10 @@
 
 get_header();
 
+?>
+    <div class="govuk-width-container">
+<?php
+
 if ( have_posts() ) {
 
     // Load posts loop.
@@ -11,4 +15,8 @@ if ( have_posts() ) {
     }
 }
 
+?>
+    </div>
+<?php
+    
 get_footer();

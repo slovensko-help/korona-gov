@@ -1,0 +1,12 @@
+.wp-block[data-type="acf/section-container-open"],
+.wp-block[data-type="acf/section-container-close"] {
+    max-width: 100%;
+}
+
+.wp-block[data-type="acf/section-container-open"] {
+    border-top: 10px solid #eee;
+}
+
+.wp-block[data-type="acf/section-container-close"] {
+    border-bottom: 10px solid #eee;
+}

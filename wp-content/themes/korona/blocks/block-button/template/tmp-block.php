@@ -43,7 +43,7 @@
             ?>
             <p class="govuk-body">
         <?php endif; ?>
-        <a href="<?php echo esc_url( $url ) ?>" target="<?php echo $target; ?>" <?php echo $button_type !== FALSE ? 'role="button" draggable="false" class="' . esc_attr( $class ) . '" data-module="govuk-button"' : ''; ?>><?php echo esc_html( $title ); ?><?php echo $icon; ?></a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="<?php echo esc_url( $url ) ?>" target="<?php echo $target; ?>" <?php echo $button_type !== FALSE ? 'role="button" draggable="false" class="' . esc_attr( $class ) . '" data-module="govuk-button"' : 'class="govuk-link"'; ?>><?php echo esc_html( $title ); ?><?php echo $icon; ?></a>&nbsp;&nbsp;&nbsp;&nbsp;
         <?php
         if ( $button_type !== TRUE ) :
             ?>

@@ -12,7 +12,7 @@
 
         acf_register_block( [
             'name'            => 'section-accordion-open',
-            'title'           => __( 'Accordion - otvorenie', 'gov' ),
+            'title'           => __( '1. Accordion - začiatok', 'gov' ),
             'description'     => __( 'Otvorenie accordionu hlavná časť, vždy sa ukladá na prvé miesto pri skladaní accordionu.', 'gov' ),
             'render_callback' => 'render_callback_accordion',
             'category'        => 'gov-blocks-accordion',
@@ -25,7 +25,7 @@
 
         acf_register_block( [
             'name'            => 'section-accordion-close',
-            'title'           => __( 'Accordion - zatvorenie', 'gov' ),
+            'title'           => __( '4. Accordion - koniec', 'gov' ),
             'description'     => __( 'Otvorenie accordionu hlavná časť, vždy sa ukladá na posledné miesto pri skladaní accordionu.', 'gov' ),
             'render_callback' => 'render_callback_accordion_close',
             'category'        => 'gov-blocks-accordion',
@@ -38,7 +38,7 @@
 
         acf_register_block( [
             'name'            => 'section-accordion-open-body',
-            'title'           => __( 'Accordion - otvorenie sekcie', 'gov' ),
+            'title'           => __( '2. Accordion - otvorenie sekcie', 'gov' ),
             'description'     => __( 'Otvorenie sekcie a accordionu v hlavnej časti.', 'gov' ),
             'render_callback' => 'render_callback_accordion_open_body',
             'category'        => 'gov-blocks-accordion',
@@ -51,7 +51,7 @@
 
         acf_register_block( [
             'name'            => 'section-accordion-close-body',
-            'title'           => __( 'Accordion - zatvorenie sekcie', 'gov' ),
+            'title'           => __( '3. Accordion - zatvorenie sekcie', 'gov' ),
             'description'     => __( 'Zatvorenie sekcie accordionu v hlavnej časti.', 'gov' ),
             'render_callback' => 'render_callback_accordion_close_body',
             'category'        => 'gov-blocks-accordion',
