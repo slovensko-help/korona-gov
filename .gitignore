@@ -10,6 +10,8 @@ wp-content/plugins/acf-php-recovery.php
 /wp-content/plugins/updraftplus
 /wp-content/plugins/sitepress-multilingual-cms
 /wp-content/plugins/wp-seo-multilingual
+/wp-content/languages/
+/wp-content/plugins/wpml-string-translation/
 /wp-content/updraft
 /tools/cache-api/*.json
 /tools/update-content/config.php
