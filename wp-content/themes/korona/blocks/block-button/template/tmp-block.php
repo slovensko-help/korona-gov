@@ -33,7 +33,7 @@
         if ( $button_type !== FALSE ) {
             $button_color = get_field( 'button_color' );
             $button_arrow = get_field( 'button_arrow' );
-            $class        .= 'govuk-button';
+            $class        .= 'govuk-button govuk-!-margin-right-3';
 
             if ( $button_arrow ) {
                 $icon = '<svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" role="presentation" focusable="false"><path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"/></svg>';
@@ -47,7 +47,7 @@
             ?>
             <p class="govuk-body">
         <?php endif; ?>
-        <a href="<?php echo esc_url( $url ) ?>" target="<?php echo $target; ?>" <?php echo $button_type !== FALSE ? 'role="button" draggable="false" class="' . esc_attr( $class ) . '" data-module="govuk-button"' : 'class="govuk-link ' . esc_attr( $class ) . '"'; ?>><?php echo esc_html( $title ); ?><?php echo $icon; ?></a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="<?php echo esc_url( $url ) ?>" target="<?php echo $target; ?>" <?php echo $button_type !== FALSE ? 'role="button" draggable="false" class="' . esc_attr( $class ) . '" data-module="govuk-button"' : 'class="govuk-link ' . esc_attr( $class ) . '"'; ?>><?php echo esc_html( $title ); ?><?php echo $icon; ?></a>
         <?php
         if ( $button_type !== TRUE ) :
             ?>
