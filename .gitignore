@@ -16,4 +16,3 @@ wp-content/plugins/acf-php-recovery.php
 /tools/cache-api/*.json
 /tools/update-content/config.php
 /static/*
-/wp-content/languages/
