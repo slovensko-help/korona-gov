@@ -88,7 +88,7 @@ function updateDriveins($contentFile, $dataFile)
                       <thead class="govuk-table__head">
                         <tr class="govuk-table__row">
                           <th scope="col" class="govuk-table__header">&nbsp;</th>
-                          <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width: 50%;">Otváracie hodiny</th>
+                          <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width: 55%;">Otváracie hodiny</th>
                         </tr>
                       </thead>
                       <tbody class="govuk-table__body">';
