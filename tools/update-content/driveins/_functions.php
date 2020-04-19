@@ -88,7 +88,7 @@ function updateDriveins($contentFile, $dataFile)
                       <thead class="govuk-table__head">
                         <tr class="govuk-table__row">
                           <th scope="col" class="govuk-table__header">&nbsp;</th>
-                          <th scope="col" class="govuk-table__header">Otváracie hodiny</th>
+                          <th scope="col" class="govuk-table__header govuk-table__header--numeric" style="width: 50%;">Otváracie hodiny</th>
                         </tr>
                       </thead>
                       <tbody class="govuk-table__body">';
@@ -101,7 +101,7 @@ function updateDriveins($contentFile, $dataFile)
                     <div>' . $place['address'] . '</div>
                     Denná kapacita: ' . $place['capacity'] . '
                   </td>
-                  <td class="govuk-table__cell">';
+                  <td class="govuk-table__cell govuk-table__cell--numeric">';
 
             foreach ($place['opening_hours'] as $day => $hours) {
                 if (!empty($hours)) {
