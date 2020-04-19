@@ -22,8 +22,7 @@ include 'inc/frontend.php';
         //
         //	// Add print CSS.
         //	wp_enqueue_style( 'twentytwenty-print-style', get_template_directory_uri() . '/print.css', null, $theme_version, 'print' );
-        wp_enqueue_style( 'korona-lang-style', '/wp-content/themes/korona/assets/css/lang-picker.css', null, $theme_version, 'print' );
-
+        wp_enqueue_style( 'korona-leaflet', '/wp-content/themes/korona/assets/css/leaflet.css', null, $theme_version );
     }
 
     add_action( 'wp_enqueue_scripts', 'korona_register_styles' );
@@ -39,6 +38,11 @@ include 'inc/frontend.php';
         wp_enqueue_script( 'korona-js-autocomplete', '/wp-content/themes/korona/assets/js/autocomplete.js', array (), $theme_version, TRUE );
         wp_enqueue_script( 'korona-js-upsvr-emails', '/wp-content/themes/korona/assets/js/upsvr-emails.js', array (), $theme_version, TRUE );
         wp_enqueue_script( 'korona-js-lang-picker', '/wp-content/themes/korona/assets/js/lang-picker.js', array (), $theme_version, TRUE );
+        wp_enqueue_script( 'korona-js-esri', '/wp-content/themes/korona/assets/js/slovakia_esri_epsg_4326.js', array (), $theme_version, TRUE );
+        wp_enqueue_script( 'korona-js-d3', '/wp-content/themes/korona/assets/js/d3.js', array (), $theme_version, TRUE );
+        wp_enqueue_script( 'korona-js-leaflet', '/wp-content/themes/korona/assets/js/leaflet.js', array (), $theme_version, TRUE );
+        wp_enqueue_script( 'korona-js-boundarycanvas', '/wp-content/themes/korona/assets/js/boundarycanvas.js', array (), $theme_version, TRUE );
+        wp_enqueue_script( 'korona-js-driveinmap', '/wp-content/themes/korona/assets/js/driveinmap.js', array (), $theme_version, TRUE );
     }
 
     add_action( 'wp_enqueue_scripts', 'korona_register_scripts' );
