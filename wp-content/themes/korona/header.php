@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="sk" class="govuk-template app-no-canvas-background">
+<html <?php language_attributes(); ?> class="govuk-template app-no-canvas-background">
 <head>
     <!-- Google Tag Manager -->
     <script>(function (w, d, s, l, i) {
