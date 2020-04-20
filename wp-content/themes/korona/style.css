@@ -192,10 +192,6 @@ a[href^="mailto:"]:hover {
     border-top: 1px solid #bec1c3;
     border-bottom: 1px solid #bec1c3;
 }
-.news-list h3 a {
-    text-decoration: none;
-    color: #1d70b8;
-}
 
 a.add-icon-before {
     position: relative;
