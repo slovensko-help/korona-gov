@@ -180,3 +180,85 @@ include 'inc/frontend.php';
             )
         );
     }
+// Register Custom Post Type
+function korona_post_type() {
+
+    $labels = array(
+        'name'                  => _x( 'Aktuality inštitúcií', 'Post Type General Name', 'gov' ),
+        'singular_name'         => _x( 'Aktuality inštitúcií', 'Post Type Singular Name', 'gov' ),
+        'menu_name'             => __( 'Aktuality inštitúcií', 'gov' ),
+        'name_admin_bar'        => __( 'Aktuality inštitúcií', 'gov' ),
+        'all_items'             => __( 'Zobraziť všetky', 'gov' ),
+        'add_new_item'          => __( 'Pridať nový', 'gov' ),
+        'add_new'               => __( 'Pridať nový', 'gov' ),
+        'new_item'              => __( 'Pridať nový', 'gov' ),
+        'edit_item'             => __( 'Editovať', 'gov' ),
+        'update_item'           => __( 'Aktualizovať', 'gov' ),
+        'view_item'             => __( 'Zobraziť', 'gov' ),
+        'view_items'            => __( 'Zobraziť', 'gov' ),
+        'search_items'          => __( 'Hľadať', 'gov' ),
+        'not_found'             => __( 'Nenájdený', 'gov' ),
+        'not_found_in_trash'    => __( 'Nenájdený v koši', 'gov' ),
+        'featured_image'        => __( 'Obrázok', 'gov' ),
+        'set_featured_image'    => __( 'Vložiť obrázok', 'gov' ),
+        'remove_featured_image' => __( 'Vymazať obrázok', 'gov' ),
+        'use_featured_image'    => __( 'Použiť obrázok', 'gov' ),
+    );
+    $args = array(
+        'label'                 => __( 'Aktuality inštitúcií', 'gov' ),
+        'description'           => __( 'Aktuality inštitúcií', 'gov' ),
+        'labels'                => $labels,
+        'supports'              => array( 'title', 'editor', 'thumbnail', 'revisions', 'page-attributes', 'post-formats' ),
+        'hierarchical'          => false,
+        'public'                => false,
+        'show_ui'               => true,
+        'show_in_menu'          => true,
+        'menu_position'         => 5,
+        'menu_icon'             => 'dashicons-format-aside',
+        'show_in_admin_bar'     => true,
+        'show_in_nav_menus'     => true,
+        'can_export'            => false,
+        'has_archive'           => false,
+        'exclude_from_search'   => true,
+        'publicly_queryable'    => true,
+        'capability_type'       => 'post',
+        'show_in_rest'          => true,
+    );
+    register_post_type( 'aktuality_institucii', $args );
+
+    }
+    add_action( 'init', 'korona_post_type', 0 );
+
+// Register Custom Taxonomy
+function korona_taxonomy() {
+
+    $labels = array(
+        'name'                       => _x( 'Kategórie aktualít', 'Taxonomy General Name', 'gov' ),
+        'singular_name'              => _x( 'Kategórie', 'Taxonomy Singular Name', 'gov' ),
+        'menu_name'                  => __( 'Kategórie aktualít', 'gov' ),
+        'all_items'                  => __( 'Zobraziť všetky', 'gov' ),
+        'new_item_name'              => __( 'Názov', 'gov' ),
+        'add_new_item'               => __( 'Pridať nový', 'gov' ),
+        'edit_item'                  => __( 'Upraviť', 'gov' ),
+        'update_item'                => __( 'Aktualizovať', 'gov' ),
+        'view_item'                  => __( 'Zobraziť', 'gov' ),
+        'add_or_remove_items'        => __( 'Pridať alebo zmazať', 'gov' ),
+        'search_items'               => __( 'Vyhľadať', 'gov' ),
+        'not_found'                  => __( 'Nenájdený', 'gov' ),
+        'no_terms'                   => __( 'Nenájdený', 'gov' ),
+        'items_list'                 => __( 'Zoznam', 'gov' ),
+    );
+    $args = array(
+        'labels'                     => $labels,
+        'hierarchical'               => true,
+        'public'                     => false,
+        'show_ui'                    => true,
+        'show_admin_column'          => true,
+        'show_in_nav_menus'          => true,
+        'show_tagcloud'              => true,
+        'show_in_rest'               => true,
+    );
+    register_taxonomy( 'kategorie_aktuality_institucii', array( 'aktuality_institucii' ), $args );
+
+    }
+    add_action( 'init', 'korona_taxonomy', 0 );
