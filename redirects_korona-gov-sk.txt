@@ -36,3 +36,4 @@ Redirect 301 /index.php /
 Redirect 301 /en/index.php /en/
 Redirect 301 /hu/index.php /hu/
 Redirect 301 /covid-19-help.php /
+Redirect 302 /api.php https://covid-19.nczisk.sk/webapi/v1/kpi
