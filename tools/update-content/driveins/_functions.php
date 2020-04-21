@@ -30,7 +30,7 @@ function updateDriveins($contentFile, $dataFile)
     $regionIndex = 0;
 
     foreach ($data['map'] as $place) {
-        $cityNameKey = toAscii(fixedCity($place['city']));
+        $cityNameKey = str_replace(' - ', '-', toAscii(fixedCity($place['city'])));
 
         if (isset($municipalityParents[$cityNameKey])) {
             $regionName = $municipalityParents[$cityNameKey]['region'];
@@ -184,7 +184,7 @@ function municipalityParents(&$result)
     $municipalityParents = [];
 
     foreach ($municipalities as $municipalityName => $municipalityDistrict) {
-        $municipalityName = toAscii($municipalityName);
+        $municipalityName = str_replace(' - ', '-', toAscii($municipalityName));
         if (isset($districtToRegion[$municipalityDistrict])) {
             $regionName = $districtToRegion[$municipalityDistrict];
         } else {
