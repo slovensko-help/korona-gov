@@ -75,17 +75,7 @@ function updateStats($contentFile, $numberTypes)
         $updatedContent = updatePlaceholder($updatedContent, 'stats-' . $numberType . '-value', $value, $result);
     }
 
-    $translations = [
-        'Jan' => 'januára', 'Feb' => 'februára', 'Mar' => 'marca', 'Apr' => 'apríla', 'May' => 'mája', 'Jun' => 'júna',
-        'Jul' => 'júla', 'Aug' => 'augusta', 'Sep' => 'septembra', 'Oct' => 'októbra', 'Nov' => 'novembra', 'Dec' => 'decembra',
-    ];
-
-    $dayInSeconds = 24 * 3600;
-
-    $lastUpdatedValue = str_replace(
-        array_keys($translations),
-        $translations,
-        date('j. M Y', floor($lastUpdate / $dayInSeconds) * $dayInSeconds + 7200));
+    $lastUpdatedValue = date('j. n. Y', $lastUpdate + 3600);
 
     $updatedContent = updatePlaceholder($updatedContent, 'stats-last-update', $lastUpdatedValue, $result);
 
