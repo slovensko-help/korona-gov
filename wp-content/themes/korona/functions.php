@@ -262,3 +262,11 @@ function korona_taxonomy() {
 
     }
     add_action( 'init', 'korona_taxonomy', 0 );
+
+// Disable support for custom text color in WYSIWYG editor
+function korona_remove_text_color_from_mce( $buttons ) {
+    array_splice($buttons, array_search('forecolor', $buttons ), 1);
+    return $buttons;
+}
+
+add_filter( 'mce_buttons_2', 'korona_remove_text_color_from_mce' );
