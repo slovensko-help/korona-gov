@@ -2,7 +2,26 @@
 
 include_once HOMEPAGE_ROOT_DIR . '../_functions.php';
 
-function updateHpStats($contentFile)
+function updateHpStats($contentFile) {
+    return updateStats($contentFile, [
+        'k5' => 'positive',
+        'k7' => 'cured',
+        'k8' => 'deceased',
+        'k23' => 'lab-tests',
+    ]);
+}
+
+function updateDetailsStats($contentFile) {
+    return updateStats($contentFile, [
+        'k5' => 'positive',
+        'k7' => 'cured',
+        'k8' => 'deceased',
+        'k9' => 'hospitalized',
+        'k23' => 'lab-tests',
+    ]);
+}
+
+function updateStats($contentFile, $numberTypes)
 {
     $result = ['health-check' => true];
 
@@ -19,48 +38,28 @@ function updateHpStats($contentFile)
 
     $data = json_decode(file_get_contents($dataFilePath), true);
 
-    $numberTypes = [
-        'k5' => 'positive',
-        'k6' => 'negative',
-        'k7' => 'cured',
-        'k8' => 'deceased',
-    ];
-
-    $translations = [
-        'Jan' => 'január', 'Feb' => 'február', 'Mar' => 'marec', 'Apr' => 'apríl', 'May' => 'máj', 'Jun' => 'jún',
-        'Jul' => 'júl', 'Aug' => 'august', 'Sep' => 'september', 'Oct' => 'október', 'Nov' => 'november', 'Dec' => 'december',
-    ];
-
     $stats = [];
+    $lastUpdate = 0;
 
     foreach ($numberTypes as $tileId => $numberType) {
         if (isArrayInTreeEmpty($data, ['tiles', $tileId, 'data', 'd'])) {
             updateResult($result, $numberType, false, 'Data is not available.');
         } else {
-            $numberData = array_pop($data['tiles'][$tileId]['data']['d']);
+            $currentNumberData = array_pop($data['tiles'][$tileId]['data']['d']);
+            $previousNumberData = array_pop($data['tiles'][$tileId]['data']['d']);
 
-            if (empty($numberData['v']) || !is_numeric($numberData['v'])) {
-                updateResult($result, $numberType, false, 'Value is not available.');
-            } elseif (empty($numberData['d'])) {
-                updateResult($result, $numberType, false, 'Last update date is not available.');
-            } else {
+            $currentStats = statsNumberData($result, $numberType, $currentNumberData);
 
-                $lastUpdated = DateTimeImmutable::createFromFormat('ymd', $numberData['d']);
+            if ($currentStats !== null) {
+                $stats[$numberType] = $currentStats;
 
-                if (false === $lastUpdated) {
-                    updateResult($result, $numberType, false, 'Last update date is not available.');
-                } else {
-                    if ($lastUpdated->diff(new DateTimeImmutable('now'))->days > 2) {
-                        updateResult($result, $numberType, false, 'Last update date is more than two days before or after today.');
-                    }
+                $lastUpdate = max($lastUpdate, $currentStats['last-update']->getTimestamp());
 
-                    $stats[$numberType] = [
-                        'value' => $numberData['v'],
-                        'last-update' => str_replace(
-                            array_keys($translations),
-                            $translations,
-                            $lastUpdated->format('j. M Y')),
-                    ];
+                $previousStats = statsNumberData($result, $numberType, $previousNumberData);
+
+                if ($previousStats !== null) {
+                    $stats[$numberType . '-delta'] = $currentStats;
+                    $stats[$numberType . '-delta']['value'] -= $previousStats['value'];
                 }
             }
         }
@@ -70,13 +69,54 @@ function updateHpStats($contentFile)
     $updatedContent = $content;
 
     foreach ($stats as $numberType => $values) {
-        $updatedContent = updatePlaceholder($updatedContent, 'stats-' . $numberType . '-value', $values['value'], $result);
-        $updatedContent = updatePlaceholder($updatedContent, 'stats-' . $numberType . '-last-update', $values['last-update'], $result);
+        $value = number_format($values['value'], 0, ',', '&nbsp;');
+        $updatedContent = updatePlaceholder($updatedContent, 'stats-' . $numberType . '-value', $value, $result);
     }
+
+    $translations = [
+        'Jan' => 'januára', 'Feb' => 'februára', 'Mar' => 'marca', 'Apr' => 'apríla', 'May' => 'mája', 'Jun' => 'júna',
+        'Jul' => 'júla', 'Aug' => 'augusta', 'Sep' => 'septembra', 'Oct' => 'októbra', 'Nov' => 'novembra', 'Dec' => 'decembra',
+    ];
+
+    $dayInSeconds = 24 * 3600;
+
+    $lastUpdatedValue = str_replace(
+        array_keys($translations),
+        $translations,
+        date('j. M Y', floor($lastUpdate / $dayInSeconds) * $dayInSeconds + 7200));
+
+    $updatedContent = updatePlaceholder($updatedContent, 'stats-last-update', $lastUpdatedValue, $result);
 
     if ($content !== $updatedContent) {
         file_put_contents($contentFilePath, $updatedContent);
     }
 
     return $result;
+}
+
+function statsNumberData(&$result, $numberType, $rawNumberData)
+{
+    if (empty($rawNumberData['v']) || !is_numeric($rawNumberData['v'])) {
+        updateResult($result, $numberType, false, 'Value is not available.');
+    } elseif (empty($rawNumberData['d'])) {
+        updateResult($result, $numberType, false, 'Last update date is not available.');
+    } else {
+
+        $lastUpdated = DateTimeImmutable::createFromFormat('ymd', $rawNumberData['d']);
+
+        if (false === $lastUpdated) {
+            updateResult($result, $numberType, false, 'Last update date is not available.');
+        } else {
+            if ($lastUpdated->diff(new DateTimeImmutable('now'))->days > 3) {
+                updateResult($result, $numberType, false, 'Last update date is more than two days before or after today.');
+            }
+
+            return [
+                'value' => $rawNumberData['v'],
+                'last-update' => $lastUpdated,
+            ];
+        }
+    }
+
+    return null;
 }
