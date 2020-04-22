@@ -7,6 +7,7 @@ function korona_remove_text_color_from_mce( $buttons ) {
 
 add_filter( 'mce_buttons_2', 'korona_remove_text_color_from_mce' );
 
+// Disable block editor color palette and custom colors
 function korona_gutenberg_disable_all_colors() {
     add_theme_support( 'editor-color-palette', array() );
     add_theme_support( 'disable-custom-colors' );
