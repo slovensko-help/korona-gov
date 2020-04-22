@@ -53,8 +53,6 @@ function updateStats($contentFile, $numberTypes)
             if ($currentStats !== null) {
                 $stats[$numberType] = $currentStats;
 
-                $lastUpdate = max($lastUpdate, $currentStats['last-update']->getTimestamp());
-
                 $previousStats = statsNumberData($result, $numberType, $previousNumberData);
 
                 if ($previousStats !== null) {
@@ -62,6 +60,10 @@ function updateStats($contentFile, $numberTypes)
                     $stats[$numberType . '-delta']['value'] -= $previousStats['value'];
                 }
             }
+        }
+
+        if (isArrayInTreeEmpty($data, ['tiles', $tileId, 'updated'])) {
+            $lastUpdate = max($lastUpdate, DateTimeImmutable::createFromFormat('Y-m-d', $data['tiles'][$tileId]['updated'])->getTimestamp());
         }
     }
 
