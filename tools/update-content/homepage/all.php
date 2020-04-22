@@ -13,3 +13,6 @@ include_once 'hu.php';
 
 echo "\ndetails/sk.php\n";
 include_once 'details-sk.php';
+
+echo "\ndetails/en.php\n";
+include_once 'details-en.php';
