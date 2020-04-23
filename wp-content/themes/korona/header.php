@@ -23,6 +23,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
     <?php wp_head(); ?>
+
+    <script async src="https://scripts.luigisbox.com/LBX-134645.js"></script>
 </head>
 <body class="govuk-template__body ">
 <!-- Google Tag Manager (noscript) -->
