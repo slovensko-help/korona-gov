@@ -11,6 +11,9 @@ include_once 'en.php';
 echo "\nhomepage/hu.php\n";
 include_once 'hu.php';
 
+echo "\nhomepage/rom.php\n";
+include_once 'rom.php';
+
 echo "\ndetails/sk.php\n";
 include_once 'details-sk.php';
 
