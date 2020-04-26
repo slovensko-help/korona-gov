@@ -9,6 +9,7 @@
                 <a
                         class="idsk-footer__link"
                         href="https://www.vicepremier.gov.sk/"
+                        title="<?php __('Úrad podpredsedu vlády SR pre investície a informatizáciu', 'gov') ?>"
                 >
                     <svg
                             role="presentation"
