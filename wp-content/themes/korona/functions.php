@@ -26,7 +26,7 @@ include 'inc/block-editor-adjustments.php';
         wp_enqueue_style( 'korona-leaflet', '/wp-content/themes/korona/assets/css/leaflet.css', null, $theme_version );
 
         // Load webfonts
-        wp_enqueue_style( 'id-sk-fonts', get_stylesheet_directory_uri().'/assets/fonts/fonts.css', null, $heme_version );
+        wp_enqueue_style( 'id-sk-fonts', get_stylesheet_directory_uri().'/assets/fonts/fonts.css', null, $theme_version );
     }
 
     add_action( 'wp_enqueue_scripts', 'korona_register_styles' );
