@@ -1,5 +1,6 @@
 <?php
 include 'inc/frontend.php';
+include 'inc/block-editor-adjustments.php';
 
     //add_action('get_header', 'korona_filter_head');
     //
@@ -23,6 +24,9 @@ include 'inc/frontend.php';
         //	// Add print CSS.
         //	wp_enqueue_style( 'twentytwenty-print-style', get_template_directory_uri() . '/print.css', null, $theme_version, 'print' );
         wp_enqueue_style( 'korona-leaflet', '/wp-content/themes/korona/assets/css/leaflet.css', null, $theme_version );
+
+        // Load webfonts
+        wp_enqueue_style( 'id-sk-fonts', get_stylesheet_directory_uri().'/assets/fonts/fonts.css', null, $heme_version );
     }
 
     add_action( 'wp_enqueue_scripts', 'korona_register_styles' );
