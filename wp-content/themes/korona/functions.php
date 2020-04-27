@@ -1,5 +1,6 @@
 <?php
 include 'inc/frontend.php';
+include 'inc/block-editor-adjustments.php';
 
     //add_action('get_header', 'korona_filter_head');
     //
