@@ -17,5 +17,6 @@ foreach (array('sk', 'en', 'hu') as $lang) {
     download('https://mojeezdravie.nczisk.sk/api/v1/web/faq?lang=' . $lang, 'faq-' . $lang . '.json');
 }
 
-download('https://mojeezdravie.nczisk.sk/api/v1/ezdravie-stats-proxy-api.php', 'hp-stats.json');
+download('https://mojeezdravie.nczisk.sk/api/v1/ezdravie-stats-proxy-api.php', 'nczi-stats.json');
 download('https://mojeezdravie.nczisk.sk/api/v1/svk-covid-driveins', 'driveins.json');
+download('https://docs.google.com/spreadsheets/d/e/2PACX-1vTKsdlkKe-569DalEg9h-e02PNzvtLSE50Wucek1XzPXFOFnz0EdUobMrk6wFOi0NslkqA6C7W7eMvY/pub?gid=0&single=true&output=csv', 'manual-stats.csv');

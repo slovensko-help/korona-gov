@@ -1,4 +1,6 @@
 <?php
+
+include('inc/custom-shortcodes.php');
 include 'inc/frontend.php';
 include 'inc/block-editor-adjustments.php';
 
