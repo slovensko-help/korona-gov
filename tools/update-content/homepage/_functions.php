@@ -26,7 +26,7 @@ function updateStats($contentFile, $numberTypes)
     $result = ['health-check' => true];
 
     $contentFilePath = STATIC_BASE_PATH . $contentFile;
-    $dataFilePath = HOMEPAGE_ROOT_DIR . '../../cache-api/hp-stats.json';
+    $dataFilePath = HOMEPAGE_ROOT_DIR . '../../cache-api/nczi-stats.json';
 
     if (!is_file($contentFilePath)) {
         return updateResult($result, 'content-file', false, 'Content file does not exist.');

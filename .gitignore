@@ -14,5 +14,7 @@ wp-content/plugins/acf-php-recovery.php
 /wp-content/plugins/wpml-string-translation/
 /wp-content/updraft
 /tools/cache-api/*.json
+/tools/data/*.json
+/tools/cache-api/*.csv
 /tools/update-content/config.php
 /static/*
