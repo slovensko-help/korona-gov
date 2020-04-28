@@ -40,7 +40,7 @@ else {
         }
     }
 
-    $content .= '</ul>';
+    $content .= '</ul></div>';
 }
 
 $content .= '
