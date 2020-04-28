@@ -22,7 +22,7 @@ class KoronaShortcodes
         static $data;
 
         if (null === $data) {
-            $filePath = ABSPATH . 'tools/prepare-shortcode-data/data.json';
+            $filePath = ABSPATH . 'tools/data/data.json';
 
             $data = [];
 
