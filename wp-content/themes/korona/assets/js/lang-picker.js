@@ -37,6 +37,13 @@ else var s=p/(2*Math.PI)*Math.asin(c/a);return a*Math.pow(2,-10*t)*Math.sin((t*d
         picker.dropdown = picker.element.getElementsByClassName('language-picker__dropdown')[0];
         picker.languages = picker.dropdown.getElementsByClassName('language-picker__item');
         picker.firstLanguage = picker.languages[0];
+
+        for( var i = 0; i < picker.languages.length; i++) {
+            if (picker.languages[i].getAttribute('aria-selected') === 'true')
+            {
+                picker.firstLanguage = picker.languages[i];
+            }
+        }
         picker.trigger = picker.element.getElementsByClassName('language-picker__button')[0];
     };
 

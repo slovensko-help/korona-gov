@@ -54,6 +54,10 @@ function addTooltips(markers, map, scaleFactor) {
 }
 
 function renderMap(markers) {
+    if (!document.getElementById('driveinmapid')) {
+        return -1;
+    }
+
     var map = L.map('driveinmapid', {
         zoomControl: false,
         drawControl: true,

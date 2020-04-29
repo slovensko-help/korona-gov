@@ -64,23 +64,24 @@ function updateFaq($contentFile, $dataFile)
 
     foreach ($faqSections as $faqSectionId => $faqSection) {
         $questionIndex++;
-        $questionId = $faqSectionId . '-' . $questionIndex;
 
         $faqContent .= '
             <h2 class="govuk-heading-l">' . $faqSection['title'] .'</h2>
             <div class="govuk-accordion" data-module="govuk-accordion" id="s-' . $faqSectionId . '" data-attribute="value">';
 
         foreach ($faqSection['questions'] as $question) {
+            $questionId = webalize($question['title']);
+
             $faqContent .= '
                 <div class="govuk-accordion__section ">
                     <div class="govuk-accordion__section-header">
                       <h2 class="govuk-accordion__section-heading">
-                        <span class="govuk-accordion__section-button" id="q-' . $questionId . '-heading">
+                        <span class="govuk-accordion__section-button" id="' . $questionId . '">
                          ' . $question['title'] . '
                         </span>
                       </h2>
                     </div>
-                    <div id="q-' . $questionId . '-content" class="govuk-accordion__section-content" aria-labelledby="q-' . $questionId . '-heading">
+                    <div id="' . $questionId . '-content" class="govuk-accordion__section-content" aria-labelledby="' . $questionId . '">
                       ' . $question['content'] . '                
                     </div>
                 </div>';
