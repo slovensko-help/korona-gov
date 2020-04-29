@@ -92,6 +92,21 @@ function toAscii(string $s): string
     return $s;
 }
 
+/**
+ * Converts UTF-8 string to web safe characters [a-z0-9-] text.
+ */
+function webalize(string $s, string $charlist = null, bool $lower = true): string
+{
+    $s = toAscii($s);
+    if ($lower) {
+        $s = strtolower($s);
+    }
+    $s = preg_replace('#[^a-z0-9' . ($charlist !== null ? preg_quote($charlist, '#') : '') . ']+#i', '-', $s);
+    $s = trim($s, '-');
+    return $s;
+}
+
+
 function trimString(string $s, string $charlist = " \t\n\r\0\x0B\u{A0}"): string
 {
     $charlist = preg_quote($charlist, '#');
