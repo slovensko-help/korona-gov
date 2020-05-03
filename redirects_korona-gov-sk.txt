@@ -13,7 +13,6 @@ Redirect 302 /covid-19-validate-patient.php https://old.korona.gov.sk/covid-19-v
 Redirect 301 /en/covid-19-prijate-opatrenia.php /en/adopted-measures/
 Redirect 301 /hu/covid-19-prijate-opatrenia.php /hu/elfogadott-intezkedesek/
 Redirect 301 /en/covid-19.php /en/what-is-covid-19/
-
 Redirect 301 /en/covid-19-varovania-sk-cert.php /en/warnings-of-national-cyber-security-centre-sk-cert/
 Redirect 301 /hu/covid-19-varovania-sk-cert.php /hu/az-sk-cert-nemzeti-kiberbiztonsagi-kozpont-figyelmeztetesei/
 Redirect 301 /en/covid-19-tlacove-spravy.php /en/press-releases/
