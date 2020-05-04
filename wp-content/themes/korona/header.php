@@ -24,7 +24,7 @@
 
     <?php wp_head(); ?>
 
-    <script async src="https://scripts.luigisbox.com/LBX-134645.js"></script>
+    <script async src="https://scripts.luigisbox.com/LBX-134645.js?v=1.0.0"></script>
 </head>
 <body class="govuk-template__body ">
     <!-- Google Tag Manager (noscript) -->
