@@ -190,13 +190,40 @@
                                               'new_lines' => '',
                                           ),
                                           array(
+                                              'key' => 'field_5ec69e67a0f83',
+                                              'label' => 'Interný/externý link',
+                                              'name' => 'link_type',
+                                              'type' => 'true_false',
+                                              'instructions' => '',
+                                              'required' => 0,
+                                              'conditional_logic' => 0,
+                                              'wrapper' => array(
+                                                  'width' => '',
+                                                  'class' => '',
+                                                  'id' => '',
+                                              ),
+                                              'message' => '',
+                                              'default_value' => 1,
+                                              'ui' => 1,
+                                              'ui_on_text' => 'Interný',
+                                              'ui_off_text' => 'Externý',
+                                          ),
+                                          array(
                                               'key' => 'field_5ea75f61981c6',
                                               'label' => 'Link na všetky opatreia',
                                               'name' => 'link_opatrenia',
                                               'type' => 'post_object',
                                               'instructions' => '',
                                               'required' => 0,
-                                              'conditional_logic' => 0,
+                                              'conditional_logic' => array(
+                                                  array(
+                                                      array(
+                                                          'field' => 'field_5ec69e67a0f83',
+                                                          'operator' => '==',
+                                                          'value' => '1',
+                                                      ),
+                                                  ),
+                                              ),
                                               'wrapper' => array(
                                                   'width' => '50',
                                                   'class' => '',
@@ -212,15 +239,23 @@
                                               'ui' => 1,
                                           ),
                                           array(
-                                              'key' => 'field_5ea75fa8981c7',
-                                              'label' => 'Text pre link',
-                                              'name' => 'link_opatrenia_text',
+                                              'key' => 'field_5ec69ec3a0f84',
+                                              'label' => 'Externý link',
+                                              'name' => 'externy_link',
                                               'type' => 'text',
                                               'instructions' => '',
                                               'required' => 0,
-                                              'conditional_logic' => 0,
+                                              'conditional_logic' => array(
+                                                  array(
+                                                      array(
+                                                          'field' => 'field_5ec69e67a0f83',
+                                                          'operator' => '!=',
+                                                          'value' => '1',
+                                                      ),
+                                                  ),
+                                              ),
                                               'wrapper' => array(
-                                                  'width' => '',
+                                                  'width' => '40',
                                                   'class' => '',
                                                   'id' => '',
                                               ),
@@ -229,6 +264,57 @@
                                               'prepend' => '',
                                               'append' => '',
                                               'maxlength' => '',
+                                          ),
+                                          array(
+                                              'key' => 'field_5ea75fa8981c7',
+                                              'label' => 'Text pre link',
+                                              'name' => 'link_opatrenia_text',
+                                              'type' => 'text',
+                                              'instructions' => '',
+                                              'required' => 0,
+                                              'conditional_logic' => 0,
+                                              'wrapper' => array(
+                                                  'width' => '50',
+                                                  'class' => '',
+                                                  'id' => '',
+                                              ),
+                                              'default_value' => '',
+                                              'placeholder' => '',
+                                              'prepend' => '',
+                                              'append' => '',
+                                              'maxlength' => '',
+                                          ),
+                                          array(
+                                              'key' => 'field_5ec69f2ba0f85',
+                                              'label' => 'New tab',
+                                              'name' => 'new_tab',
+                                              'type' => 'checkbox',
+                                              'instructions' => '',
+                                              'required' => 0,
+                                              'conditional_logic' => array(
+                                                  array(
+                                                      array(
+                                                          'field' => 'field_5ec69e67a0f83',
+                                                          'operator' => '!=',
+                                                          'value' => '1',
+                                                      ),
+                                                  ),
+                                              ),
+                                              'wrapper' => array(
+                                                  'width' => '10',
+                                                  'class' => '',
+                                                  'id' => '',
+                                              ),
+                                              'choices' => array(
+                                                  '_blank' => 'Nové okno',
+                                              ),
+                                              'allow_custom' => 0,
+                                              'default_value' => array(
+                                              ),
+                                              'layout' => 'vertical',
+                                              'toggle' => 0,
+                                              'return_format' => 'value',
+                                              'save_custom' => 0,
                                           ),
                                       ),
                                       'location' => array(
