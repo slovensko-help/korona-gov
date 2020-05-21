@@ -23,7 +23,7 @@ if (get_field('opatrenia', 'options')) {
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-full">
                     <p class="govuk-body">
-                        <?php echo wp_kses($text, ['strong' => []]) . ' ' . '<a href="' . $link_url . '" class="govuk-link" target="' . $target_link . '" title="' . esc_attr($title_opatrenia) . '">' . esc_html($link_opatrenia_text) . '</a>'; ?>
+                        <?php echo wp_kses($text, ['strong' => []]) . ' ' . '<a href="' . esc_url( $link_url ) . '" class="govuk-link" target="' . esc_attr( $target_link ) . '" title="' . esc_attr($title_opatrenia) . '">' . esc_html($link_opatrenia_text) . '</a>'; ?>
                     </p>
                 </div>
             </div>
