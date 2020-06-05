@@ -1,0 +1,131 @@
+.idsk-feedbackbar .govuk-width-container {
+  margin: 0 auto;
+}
+.idsk-feedbackbar__foundbug,
+.idsk-feedbackbar__useful {
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+@media (max-width: 40.0525em) {
+  .idsk-feedbackbar__foundbug,
+  .idsk-feedbackbar__useful {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+}
+@media (max-width: 40.0525em) {
+  .idsk-feedbackbar__foundbug {
+    margin-top: 10px;
+  }
+}
+.idsk-feedbackbar__useful-question {
+  margin-right: 15px;
+}
+.idsk-feedbackbar__no,
+.idsk-feedbackbar__yes {
+  text-transform: uppercase;
+}
+@media print {
+  .idsk-feedbackbar__no,
+  .idsk-feedbackbar__yes {
+    font-family: sans-serif;
+  }
+}
+@media (min-width: 40.0625em) {
+  .idsk-feedbackbar__no,
+  .idsk-feedbackbar__yes {
+    font-size: 18px;
+    font-size: 1.125rem;
+    line-height: 1.2;
+  }
+}
+@media print {
+  .idsk-feedbackbar__no,
+  .idsk-feedbackbar__yes {
+    font-size: 14pt;
+    line-height: 1.2;
+  }
+}
+.idsk-feedbackbar__no a,
+.idsk-feedbackbar__yes a {
+  border-bottom: 2px solid;
+  text-decoration: none;
+}
+.idsk-feedbackbar__no {
+  margin-left: 15px;
+}
+.idsk-feedbackbar__container {
+  padding: 15px 20px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+@media (min-width: 40.0625em) {
+  .idsk-feedbackbar__container {
+    padding-top: 25px;
+    padding-left: 30px;
+    padding-bottom: 25px;
+    padding-right: 30px;
+  }
+}
+@media print {
+  .idsk-feedbackbar__container {
+    font-family: sans-serif;
+  }
+}
+@media (min-width: 40.0625em) {
+  .idsk-feedbackbar__container {
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+@media print {
+  .idsk-feedbackbar__container {
+    font-size: 14pt;
+    line-height: 1.5;
+  }
+}
+@media (max-width: 48.0525em) {
+  .idsk-feedbackbar__container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+}
+@media (min-width: 48.0625em) {
+  .idsk-feedbackbar__container {
+    position: relative;
+  }
+}
+.idsk-feedbackbar__close {
+  position: absolute;
+  right: 1em;
+}
+.idsk-feedbackbar__form {
+  position: relative;
+  border-top: 0.5em solid #005ea5;
+  border-bottom: 0.5em solid #005ea5;
+  background: #fff;
+}
+
+.idsk-appear-link-hide {
+  display: none;
+}

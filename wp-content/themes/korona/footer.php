@@ -2,6 +2,49 @@
 
 </main>
 
+<div class="govuk-width-container ">
+    <div class="idsk-feedbackbar__container app-pane-blue" id="idsk-feedbackbar-container">
+      <div class="idsk-feedbackbar__useful">
+        <div id="idsk-feedbackbar-useful">
+          <span class="idsk-feedbackbar__useful-question govuk-body-s">Boli tieto informácie pre vás užitočné?</span>
+          <span>
+            <span class="idsk-feedbackbar__yes" data-module="idsk-appear-link" data-appear="idsk-feedbackbar-thanks" data-disappear="idsk-feedbackbar-useful">
+              <a href="#" class="govuk-link">Áno</a>
+            </span>
+            <span class="idsk-feedbackbar__no" data-module="idsk-appear-link" data-appear="idsk-feedbackbar-form-no" data-disappear="idsk-feedbackbar-container">
+              <a href="#" class="govuk-link">Nie</a>
+            </span>
+          </span>
+        </div>
+        <div id="idsk-feedbackbar-thanks" class="idsk-appear-link-hide">
+          <span>Ďakujeme za odozvu!&nbsp;</span>
+        </div>
+      </div>
+      <div class="idsk-feedbackbar__foundbug govuk-body-s govuk-!-margin-bottom-0">
+        <span>Našli ste na stránke chybu?&nbsp;</span>
+        <span>
+          <a href="#" class="idsk-feedbackbar__link" data-module="idsk-appear-link" data-appear="idsk-feedbackbar-form-foundbug" data-disappear="idsk-feedbackbar-container">Napíšte nám</a>
+        </span>
+      </div>
+    </div>
+    <div id="idsk-feedbackbar-form-no" class="idsk-feedbackbar__container app-pane-blue idsk-feedbackbar__form idsk-appear-link-hide">
+      <a href="#" data-module="idsk-appear-link" data-appear="idsk-feedbackbar-container" data-disappear="idsk-feedbackbar-form-no" class="idsk-feedbackbar__close">zatvoriť</a>
+      <div>
+        <h3 class="govuk-heading-m">Nadpis NIE</h3>
+
+        slaby text
+      </div>
+    </div>
+    <div id="idsk-feedbackbar-form-foundbug" class="idsk-feedbackbar__container idsk-feedbackbar__form idsk-appear-link-hide">
+      <a href="#" data-module="idsk-appear-link" data-appear="idsk-feedbackbar-container" data-disappear="idsk-feedbackbar-form-foundbug" class="idsk-feedbackbar__close">zatvoriť</a>
+      <div>
+        <h3 class="govuk-heading-m">Nadpis Bug</h3>
+        <p id="feedback_explanation" class="gem-c-feedback__form-paragraph">Don’t include personal or financial information like your National Insurance number or credit card details.</p><div class="govuk-form-group"> <label for="input-e3e94fe2" class="gem-c-label govuk-label"> What were you doing? </label> <input name="what_doing" class="gem-c-input govuk-input" id="input-e3e94fe2" type="text" aria-describedby="feedback_explanation"> </div><div class="govuk-form-group"> <label for="input-a186d211" class="gem-c-label govuk-label"> What went wrong? </label>  <input name="what_wrong" class="gem-c-input govuk-input" id="input-a186d211" type="text"> </div><button class="gem-c-button govuk-button" type="submit">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer class="idsk-footer " role="contentinfo">
     <div class="govuk-width-container ">
         <div class="idsk-footer__meta">

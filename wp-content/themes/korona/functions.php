@@ -28,6 +28,7 @@ include 'inc/block-editor-adjustments.php';
         wp_enqueue_style( 'korona-leaflet', '/wp-content/themes/korona/assets/css/leaflet.css', null, $theme_version );
         wp_enqueue_style( 'govuk-finder', '/wp-content/themes/korona/assets/css/govuk-finder.css', null, $theme_version );
         wp_enqueue_style( 'search-form', '/wp-content/themes/korona/assets/css/search-form.css', null, $theme_version );
+        wp_enqueue_style( 'feedbackbar', '/wp-content/themes/korona/assets/css/feedbackbar.css', null, $theme_version );
 
         // Load webfonts
         wp_enqueue_style( 'id-sk-fonts', get_stylesheet_directory_uri().'/assets/fonts/fonts.css', null, $theme_version );
