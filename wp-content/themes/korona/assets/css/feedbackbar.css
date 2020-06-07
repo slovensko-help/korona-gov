@@ -22,16 +22,7 @@
     margin-top: 10px;
   }
 }
-.idsk-feedbackbar__useful-question {
-  margin-right: 15px;
-}
 .idsk-feedbackbar__container {
-  padding: 15px 20px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-weight: 400;
-  font-size: 14px;
-  font-size: 0.875rem;
   line-height: 1.5;
   display: -webkit-box;
   display: -webkit-flex;
@@ -48,24 +39,6 @@
     padding-left: 30px;
     padding-bottom: 25px;
     padding-right: 30px;
-  }
-}
-@media print {
-  .idsk-feedbackbar__container {
-    font-family: sans-serif;
-  }
-}
-@media (min-width: 40.0625em) {
-  .idsk-feedbackbar__container {
-    font-size: 16px;
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-}
-@media print {
-  .idsk-feedbackbar__container {
-    font-size: 14pt;
-    line-height: 1.5;
   }
 }
 @media (max-width: 48.0525em) {
