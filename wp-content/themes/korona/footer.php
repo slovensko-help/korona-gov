@@ -2,94 +2,89 @@
 
 </main>
 
-<div class="govuk-width-container ">
-    <div class="idsk-feedbackbar__container app-pane-blue" id="idsk-feedbackbar-container">
-      <div class="idsk-feedbackbar__useful">
-        <div id="idsk-feedbackbar-useful">
-          <span class="idsk-feedbackbar__useful-question govuk-body-s govuk-!-font-weight-bold">Sú tieto informácie pre vás užitočné?</span>
-          <span>
-            <span class="idsk-feedbackbar__yes" data-module="idsk-appear-link" data-appear="idsk-feedbackbar-thanks" data-disappear="idsk-feedbackbar-useful">
-              <a href="#" class="govuk-link" data-feedbackbar="useful">Áno</a>
-            </span>
-            <span class="idsk-feedbackbar__no" data-module="idsk-appear-link" data-appear="idsk-feedbackbar-form-no" data-disappear="idsk-feedbackbar-container">
-              <a href="#" class="govuk-link" data-feedbackbar="not-useful">Nie</a>
-            </span>
-          </span>
-        </div>
-        <div id="idsk-feedbackbar-thanks" class="idsk-appear-link-hide">
-          <span class="govuk-body-s govuk-!-font-weight-bold">Ďakujeme za odozvu!</span>
-        </div>
+<div class="govuk-width-container">
+  <div class="idsk-feedbackbar__container app-pane-blue" id="idsk-feedbackbar-container">
+    <div class="idsk-feedbackbar__useful">
+      <div id="idsk-feedbackbar-useful">
+        <span class="idsk-feedbackbar__useful-question govuk-body-s govuk-!-font-weight-bold">Sú tieto informácie pre vás užitočné?</span>
+        <span>
+          <a href="#" class="govuk-link" data-module="idsk-appear-link" data-appear="idsk-feedbackbar-thanks" data-disappear="idsk-feedbackbar-useful" data-feedbackbar="useful">Áno</a>
+          <a href="#" class="govuk-link govuk-!-margin-left-3" data-module="idsk-appear-link" data-appear="idsk-feedbackbar-form-no" data-disappear="idsk-feedbackbar-container" data-feedbackbar="not-useful">Nie</a>
+        </span>
       </div>
-      <div class="idsk-feedbackbar__found-error govuk-body-s govuk-!-margin-bottom-0">
-        <a href="#" class="idsk-feedbackbar__link" data-module="idsk-appear-link" data-appear="idsk-feedbackbar-form-found-error" data-disappear="idsk-feedbackbar-container" data-feedbackbar="found-error">Našli ste na stránke chybu?</a>
+      <div id="idsk-feedbackbar-thanks" class="idsk-appear-link-hide">
+        <span class="govuk-body-s govuk-!-font-weight-bold">Ďakujeme za odozvu!</span>
       </div>
     </div>
-    <div id="idsk-feedbackbar-form-no" class="idsk-feedbackbar__container idsk-feedbackbar__form idsk-appear-link-hide">
-      <a href="#" data-module="idsk-appear-link" data-appear="idsk-feedbackbar-container" data-disappear="idsk-feedbackbar-form-no" class="idsk-feedbackbar__close govuk-link">Zatvoriť</a>
-      <div>
-        <h3 class="govuk-heading-m">Pomôžte nám zlepšiť korona.gov.sk</h3>
-      </div>
+    <div class="idsk-feedbackbar__found-error govuk-body-s govuk-!-margin-bottom-0">
+      <a href="#" class="idsk-feedbackbar__link" data-module="idsk-appear-link" data-appear="idsk-feedbackbar-form-found-error" data-disappear="idsk-feedbackbar-container" data-feedbackbar="found-error">Našli ste na stránke chybu?</a>
     </div>
-    <div id="idsk-feedbackbar-form-found-error" class="idsk-feedbackbar__container idsk-feedbackbar__form idsk-appear-link-hide">
-      <a href="#" data-module="idsk-appear-link" data-appear="idsk-feedbackbar-container" data-disappear="idsk-feedbackbar-form-found-error" class="idsk-feedbackbar__close govuk-link">Zatvoriť</a>
-      <div>
-        <h3 class="govuk-heading-m govuk-!-margin-bottom-6">Pomôžte nám zlepšiť korona.gov.sk</h3>
-        <form id="content-error">
-          <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset">
-              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-                  Akú chybu ste našli?
-                </h1>
-              </legend>
-              <div class="govuk-radios govuk-radios--small">
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="content-error-type" name="content-error-type" type="radio" value="grammar">
-                  <label class="govuk-label govuk-radios__label" for="content-error-type">
-                    Gramatická chyba
-                  </label>
-                </div>
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="content-error-type-2" name="content-error-type" type="radio" value="stale">
-                  <label class="govuk-label govuk-radios__label" for="content-error-type-2">
-                    Neaktuálny obsah
-                  </label>
-                </div>
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="content-error-type-3" name="content-error-type" type="radio" value="factual">
-                  <label class="govuk-label govuk-radios__label" for="content-error-type-3">
-                    Nesprávna informácia
-                  </label>
-                </div>
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="content-error-type-4" name="content-error-type" type="radio" value="bad-link">
-                  <label class="govuk-label govuk-radios__label" for="content-error-type-4">
-                    Nefungujúci alebo nesprávny odkaz
-                  </label>
-                </div>
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="content-error-type-5" name="content-error-type" type="radio" value="other">
-                  <label class="govuk-label govuk-radios__label" for="content-error-type-5">
-                    Iné
-                  </label>
-                </div>
+  </div>
+  <div id="idsk-feedbackbar-form-no" class="idsk-feedbackbar__container idsk-feedbackbar__form idsk-appear-link-hide">
+    <a href="#" data-module="idsk-appear-link" data-appear="idsk-feedbackbar-container" data-disappear="idsk-feedbackbar-form-no" class="idsk-feedbackbar__close govuk-link">Zatvoriť</a>
+    <div>
+      <h3 class="govuk-heading-m">Pomôžte nám zlepšiť korona.gov.sk</h3>
+    </div>
+  </div>
+  <div id="idsk-feedbackbar-form-found-error" class="idsk-feedbackbar__container idsk-feedbackbar__form idsk-appear-link-hide">
+    <a href="#" data-module="idsk-appear-link" data-appear="idsk-feedbackbar-container" data-disappear="idsk-feedbackbar-form-found-error" class="idsk-feedbackbar__close govuk-link">Zatvoriť</a>
+    <div>
+      <h3 class="govuk-heading-m govuk-!-margin-bottom-6">Pomôžte nám zlepšiť korona.gov.sk</h3>
+      <form id="found-error-form">
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                Akú chybu ste našli?
+              </h1>
+            </legend>
+            <div class="govuk-radios govuk-radios--small">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="content-error-type" name="content-error-type" type="radio" value="grammar">
+                <label class="govuk-label govuk-radios__label" for="content-error-type">
+                  Gramatická chyba
+                </label>
               </div>
-            </fieldset>
-          </div>
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="more-detail">
-              Stručný popis chyby
-            </label>
-            <span id="more-detail-hint" class="govuk-hint">
-              Prosím nevpisujte žiadne osobné informácie (meno, kontakt a iné).
-            </span>
-            <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint"></textarea>
-          </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="content-error-type-2" name="content-error-type" type="radio" value="stale">
+                <label class="govuk-label govuk-radios__label" for="content-error-type-2">
+                  Neaktuálny obsah
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="content-error-type-3" name="content-error-type" type="radio" value="factual">
+                <label class="govuk-label govuk-radios__label" for="content-error-type-3">
+                  Nesprávna informácia
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="content-error-type-4" name="content-error-type" type="radio" value="bad-link">
+                <label class="govuk-label govuk-radios__label" for="content-error-type-4">
+                  Nefungujúci alebo nesprávny odkaz
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="content-error-type-5" name="content-error-type" type="radio" value="other">
+                <label class="govuk-label govuk-radios__label" for="content-error-type-5">
+                  Iné
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="more-detail">
+            Stručný popis chyby
+          </label>
+          <span id="more-detail-hint" class="govuk-hint">
+            Prosím nevpisujte žiadne osobné informácie (meno, kontakt a iné).
+          </span>
+          <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint"></textarea>
+        </div>
 
-          <button class="govuk-button" data-module="govuk-button" type="submit">
-            Odoslať
-          </button>
-        </form>
-      </div>
+        <button class="govuk-button" data-module="govuk-button" type="submit">
+          Odoslať
+        </button>
+      </form>
     </div>
   </div>
 </div>
