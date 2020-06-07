@@ -52,6 +52,8 @@ include 'inc/block-editor-adjustments.php';
         wp_enqueue_script( 'korona-js-leaflet', '/wp-content/themes/korona/assets/js/leaflet.js', array (), $theme_version, TRUE );
         wp_enqueue_script( 'korona-js-boundarycanvas', '/wp-content/themes/korona/assets/js/boundarycanvas.js', array (), $theme_version, TRUE );
         wp_enqueue_script( 'korona-js-driveinmap', '/wp-content/themes/korona/assets/js/driveinmap.js', array (), $theme_version, TRUE );
+        wp_enqueue_script( 'korona-js-appear-link', '/wp-content/themes/korona/assets/js/appear-link.js', array (), $theme_version, TRUE );
+        wp_enqueue_script( 'korona-js-feedbackbar', '/wp-content/themes/korona/assets/js/feedbackbar.js', array (), $theme_version, TRUE );
     }
 
     add_action( 'wp_enqueue_scripts', 'korona_register_scripts' );
