@@ -23,7 +23,22 @@
   <div id="idsk-feedbackbar-form-no" class="idsk-feedbackbar__container idsk-feedbackbar__form idsk-appear-link-hide">
     <a href="#" data-module="idsk-appear-link" data-appear="idsk-feedbackbar-container" data-disappear="idsk-feedbackbar-form-no" class="idsk-feedbackbar__close govuk-link">Zatvoriť</a>
     <div>
-      <h3 class="govuk-heading-m">Pomôžte nám zlepšiť korona.gov.sk</h3>
+      <h3 class="govuk-heading-m govuk-!-margin-bottom-6">Pomôžte nám zlepšiť korona.gov.sk</h3>
+      <form id="not-useful-form">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="detail">
+            Čo vám chýba na tejto stránke?
+          </label>
+          <span id="detail-hint" class="govuk-hint">
+            Prosím nevpisujte žiadne osobné informácie (meno, kontakt a iné).
+          </span>
+          <textarea class="govuk-textarea" name="detail" rows="5" aria-describedby="detail-hint"></textarea>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button" type="submit">
+          Odoslať
+        </button>
+      </form>
     </div>
   </div>
   <div id="idsk-feedbackbar-form-found-error" class="idsk-feedbackbar__container idsk-feedbackbar__form idsk-appear-link-hide">

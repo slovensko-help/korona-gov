@@ -4,7 +4,7 @@ function onFeedbackBarLinkClick(event) {
   var feedbackType = event.target.dataset.feedbackbar
 
   if (feedbackType === "useful") {
-    // TODO
+    // TODO GA call
     console.log('"useful" feedback submitted')
     return
   }
@@ -20,6 +20,17 @@ function onFeedbackBarLinkClick(event) {
   }
 }
 
+function onNotUsefulFormSubmit(event) {
+  event.preventDefault();
+
+  var inputFields = {
+    detail: event.target.querySelector('textarea[name="detail"]').value
+  }
+
+  // TODO AJAX call
+  console.log("Form submitted with ", inputFields)
+}
+
 function onFoundErrorFormSubmit(event) {
   event.preventDefault();
 
@@ -28,7 +39,7 @@ function onFoundErrorFormSubmit(event) {
     errorDetail: event.target.querySelector('textarea[name="more-detail"]').value
   }
 
-  // TODO
+  // TODO AJAX call
   console.log("Form submitted with ", inputFields)
 }
 
@@ -38,6 +49,11 @@ nodeListForEach($feedbackBarLinks, function ($link) {
   $link.addEventListener("click", onFeedbackBarLinkClick)
 })
 
+var $notUsefulForm = document.querySelector('#not-useful-form')
+$notUsefulForm.addEventListener("submit", onNotUsefulFormSubmit)
+
 var $foundErorrForm = document.querySelector('#found-error-form')
 $foundErorrForm.addEventListener("submit", onFoundErrorFormSubmit)
 
+// TODO error response handling
+// TODO success response handling
