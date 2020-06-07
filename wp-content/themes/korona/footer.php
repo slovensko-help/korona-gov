@@ -6,7 +6,7 @@
     <div class="idsk-feedbackbar__container app-pane-blue" id="idsk-feedbackbar-container">
       <div class="idsk-feedbackbar__useful">
         <div id="idsk-feedbackbar-useful">
-          <span class="idsk-feedbackbar__useful-question govuk-body-s">Boli tieto informácie pre vás užitočné?</span>
+          <span class="idsk-feedbackbar__useful-question govuk-body-s">Sú tieto informácie pre vás užitočné?</span>
           <span>
             <span class="idsk-feedbackbar__yes" data-module="idsk-appear-link" data-appear="idsk-feedbackbar-thanks" data-disappear="idsk-feedbackbar-useful">
               <a href="#" class="govuk-link">Áno</a>

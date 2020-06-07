@@ -24,10 +24,7 @@
 }
 .idsk-feedbackbar__useful-question {
   margin-right: 15px;
-}
-.idsk-feedbackbar__no,
-.idsk-feedbackbar__yes {
-  text-transform: uppercase;
+  font-weight: bold;
 }
 @media print {
   .idsk-feedbackbar__no,
@@ -38,8 +35,8 @@
 @media (min-width: 40.0625em) {
   .idsk-feedbackbar__no,
   .idsk-feedbackbar__yes {
-    font-size: 18px;
-    font-size: 1.125rem;
+    font-size: 16px;
+    font-size: 1.rem;
     line-height: 1.2;
   }
 }
@@ -49,11 +46,6 @@
     font-size: 14pt;
     line-height: 1.2;
   }
-}
-.idsk-feedbackbar__no a,
-.idsk-feedbackbar__yes a {
-  border-bottom: 2px solid;
-  text-decoration: none;
 }
 .idsk-feedbackbar__no {
   margin-left: 15px;
