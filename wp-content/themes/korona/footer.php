@@ -102,6 +102,9 @@
       </form>
     </div>
   </div>
+  <div class="idsk-feedbackbar__container app-pane-blue idsk-appear-link-hide" id="idsk-feedbackbar-form-submitted-container">
+    <p class="govuk-body-s govuk-!-font-weight-bold govuk-!-margin-bottom-0">Váš podnet pol odoslaný. Ďakujeme!</p>
+  </div>
 </div>
 
 <footer class="idsk-footer " role="contentinfo">

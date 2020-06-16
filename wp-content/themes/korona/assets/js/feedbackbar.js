@@ -29,6 +29,10 @@ function onNotUsefulFormSubmit(event) {
 
   // TODO AJAX call
   console.log("Form submitted with ", inputFields)
+
+  // On success
+  document.querySelector('#idsk-feedbackbar-form-no').classList.add("idsk-appear-link-hide")
+  document.querySelector('#idsk-feedbackbar-form-submitted-container').classList.remove("idsk-appear-link-hide")
 }
 
 function onFoundErrorFormSubmit(event) {
@@ -41,6 +45,10 @@ function onFoundErrorFormSubmit(event) {
 
   // TODO AJAX call
   console.log("Form submitted with ", inputFields)
+
+  // On success
+  document.querySelector('#idsk-feedbackbar-form-found-error').classList.add("idsk-appear-link-hide")
+  document.querySelector('#idsk-feedbackbar-form-submitted-container').classList.remove("idsk-appear-link-hide")
 }
 
 // Initialize
@@ -56,4 +64,3 @@ var $foundErorrForm = document.querySelector('#found-error-form')
 $foundErorrForm.addEventListener("submit", onFoundErrorFormSubmit)
 
 // TODO error response handling
-// TODO success response handling
