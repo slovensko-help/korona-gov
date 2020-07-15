@@ -59,7 +59,7 @@
                 <a href="#" id="fill-form-with-test-data">Vyplniť testovacie údaje</a>
             </div>
 
-            <fieldset class="govuk-fieldset" role="group" aria-describedby="uc-country">
+            <fieldset class="govuk-fieldset govuk-!-margin-bottom-5" role="group" aria-describedby="uc-country">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                     <h2 class="govuk-fieldset__heading" id="uc-country">
                         Navštívené krajiny za ostatných 14 dní
@@ -69,7 +69,7 @@
                 <div class="govuk-form-group govuk-!-margin-bottom-3">
                     <div class="uc-country-holder">
                         <label class="govuk-label" for="country-inner-uc-country">
-                            <strong>Krajina, z ktorej ste prišli</strong>
+                            <strong>Z ktorej krajiny ste prišli?</strong>
                         </label>
                         <div><span class="govuk-error-message" id="country-error-uc-country"
                                    style="display: none;">Vyberte krajinu zo zoznamu.</span></div>
@@ -81,7 +81,7 @@
                 <div class="govuk-form-group govuk-!-margin-bottom-1 js-other-countries-label"
                      style="display: none;">
                     <label class="govuk-label">
-                        <strong>Ďalšie navštívené krajiny za ostatných 14 dní</strong>
+                        <strong>Ktoré ďalšie krajiny ste navštívili za ostatných 14 dní?</strong>
                     </label>
                 </div>
 
@@ -149,7 +149,7 @@
 <!--                    <a href="#" class="js-uc-add-country uc-add-country govuk-link">Nastaviť dnes</a>-->
                 </div>
             </fieldset>
-            <fieldset class="govuk-fieldset" role="group" aria-describedby="uc-personal-data">
+            <fieldset class="govuk-fieldset govuk-!-margin-bottom-5" role="group" aria-describedby="uc-personal-data">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                     <h2 class="govuk-fieldset__heading" id="uc-personal-data">
                         Osobné údaje
@@ -184,7 +184,7 @@
                     <span id="uc-id-1-error" class="govuk-error-message" style="display: none;">
                               Zadajte správne rodné číslo, BIČ alebo ID pridelené inou krajinou.
                             </span>
-                    <div class="govuk-radios govuk-radios--small govuk-radios--conditional" data-module="govuk-radios">
+                    <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="uc-id-type-1-slovak" name="id-type-1" type="radio" value="slovak" data-aria-controls="id-type-conditional-slovak-1" checked>
                             <label class="govuk-label govuk-radios__label" for="uc-id-type-1-slovak">
@@ -201,7 +201,7 @@
                             </label>
                         </div>
                         <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="id-type-conditional-foreign-1">
-                            <span id="nationality-item-hint" class="govuk-hint govuk-radios__hint">
+                            <span class="govuk-hint govuk-radios__hint" style="padding-left: 0;">
                                 Vyplňte iba ak nemáte slovenské rodné číslo alebo BIČ.
                               </span>
                             <input class="govuk-input govuk-!-width-one-third" name="id-foreign-1" type="text" id="uc-id-foreign-1">
@@ -260,7 +260,7 @@
                     <span id="uc-insurance-1-error" class="govuk-error-message" style="display: none;">
                               Zvoľte spôsob poistenia
                             </span>
-                    <div class="govuk-radios govuk-radios--small">
+                    <div class="govuk-radios">
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="uc-insurance-1-vseobecna" name="insurance-1"
                                    type="radio"
@@ -305,7 +305,7 @@
                 </div>
             </fieldset>
 
-            <fieldset class="govuk-fieldset" role="group" aria-describedby="uc-contact">
+            <fieldset class="govuk-fieldset govuk-!-margin-bottom-5" role="group" aria-describedby="uc-contact">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                     <h2 class="govuk-fieldset__heading" id="uc-contact">
                         Kontaktné údaje
@@ -335,7 +335,7 @@
                 </div>
             </fieldset>
 
-            <fieldset class="govuk-fieldset" role="group" aria-describedby="uc-isolation-address">
+            <fieldset class="govuk-fieldset govuk-!-margin-bottom-5" role="group" aria-describedby="uc-isolation-address">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                     <h2 class="govuk-fieldset__heading" id="uc-isolation-address">
                         Adresa absolvovania domácej izolácie
@@ -394,7 +394,7 @@
                           <span id="uc-tos-error" class="govuk-error-message" style="display: none;">
                           Prosím, akceptujte súhlas so spracovaním osobných údajov.
                           </span>
-                    <div class="govuk-checkboxes govuk-checkboxes--small">
+                    <div class="govuk-checkboxes">
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="uc-tos" name="tos" type="checkbox" value="yes" aria-describedby="uc-tos-error">
                             <label class="govuk-label govuk-checkboxes__label" for="uc-tos">
@@ -409,56 +409,58 @@
         </form>
     </div>
 
-    <div style="display: none;" id="uc-loading">
-        <h1 class="govuk-heading-l">
-            Registrácia sa odosiela
-        </h1>
-
-        <p>
-            Prosím, čakajte na výsledok registrácie.
-        </p>
-    </div>
-
-    <div style="display: none;" id="uc-error">
-        <h1 class="govuk-heading-l">
-            Pri registrácii nastala chyba
-        </h1>
-
-        <p id="uc-slovak-id-registered" style="display: none;">
-            Zadané rodné číslo alebo BIČ už bolo registrované.
-        </p>
-
-        <p id="uc-foreign-id-registered" style="display: none;">
-            Zadané ID pridelené inou krajinou už bolo registrované.
-        </p>
-
-        <p>
-            Pre dokončenie registrácie, prosím, zavolajte na číslo <a href="tel:+421232353030" style="display: inline-block;">+421 32 35 30 30</a>.
-        </p>
-
-        <div>
-            <h2 class="govuk-heading-m">
-                Ďalšie akcie
-            </h2>
-            <a href=".?test=test" class="govuk-button">Chcem registrovať ďalšiu osobu</a>
-        </div>
-    </div>
-
-    <div style="display: none;" id="uc-thank-you">
-        <div class="govuk-panel govuk-panel--confirmation">
-            <h1 class="govuk-panel__title">
-                Registrácia dokončená
+    <div class="govuk-grid-column-full">
+        <div style="display: none;" id="uc-loading">
+            <h1 class="govuk-heading-l">
+                Registrácia sa odosiela
             </h1>
-            <div class="govuk-panel__body">
-                Ďalšie inštrukcie Vám prídu v najbližších dňoch v SMS správe alebo emailom.
+
+            <p>
+                Prosím, čakajte na výsledok registrácie.
+            </p>
+        </div>
+
+        <div style="display: none;" id="uc-error">
+            <h1 class="govuk-heading-l">
+                Pri registrácii nastala chyba
+            </h1>
+
+            <p id="uc-slovak-id-registered" style="display: none;">
+                Zadané rodné číslo alebo BIČ už bolo registrované.
+            </p>
+
+            <p id="uc-foreign-id-registered" style="display: none;">
+                Zadané ID pridelené inou krajinou už bolo registrované.
+            </p>
+
+            <p>
+                Pre dokončenie registrácie, prosím, zavolajte na číslo <a href="tel:+421232353030" style="display: inline-block;">+421 32 35 30 30</a>.
+            </p>
+
+            <div>
+                <h2 class="govuk-heading-m">
+                    Ďalšie akcie
+                </h2>
+                <a href=".?test=test" class="govuk-button">Chcem registrovať ďalšiu osobu</a>
             </div>
         </div>
 
-        <div>
-            <h2 class="govuk-heading-m">
-                Ďalšie akcie
-            </h2>
-            <a href=".?test=test" class="govuk-button">Chcem registrovať ďalšiu osobu</a>
+        <div style="display: none;" id="uc-thank-you">
+            <div class="govuk-panel govuk-panel--confirmation">
+                <h1 class="govuk-panel__title">
+                    Registrácia dokončená
+                </h1>
+                <div class="govuk-panel__body">
+                    Ďalšie inštrukcie Vám prídu v najbližších dňoch v SMS správe alebo emailom.
+                </div>
+            </div>
+
+            <div>
+                <h2 class="govuk-heading-m">
+                    Ďalšie akcie
+                </h2>
+                <a href=".?test=test" class="govuk-button">Chcem registrovať ďalšiu osobu</a>
+            </div>
         </div>
     </div>
 </div>
