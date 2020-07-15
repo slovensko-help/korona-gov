@@ -440,7 +440,7 @@
             <h2 class="govuk-heading-m">
                 Ďalšie akcie
             </h2>
-            <a href="." class="govuk-button">Chcem registrovať ďalšiu osobu</a>
+            <a href=".?test=test" class="govuk-button">Chcem registrovať ďalšiu osobu</a>
         </div>
     </div>
 
@@ -458,7 +458,7 @@
             <h2 class="govuk-heading-m">
                 Ďalšie akcie
             </h2>
-            <a href="." class="govuk-button">Chcem registrovať ďalšiu osobu</a>
+            <a href=".?test=test" class="govuk-button">Chcem registrovať ďalšiu osobu</a>
         </div>
     </div>
 </div>
