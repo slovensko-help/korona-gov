@@ -299,6 +299,10 @@ function prefillRcFormWithTestData() {
                    return;
                }
 
+                if ('household-members-count' === item.name) {
+                    result['household-members-count'] = item.value.replace(/[^0-9]/g, '');
+                }
+
                 if ('phone' === item.name) {
                     result['phone'] = item.value.replace(/[ \-\(\)]/g, '');
                     return;

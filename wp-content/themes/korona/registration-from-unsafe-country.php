@@ -1,4 +1,4 @@
-<?php define('RC_ASSETS_VERSION', '1.0.2'); ?>
+<?php define('RC_ASSETS_VERSION', '1.0.3'); ?>
 
 <script src="/wp-content/themes/korona/assets/js/jquery-3.5.1.min.js?v=<?php echo RC_ASSETS_VERSION; ?>"></script>
 <script src="/wp-content/themes/korona/assets/js/registration-from-unsafe-country.js?v=<?php echo RC_ASSETS_VERSION; ?>"></script>
