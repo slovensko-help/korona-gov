@@ -1,10 +1,12 @@
-<script src="/wp-content/themes/korona/assets/js/jquery-3.5.1.min.js"></script>
-<script src="/wp-content/themes/korona/assets/js/registration-from-unsafe-country.js"></script>
+<?php define('RC_ASSETS_VERSION', '1.0.0'); ?>
+
+<script src="/wp-content/themes/korona/assets/js/jquery-3.5.1.min.js?v=<?php echo RC_ASSETS_VERSION; ?>"></script>
+<script src="/wp-content/themes/korona/assets/js/registration-from-unsafe-country.js?v=<?php echo RC_ASSETS_VERSION; ?>"></script>
 
 <style>
     .uc-add-country {
         display: inline-block;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
 
     .uc-remove-country {
@@ -43,6 +45,14 @@
         border-color: #0b0c0c;
     }
 
+    .autocomplete__input--focused {
+        outline-color: #ffbf47;
+    }
+
+    .uc-form .autocomplete__dropdown-arrow-down {
+        z-index: 1;
+    }
+
     @media (max-width: 640px) {
         .autocomplete__hint, .autocomplete__input {
             font-size: 1rem;
@@ -53,12 +63,8 @@
 </style>
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-two-thirds">
         <form class="uc-form js-uc-form js-enabled" style="display: none;">
-            <div style="margin-bottom: 100px;">
-                <a href="#" id="fill-form-with-test-data">Vyplniť testovacie údaje</a>
-            </div>
-
             <fieldset class="govuk-fieldset govuk-!-margin-bottom-5" role="group" aria-describedby="uc-country">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                     <h2 class="govuk-fieldset__heading" id="uc-country">
@@ -104,8 +110,11 @@
 
                 <div class="govuk-form-group">
                     <label class="govuk-label" for="uc-arrival-date-day">
-                        <strong>Dátum, kedy ste prišli</strong>
+                        <strong>Dátum príchodu na Slovensko</strong>
                     </label>
+                    <span class="govuk-hint">
+                      Mesiac zadávajte ako číslo od 1 do 12.
+                    </span>
                     <span id="uc-arrival-date-error" class="govuk-error-message" style="display: none;">
                               Zadajte správny deň a mesiac príchodu.
                             </span>
@@ -213,6 +222,9 @@
                     <label class="govuk-label" for="uc-dob-day-1">
                         <strong>Dátum narodenia</strong>
                     </label>
+                    <span class="govuk-hint">
+                      Mesiac zadávajte ako číslo od 1 do 12.
+                    </span>
                     <span id="uc-dob-1-error" class="govuk-error-message" style="display: none;">
                               Zadajte správny deň, mesiac a rok narodenia.
                             </span>
@@ -389,7 +401,40 @@
                 </div>
             </fieldset>
 
+            <fieldset class="govuk-fieldset govuk-!-margin-bottom-5" role="group" aria-describedby="uc-isolation-address">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    <h2 class="govuk-fieldset__heading" id="uc-isolation-address">
+                        Dodatočné údaje
+                    </h2>
+                </legend>
+
+                <p style="margin-top: 0;">
+                    V prípade pozitívneho testu, v záujme ochrany Vás a Vašich blízkych, budú od Vás hygienici vyžadovať dodatočné informácie. Pomôžete nám, ak ich dobrovoľne zadáte už teraz.
+                </p>
+
+                <div class="govuk-form-group govuk-!-margin-bottom-3">
+                    <label class="govuk-label" for="uc-household-members-count">
+                        <strong>Počet osôb žijúcich alebo zdržiavajúcich sa v mieste izolácie</strong>
+                    </label>
+                    <input class="govuk-input govuk-input--width-20" id="uc-household-members-count"
+                           name="household-members-count" type="text">
+                </div>
+
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="uc-gp">
+                        <strong>Meno a priezvisko všeobecného lekára</strong>
+                    </label>
+                    <input class="govuk-input govuk-input--width-20" id="uc-gp" name="gp"
+                           type="text">
+                </div>
+            </fieldset>
+
             <fieldset class="govuk-fieldset" role="group">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    <h2 class="govuk-fieldset__heading" id="uc-isolation-address">
+                        Potvrdenia
+                    </h2>
+                </legend>
                 <div class="govuk-form-group">
                           <span id="uc-tos-error" class="govuk-error-message" style="display: none;">
                           Prosím, akceptujte súhlas so spracovaním osobných údajov.
@@ -398,7 +443,23 @@
                         <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="uc-tos" name="tos" type="checkbox" value="yes" aria-describedby="uc-tos-error">
                             <label class="govuk-label govuk-checkboxes__label" for="uc-tos">
-                                Súhlasím so spracovaním osobných údajov
+                                Potvrdzujem, že súhlasím so spracovaním osobných údajov
+                            </label>
+                            <span class="govuk-hint govuk-checkboxes__hint">
+                                <a href="/poucenie-o-ochrane-osobnych-udajov/" target="_blank">Poučenie o ochrane osobných údajov</a>
+                              </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="govuk-form-group">
+                          <span id="uc-confirm-error" class="govuk-error-message" style="display: none;">
+                          Prosím, potvrďte správnosť zadaných údajov.
+                          </span>
+                    <div class="govuk-checkboxes">
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="uc-confirm" name="confirm" type="checkbox" value="yes" aria-describedby="uc-confirm-error">
+                            <label class="govuk-label govuk-checkboxes__label" for="uc-confirm">
+                                Potvrdzujem a prehlasujem, že všetky uvedené údaje sú pravdivé.
                             </label>
                         </div>
                     </div>
@@ -426,11 +487,11 @@
             </h1>
 
             <p id="uc-slovak-id-registered" style="display: none;">
-                Zadané rodné číslo alebo BIČ už bolo registrované.
+                Zadané rodné číslo alebo BIČ už bolo registrované (napr. pri registrácii na vyšetrenie na COVID-19).
             </p>
 
             <p id="uc-foreign-id-registered" style="display: none;">
-                Zadané ID pridelené inou krajinou už bolo registrované.
+                Zadané ID pridelené inou krajinou už bolo registrované (napr. pri registrácii na vyšetrenie na COVID-19).
             </p>
 
             <p>
@@ -441,7 +502,7 @@
                 <h2 class="govuk-heading-m">
                     Ďalšie akcie
                 </h2>
-                <a href=".?test=test" class="govuk-button">Chcem registrovať ďalšiu osobu</a>
+                <a href="." class="govuk-button">Chcem registrovať ďalšiu osobu</a>
             </div>
         </div>
 
@@ -451,7 +512,7 @@
                     Registrácia dokončená
                 </h1>
                 <div class="govuk-panel__body">
-                    Ďalšie inštrukcie Vám prídu v najbližších dňoch v SMS správe alebo emailom.
+                    Ďalšie inštrukcie Vám prídu v najbližších dňoch v&nbsp;SMS&nbsp;správe alebo emailom.
                 </div>
             </div>
 
@@ -459,7 +520,7 @@
                 <h2 class="govuk-heading-m">
                     Ďalšie akcie
                 </h2>
-                <a href=".?test=test" class="govuk-button">Chcem registrovať ďalšiu osobu</a>
+                <a href="." class="govuk-button">Chcem registrovať ďalšiu osobu</a>
             </div>
         </div>
     </div>
