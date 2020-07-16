@@ -301,6 +301,7 @@ function prefillRcFormWithTestData() {
 
                 if ('household-members-count' === item.name) {
                     result['household-members-count'] = item.value.replace(/[^0-9]/g, '');
+                    return
                 }
 
                 if ('phone' === item.name) {
@@ -702,39 +703,45 @@ function prefillRcFormWithTestData() {
                 $form.hide();
                 $('#uc-loading').show();
 
-                $.ajax({
-                    type: 'POST',
-                    url: isInTestMode ? 'https://t.mojeezdravie.sk/api/v1/risk/new-pass' : 'https://mojeezdravie.nczisk.sk/api/v1/risk/new-pass',
-                    data: JSON.stringify({
-                        people: people
-                    }),
-                    error: function() {
-                        $('#uc-loading').hide();
-                        $('#uc-error').show();
-                    },
-                    success: function(response) {
-                        if (!response.payload || !response.payload.vCovid19Pass) {
-                            $('#uc-loading').hide();
+                grecaptcha.ready(function() {
+                    grecaptcha.execute('6LcbNrIZAAAAAPI2oYNKKZAlPj7wBIb3rl_ZP7z2', {action: 'submit'}).then(function(token) {
+                        $.ajax({
+                            type: 'POST',
+                            url: 'https://ekarantena.korona.gov.sk/ehranica/',
+                            data: JSON.stringify({
+                                isTest: isInTestMode,
+                                token: token,
+                                people: people
+                            }),
+                            error: function() {
+                                $('#uc-loading').hide();
+                                $('#uc-error').show();
+                            },
+                            success: function(response) {
+                                if (!response.payload || !response.payload.vCovid19Pass) {
+                                    $('#uc-loading').hide();
 
-                            if (response.errors &&
-                                response.errors.length > 0 &&
-                                response.errors[0].description) {
+                                    if (response.errors &&
+                                        response.errors.length > 0 &&
+                                        response.errors[0].description) {
 
-                                if (response.errors[0].description.indexOf('odné číslo') > -1) {
-                                    $('#uc-slovak-id-registered').show();
-                                } else if (response.errors[0].description.indexOf('ahraničný identifikátor') > -1) {
-                                    $('#uc-foreign-id-registered').show();
+                                        if (response.errors[0].description.indexOf('odné číslo') > -1) {
+                                            $('#uc-slovak-id-registered').show();
+                                        } else if (response.errors[0].description.indexOf('ahraničný identifikátor') > -1) {
+                                            $('#uc-foreign-id-registered').show();
+                                        }
+                                    }
+                                    $('#uc-error').show();
                                 }
-                            }
-                            $('#uc-error').show();
-                        }
-                        else {
-                            $('#uc-loading').hide();
-                            $('#uc-thank-you').show();
-                        }
-                    },
-                    contentType: "application/json",
-                    dataType: 'json'
+                                else {
+                                    $('#uc-loading').hide();
+                                    $('#uc-thank-you').show();
+                                }
+                            },
+                            contentType: "application/json",
+                            dataType: 'json'
+                        });
+                    });
                 });
             }
 
