@@ -455,7 +455,7 @@
             <button class="govuk-button js-uc-submit" type="submit">Odoslať registráciu</button>
 
             <p style="margin-top: 0;" class="govuk-body">
-                V prípade otázok zavolajte na číslo <a href="tel:+421232353030" style="display: inline-block;">+421 32 35 30 30</a>.
+                V prípade otázok zavolajte na číslo <a href="tel:+421232353030" style="display: inline-block;">+421 2 32 35 30 30</a>.
             </p>
         </form>
     </div>
@@ -485,7 +485,7 @@
             </p>
 
             <p class="govuk-body">
-                Pre dokončenie registrácie, prosím, zavolajte na číslo <a href="tel:+421232353030" style="display: inline-block;">+421 32 35 30 30</a>.
+                Pre dokončenie registrácie, prosím, zavolajte na číslo <a href="tel:+421232353030" style="display: inline-block;">+421 2 32 35 30 30</a>.
             </p>
 
             <div>
