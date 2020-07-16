@@ -268,12 +268,9 @@ function prefillRcFormWithTestData() {
     $(document).ready(function() {
         var isInTestMode = window.location.href.indexOf('test=nedasavycentrovat') > -1;
 
-        var $countryTemplate = $('#uc-country-template');
         var $otherCountrieslabel = $('.js-other-countries-label');
         var $permanentAddressFields = $('.js-uc-permanent-fields');
-        var $mainHeading = $('h1:first');
         var $form = $('.js-uc-form');
-        var $summary = $('.js-uc-summary');
         var $window = $(window);
         var countryLastIndex = 1;
 
@@ -578,12 +575,24 @@ function prefillRcFormWithTestData() {
             return isValid;
         }
 
+        var rcOtherCountryTemplate = '<div class="govuk-form-group govuk-!-margin-bottom-3">\n' +
+            '                        <div><span class="govuk-error-message" id="country-error-$id"\n' +
+            '                                   style="display: none;">Vyberte krajinu zo zoznamu.</span></div>\n' +
+            '                        <div class="uc-country-holder">\n' +
+            '                            <input type="hidden" name="country-$id" id="country-input-$id">\n' +
+            '                            <div id="country-field-$id"></div>\n' +
+            '                            <button class="govuk-button govuk-button--secondary js-uc-remove-country uc-remove-country">\n' +
+            '                                X\n' +
+            '                            </button>\n' +
+            '                        </div>\n' +
+            '                    </div>';
+
         $('body')
             .on('click', '.js-uc-add-country', function(event) {
                 event.preventDefault();
 
                 var countryId = 'other-' + countryLastIndex;
-                $(this).before($countryTemplate.html().replace(/\$id/g, countryId));
+                $(this).before(rcOtherCountryTemplate.replace(/\$id/g, countryId));
                 rcCountryAutocompleteInit(countryId, true);
 
                 showHideOtherCountriesLabel();

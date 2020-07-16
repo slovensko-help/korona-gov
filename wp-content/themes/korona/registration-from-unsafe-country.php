@@ -1,4 +1,4 @@
-<?php define('RC_ASSETS_VERSION', '1.0.1'); ?>
+<?php define('RC_ASSETS_VERSION', '1.0.2'); ?>
 
 <script src="/wp-content/themes/korona/assets/js/jquery-3.5.1.min.js?v=<?php echo RC_ASSETS_VERSION; ?>"></script>
 <script src="/wp-content/themes/korona/assets/js/registration-from-unsafe-country.js?v=<?php echo RC_ASSETS_VERSION; ?>"></script>
@@ -93,20 +93,6 @@
 
                 <a href="#" class="js-uc-add-country uc-add-country govuk-link">Pridať ďalšiu navštívenú
                     krajinu</a>
-
-                <script type="text/template" id="uc-country-template">
-                    <div class="govuk-form-group govuk-!-margin-bottom-3">
-                        <div><span class="govuk-error-message" id="country-error-$id"
-                                   style="display: none;">Vyberte krajinu zo zoznamu.</span></div>
-                        <div class="uc-country-holder">
-                            <input type="hidden" name="country-$id" id="country-input-$id">
-                            <div id="country-field-$id"></div>
-                            <button class="govuk-button govuk-button--secondary js-uc-remove-country uc-remove-country">
-                                X
-                            </button>
-                        </div>
-                    </div>
-                </script>
 
                 <div class="govuk-form-group">
                     <label class="govuk-label" for="uc-arrival-date-day">
