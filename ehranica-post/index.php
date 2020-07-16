@@ -1,6 +1,6 @@
 <?php
 
-define('RECAPTCHA_SECRET', '6LcbNrIZAAAAAABxF6_87YJZVQfLF-ISdopzDdQq');
+include_once '_config.php';
 
 /**
  * @param string $url

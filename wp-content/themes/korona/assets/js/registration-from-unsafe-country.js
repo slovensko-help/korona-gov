@@ -704,7 +704,7 @@ function prefillRcFormWithTestData() {
                 $('#uc-loading').show();
 
                 grecaptcha.ready(function() {
-                    grecaptcha.execute('6LcbNrIZAAAAAPI2oYNKKZAlPj7wBIb3rl_ZP7z2', {action: 'submit'}).then(function(token) {
+                    grecaptcha.execute('6LeFQ7IZAAAAABuiRASOsOQv4HFxAhGhwQiljFM0', {action: 'submit'}).then(function(token) {
                         $.ajax({
                             type: 'POST',
                             url: 'https://ekarantena.korona.gov.sk/ehranica/',
