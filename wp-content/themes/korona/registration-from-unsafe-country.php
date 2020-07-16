@@ -408,7 +408,7 @@
                     </h2>
                 </legend>
 
-                <p style="margin-top: 0;">
+                <p style="margin-top: 0;" class="govuk-body">
                     V prípade pozitívneho testu, v záujme ochrany Vás a Vašich blízkych, budú od&nbsp;Vás hygienici vyžadovať dodatočné informácie. Pomôžete nám, ak ich dobrovoľne zadáte už teraz.
                 </p>
 
@@ -467,6 +467,10 @@
             </fieldset>
 
             <button class="govuk-button js-uc-submit" type="submit">Odoslať registráciu</button>
+
+            <p style="margin-top: 0;" class="govuk-body">
+                V prípade otázok zavolajte na číslo <a href="tel:+421232353030" style="display: inline-block;">+421 32 35 30 30</a>.
+            </p>
         </form>
     </div>
 
@@ -486,15 +490,15 @@
                 Pri registrácii nastala chyba
             </h1>
 
-            <p id="uc-slovak-id-registered" style="display: none;">
+            <p id="uc-slovak-id-registered" style="display: none;" class="govuk-body">
                 Zadané rodné číslo alebo BIČ už bolo registrované (napr. pri registrácii na vyšetrenie na COVID-19).
             </p>
 
-            <p id="uc-foreign-id-registered" style="display: none;">
+            <p id="uc-foreign-id-registered" style="display: none;" class="govuk-body">
                 Zadané ID pridelené inou krajinou už bolo registrované (napr. pri registrácii na vyšetrenie na COVID-19).
             </p>
 
-            <p>
+            <p class="govuk-body">
                 Pre dokončenie registrácie, prosím, zavolajte na číslo <a href="tel:+421232353030" style="display: inline-block;">+421 32 35 30 30</a>.
             </p>
 
