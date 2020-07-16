@@ -685,7 +685,7 @@ function prefillRcFormWithTestData() {
                     });
                 });
 
-                $mainHeading.hide();
+                $('main .govuk-width-container > *:not(#rc-form-holder)').hide();
                 $form.hide();
                 $('#uc-loading').show();
 

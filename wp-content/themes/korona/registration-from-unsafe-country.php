@@ -1,4 +1,4 @@
-<?php define('RC_ASSETS_VERSION', '1.0.0'); ?>
+<?php define('RC_ASSETS_VERSION', '1.0.1'); ?>
 
 <script src="/wp-content/themes/korona/assets/js/jquery-3.5.1.min.js?v=<?php echo RC_ASSETS_VERSION; ?>"></script>
 <script src="/wp-content/themes/korona/assets/js/registration-from-unsafe-country.js?v=<?php echo RC_ASSETS_VERSION; ?>"></script>
@@ -62,7 +62,7 @@
     }
 </style>
 
-<div class="govuk-grid-row">
+<div id="rc-form-holder" class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
         <form class="uc-form js-uc-form js-enabled" style="display: none;">
             <fieldset class="govuk-fieldset govuk-!-margin-bottom-5" role="group" aria-describedby="uc-country">
@@ -409,7 +409,7 @@
                 </legend>
 
                 <p style="margin-top: 0;">
-                    V prípade pozitívneho testu, v záujme ochrany Vás a Vašich blízkych, budú od Vás hygienici vyžadovať dodatočné informácie. Pomôžete nám, ak ich dobrovoľne zadáte už teraz.
+                    V prípade pozitívneho testu, v záujme ochrany Vás a Vašich blízkych, budú od&nbsp;Vás hygienici vyžadovať dodatočné informácie. Pomôžete nám, ak ich dobrovoľne zadáte už teraz.
                 </p>
 
                 <div class="govuk-form-group govuk-!-margin-bottom-3">
@@ -417,7 +417,7 @@
                         <strong>Počet osôb žijúcich alebo zdržiavajúcich sa v mieste izolácie</strong>
                     </label>
                     <input class="govuk-input govuk-input--width-20" id="uc-household-members-count"
-                           name="household-members-count" type="text">
+                           name="household-members-count" type="text" maxlength="2">
                 </div>
 
                 <div class="govuk-form-group">
