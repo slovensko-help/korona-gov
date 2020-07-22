@@ -81,7 +81,7 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
     <div id="rc-form-holder" class="govuk-grid-row">
 
         <div class="govuk-grid-column-full">
-            <a class="govuk-back-link js-back-button" style="display: none;">Späť</a>
+            <a class="govuk-back-link js-back-button" style="display: none;"><?php echo __('Späť', 'ehranica'); ?></a>
 
             <div class="js-when-unsafe" style="display: none;">
                 <h2>
