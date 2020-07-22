@@ -1,4 +1,4 @@
-<?php define('RC_ASSETS_VERSION', '1.0.7'); ?>
+<?php define('RC_ASSETS_VERSION', '1.0.8'); ?>
 
     <script src="/wp-content/themes/korona/assets/js/moment.min.js?v=<?php echo RC_ASSETS_VERSION; ?>"></script>
     <script src="/wp-content/themes/korona/assets/js/moment-timezone-with-data.js?v=<?php echo RC_ASSETS_VERSION; ?>"></script>
@@ -95,6 +95,13 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                     to, že zodpovedáte za správnosť vyplnených údajov a zamlčanie návštevy rizikových krajín môže
                     byť trestané pokutou. Ďakujeme za Vašu zodpovednosť.', 'ehranica'); ?>
                 </p>
+
+                <div>
+                    <h2 class="govuk-heading-m">
+                        Ďalšie akcie
+                    </h2>
+                    <a href="." class="govuk-button">Chcem registrovať ďalšiu osobu</a>
+                </div>
             </div>
         </div>
 
