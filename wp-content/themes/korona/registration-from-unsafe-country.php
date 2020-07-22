@@ -1,4 +1,4 @@
-<?php define('RC_ASSETS_VERSION', '1.0.9'); ?>
+<?php define('RC_ASSETS_VERSION', '1.0.10'); ?>
 
     <script src="/wp-content/themes/korona/assets/js/moment.min.js?v=<?php echo RC_ASSETS_VERSION; ?>"></script>
     <script src="/wp-content/themes/korona/assets/js/moment-timezone-with-data.js?v=<?php echo RC_ASSETS_VERSION; ?>"></script>
@@ -111,7 +111,7 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                     <div class="js-countries">
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                             <h2 class="govuk-fieldset__heading" id="uc-country">
-                                <?php echo __('Navštívené krajiny za ostatných 14 dní', 'ehranica'); ?>
+                                <?php echo __('Zadajte krajiny navštívené za posledných 14 dní', 'ehranica'); ?>
                             </h2>
                         </legend>
 
@@ -131,7 +131,7 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                         <div class="govuk-form-group govuk-!-margin-bottom-1 js-other-countries-label"
                              style="display: none;">
                             <label class="govuk-label">
-                                <strong>Ktoré ďalšie krajiny ste navštívili za ostatných 14 dní?</strong>
+                                <strong>Ktoré ďalšie krajiny ste navštívili za posledných 14 dní?</strong>
                             </label>
                         </div>
 

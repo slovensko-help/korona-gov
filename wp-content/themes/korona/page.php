@@ -21,14 +21,18 @@
         while ( have_posts() ) {
             the_post();
             //remove_filter('the_content', 'wpautop', 12);
-            the_content();
 
             $included_file = get_post_meta($post->ID, 'korona_include', true);
-
             $allowed_includes = ['registration-from-unsafe-country.php'];
 
             if (!empty($included_file) && in_array($included_file, $allowed_includes)) {
+                echo '<div class="js-native-content">';
+                the_content();
+                echo '</div>';
                 include_once $included_file;
+            }
+            else {
+                the_content();
             }
         }
     }

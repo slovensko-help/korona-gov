@@ -109,17 +109,22 @@ class KoronaShortcodes
                 $nrOfColumns = 1;
             }
 
+            $nrOfColumns = 1;
+
             $columns = array_chunk($safeCountries, ceil($count / $nrOfColumns));
 
-            $content .= '<div class="govuk-grid-row app-pane-gray govuk-!-padding-top-3 govuk-!-padding-bottom-1">';
+            $content .= '';
 
             foreach ($columns as $column) {
-                $language = isset($country['name_' . $currentLanguageCode]) ? $currentLanguageCode : 'en';
-                $content .= '
-                    <div class="govuk-grid-column-one-quarter">
-                        <div><ul class="govuk-list govuk-list--bullet">';
+
+                $content .= '';
+                        //<ul class="govuk-list govuk-list--bullet">';
+
+                $countriesContent = [];
 
                 foreach ($column as $country) {
+                    $language = isset($country['name_' . $currentLanguageCode]) ? $currentLanguageCode : 'en';
+
                     $safeFrom = $this->datetimeFromString($country['safe_from'], 'Europe/Bratislava');
                     $safeUntil = $this->datetimeFromString($country['safe_until'], 'Europe/Bratislava');
 
@@ -137,17 +142,20 @@ class KoronaShortcodes
                         $times[] = $to . '&nbsp;' . str_replace(' ', '&nbsp;', $safeUntil->format('j. n. Y H:i'));
                     }
 
-                    $content .=
-                        '<li>' .
+                    $countriesContent[] =
+                        '' .
                         $country['name_' . $language] .
                         (count($times) > 0 ? (' (' . join('&nbsp;', $times) . ')') : '') .
-                        '</li>';
+                        '';
                 }
 
-                $content .= '</ul></div></div>';
+                $content .= join(', ', $countriesContent) . '</p>';
+
+                $content .= //'</ul>
+                    '';
             }
 
-            $content .= '</div>';
+            $content .= '';
         }
 
         return '<!-- REPLACE:safecountries -->' . $content . '<!-- /REPLACE -->';

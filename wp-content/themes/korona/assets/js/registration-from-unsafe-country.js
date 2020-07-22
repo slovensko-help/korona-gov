@@ -612,6 +612,7 @@ function prefillRcFormWithTestData() {
 
             if (step === 2) {
                 $('.js-countries').hide();
+                $('.js-native-content').hide();
                 $('.js-back-button').show();
 
                 if (isSafe()) {
@@ -630,6 +631,7 @@ function prefillRcFormWithTestData() {
                 $('.js-when-safe').hide();
                 $('.js-when-unsafe').hide();
                 $('.js-back-button').hide();
+                $('.js-native-content').show();
                 $('.js-countries').show();
 
                 window.location.hash = '';
@@ -736,8 +738,6 @@ function prefillRcFormWithTestData() {
         $('#uc-arrival-date-day').val(now.getDate());
         $('#uc-arrival-date-month').val(now.getMonth() + 1);
 
-        var enableScrollTop = true;
-
         $form.on('submit', function(event) {
             event.preventDefault();
 
@@ -826,16 +826,11 @@ function prefillRcFormWithTestData() {
                 }
                 else {
                     changeFormStep(2, true);
-                    enableScrollTop = false;
                 }
             }
 
-            if (enableScrollTop) {
-                var $firstVisibleErrorMessage = $('.govuk-error-message:visible:first');
-                $window.scrollTop($firstVisibleErrorMessage.length === 0 ? 0 : $firstVisibleErrorMessage.offset().top - 50);
-            }
-
-            enableScrollTop = true;
+            var $firstVisibleErrorMessage = $('.govuk-error-message:visible:first');
+            $window.scrollTop($firstVisibleErrorMessage.length === 0 ? 0 : $firstVisibleErrorMessage.offset().top - 50);
         });
 
         $form.show();
