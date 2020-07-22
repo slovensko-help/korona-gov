@@ -1,4 +1,4 @@
-<?php define('RC_ASSETS_VERSION', '1.0.8'); ?>
+<?php define('RC_ASSETS_VERSION', '1.0.9'); ?>
 
     <script src="/wp-content/themes/korona/assets/js/moment.min.js?v=<?php echo RC_ASSETS_VERSION; ?>"></script>
     <script src="/wp-content/themes/korona/assets/js/moment-timezone-with-data.js?v=<?php echo RC_ASSETS_VERSION; ?>"></script>
