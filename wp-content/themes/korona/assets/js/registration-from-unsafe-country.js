@@ -613,6 +613,7 @@ function prefillRcFormWithTestData() {
             if (step === 2) {
                 $('.js-countries').hide();
                 $('.js-back-button').show();
+                $('main .govuk-width-container > *:not(#rc-form-holder)').hide();
 
                 if (isSafe()) {
                     $('.js-when-safe').show();
