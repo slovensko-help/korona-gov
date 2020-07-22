@@ -42,6 +42,9 @@ function httpPost($url, $data, $postJson = false)
 }
 
 try {
+    header('Access-Control-Allow-Origin: *');
+    header('Content-Type: application/json');
+
     $requestData = json_decode(@file_get_contents('php://input'), TRUE);
 
     if (json_last_error() !== JSON_ERROR_NONE || !is_array($requestData)) {
@@ -65,8 +68,6 @@ try {
         'response' => $requestData['token'],
     ]);
 
-    header('Content-Type: application/json');
-
     if ($googleResponse['success']) {
         $apiUrl = $requestData['isTest'] ? 'https://t.mojeezdravie.sk/api/v1/risk/new-pass' : 'https://mojeezdravie.nczisk.sk/api/v1/risk/new-pass';
 
@@ -75,10 +76,15 @@ try {
         if (is_array($apiResponse)) {
             if (isset($apiResponse['payload'])) {
                 if (!isset($apiResponse['payload']['vCovid19Pass'])) {
-                    error_log('[EHRANICA][WARNING] NCZI API response.payload doesn\t contain vCovid19Pass variable. status="' . $apiHttpCode . '"');
+                    error_log('[EHRANICA][WARNING] NCZI API response.payload doesn\'t contain vCovid19Pass variable. status="' . $apiHttpCode . '"');
+                    error_log('[EHRANICA][WARNING] NCZI API Full response: ' . json_encode($apiResponse) . '. status="' . $apiHttpCode . '"');
+                }
+                else {
+                    error_log('[EHRANICA][OK] Successful registration. status="' . $apiHttpCode . '".');
                 }
             } else {
                 error_log('[EHRANICA][NOTICE] NCZI API didn\'t return response.payload (validation error probably). status="' . $apiHttpCode . '"');
+                error_log('[EHRANICA][NOTICE] NCZI API Full response: ' . json_encode($apiResponse) . '. status="' . $apiHttpCode . '"');
             }
 
             echo json_encode($apiResponse);

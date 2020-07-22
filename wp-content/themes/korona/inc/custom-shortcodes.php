@@ -2,6 +2,21 @@
 
 class KoronaShortcodes
 {
+    private static $instance;
+
+    private function __construct()
+    {
+    }
+
+    public static function getSingleton()
+    {
+        if (null === self::$instance) {
+            self::$instance = new self;
+        }
+
+        return self::$instance;
+    }
+
     public function koronastats($attributes = [])
     {
         $item = isset($attributes['item']) ? $attributes['item'] : '';
@@ -44,9 +59,119 @@ class KoronaShortcodes
         return isset($section[$item]) ? $section[$item] : null;
     }
 
+    /*
+     * IMPORTANT: This method is used in ehranica form. Do not delete it if you are not absolutely sure.
+     */
+    public function safeCountriesJavascript()
+    {
+        $safeCountries = [];
+        $data = $this->data('safecountries');
+
+        if (is_array($data)) {
+            foreach ($data as $countryCode => $country) {
+                $safeCountries[$countryCode] = [$country['safe_from'], $country['safe_until']];
+            }
+        }
+
+        return
+            '<script>' .
+            '   var RC_SAFE_COUNTRIES=' . (empty($safeCountries) ? '{}' : json_encode($safeCountries)) . ';' .
+            '</script>';
+    }
+
+    public function safecountries()
+    {
+        $timezone = date_default_timezone_get();
+        $now = new DateTime('now', new DateTimeZone($timezone));
+        $now->setTimezone(new DateTimeZone('Europe/Bratislava'));
+        $nowString = $now->format('Y-m-d H:i:s');
+
+        $currentLanguageCode = apply_filters('wpml_current_language', NULL);
+
+        $safeCountries = $this->data('safecountries');
+        $content = '';
+
+        if (is_array($safeCountries) && !empty($safeCountries)) {
+            $count = count($safeCountries);
+
+            uasort($safeCountries, function ($a, $b) use ($currentLanguageCode) {
+                $lang = isset($a['sort_' . $currentLanguageCode]) ? $currentLanguageCode : 'en';
+                return $a['sort_' . $lang] - $b['sort_' . $lang];
+            });
+
+            if ($count / 4 > 8) {
+                $nrOfColumns = 4;
+            } elseif ($count / 3 > 8) {
+                $nrOfColumns = 3;
+            } elseif ($count / 2 > 8) {
+                $nrOfColumns = 2;
+            } else {
+                $nrOfColumns = 1;
+            }
+
+            $columns = array_chunk($safeCountries, ceil($count / $nrOfColumns));
+
+            $content .= '<div class="govuk-grid-row app-pane-gray govuk-!-padding-top-3 govuk-!-padding-bottom-1">';
+
+            foreach ($columns as $column) {
+                $language = isset($country['name_' . $currentLanguageCode]) ? $currentLanguageCode : 'en';
+                $content .= '
+                    <div class="govuk-grid-column-one-quarter">
+                        <div><ul class="govuk-list govuk-list--bullet">';
+
+                foreach ($column as $country) {
+                    $safeFrom = $this->datetimeFromString($country['safe_from'], 'Europe/Bratislava');
+                    $safeUntil = $this->datetimeFromString($country['safe_until'], 'Europe/Bratislava');
+
+                    $times = [];
+
+                    $from = __('od', 'ehranica');
+                    $to = __('do', 'ehranica');
+
+
+                    if (null !== $safeFrom && $safeFrom->format('Y-m-d H:i:s') > $nowString) {
+                        $times[] = $from . '&nbsp;' . str_replace(' ', '&nbsp;', $safeFrom->format('j. n. Y H:i'));
+                    }
+
+                    if (null !== $safeUntil && $safeUntil->format('Y-m-d H:i:s') > $nowString) {
+                        $times[] = $to . '&nbsp;' . str_replace(' ', '&nbsp;', $safeUntil->format('j. n. Y H:i'));
+                    }
+
+                    $content .=
+                        '<li>' .
+                        $country['name_' . $language] .
+                        (count($times) > 0 ? (' (' . join('&nbsp;', $times) . ')') : '') .
+                        '</li>';
+                }
+
+                $content .= '</ul></div></div>';
+            }
+
+            $content .= '</div>';
+        }
+
+        return '<!-- REPLACE:safecountries -->' . $content . '<!-- /REPLACE -->';
+    }
+
+    /**
+     * @param string $string
+     * @param string $timezone
+     * @return DateTimeImmutable|null
+     */
+    private function datetimeFromString(string $string, string $timezone)
+    {
+        if (empty($string)) {
+            return null;
+        }
+
+        $time = DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $string, new DateTimeZone($timezone));
+
+        return $time instanceof DateTimeImmutable ? $time : null;
+    }
+
     public function koronamedians($attributes = [])
     {
-        $limit = isset($attributes['limit']) ? (int) $attributes['limit'] : null;
+        $limit = isset($attributes['limit']) ? (int)$attributes['limit'] : null;
 
         $medians = $this->data('koronamedians');
         $content = '';
@@ -72,5 +197,6 @@ class KoronaShortcodes
     }
 }
 
-add_shortcode('koronastats', [new KoronaShortcodes, 'koronastats']);
-add_shortcode('koronamedians', [new KoronaShortcodes, 'koronamedians']);
+add_shortcode('koronastats', [KoronaShortcodes::getSingleton(), 'koronastats']);
+add_shortcode('koronamedians', [KoronaShortcodes::getSingleton(), 'koronamedians']);
+add_shortcode('safecountries', [KoronaShortcodes::getSingleton(), 'safecountries']);

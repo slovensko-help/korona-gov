@@ -267,9 +267,12 @@ function prefillRcFormWithTestData() {
 
     $(document).ready(function() {
         var isInTestMode = window.location.href.indexOf('test=nedasavycentrovat') > -1;
+        var step = 1;
+        var wasFormSubmitted = true;
 
         var $otherCountrieslabel = $('.js-other-countries-label');
         var $permanentAddressFields = $('.js-uc-permanent-fields');
+        var $submitButton = $('.js-uc-submit');
         var $form = $('.js-uc-form');
         var $window = $(window);
         var countryLastIndex = 1;
@@ -463,37 +466,33 @@ function prefillRcFormWithTestData() {
             $form.find('.govuk-error-message').hide();
 
             isValid &= toggleAutoselectFormError('country', 'uc-country', '' !== data['country-arrival']);
-            isValid &= toggleAutoselectFormError('municipality', 'uc-isolation-municipality', '' !== data['isolation-municipality']);
-            isValid &= toggleDateFormError('uc-arrival-date', invalidDateParts(data, 'arrival'));
-            isValid &= toggleInputFormError('uc-phone', isValidPhoneNumber(data['phone']));
-            isValid &= toggleInputFormError('uc-email', '' !== data['email']);
-
-            isValid &= toggleAutoselectFormError('municipality', 'uc-isolation-municipality', '' !== data['isolation-municipality']);
-            isValid &= toggleInputFormError('uc-isolation-street', '' !== data['isolation-street']);
-            isValid &= toggleInputFormError('uc-isolation-house-number', '' !== data['isolation-house-number']);
-            isValid &= toggleInputFormError('uc-isolation-zip', '' !== data['isolation-zip']);
-            isValid &= toggleInputFormError('uc-tos', 'yes' === data['tos']);
-            isValid &= toggleInputFormError('uc-confirm', 'yes' === data['confirm']);
-
-            // if (data['permanent-address'] === 'other-than-isolation') {
-            //     isValid &= toggleAutoselectFormError('municipality', 'uc-permanent-municipality', '' !== data['permanent-municipality']);
-            //     isValid &= toggleInputFormError('uc-permanent-street', '' !== data['permanent-street']);
-            //     isValid &= toggleInputFormError('uc-permanent-house-number', '' !== data['permanent-house-number']);
-            //     isValid &= toggleInputFormError('uc-permanent-zip', '' !== data['permanent-zip']);
-            // }
 
             $.each(data.otherCountries, function(i, country) {
                 isValid &= toggleAutoselectFormError('country', 'other-' + country.id, '' !== country.name);
             });
 
-            $.each(data.people, function(personId, person) {
-                isValid &= toggleInputFormError('uc-first-name-' + personId, '' !== person['first-name']);
-                isValid &= toggleInputFormError('uc-last-name-' + personId, '' !== person['last-name']);
-                isValid &= toggleInputFormError('uc-birth-number-' + personId, '' !== person['birth-number']);
-                isValid &= toggleInputFormError('uc-insurance-' + personId, '' !== person['insurance']);
-                isValid &= toggleIdFormError('uc-id', person['id-type'], personId, isValidPersonId(person['id-type'], person.id));
-                isValid &= toggleDateFormError('uc-dob', invalidDateParts(person, 'dob'), personId);
-            });
+            if (step === 2) {
+                isValid &= toggleAutoselectFormError('municipality', 'uc-isolation-municipality', '' !== data['isolation-municipality']);
+                isValid &= toggleDateFormError('uc-arrival-date', invalidDateParts(data, 'arrival'));
+                isValid &= toggleInputFormError('uc-phone', isValidPhoneNumber(data['phone']));
+                isValid &= toggleInputFormError('uc-email', '' !== data['email']);
+
+                isValid &= toggleAutoselectFormError('municipality', 'uc-isolation-municipality', '' !== data['isolation-municipality']);
+                isValid &= toggleInputFormError('uc-isolation-street', '' !== data['isolation-street']);
+                isValid &= toggleInputFormError('uc-isolation-house-number', '' !== data['isolation-house-number']);
+                isValid &= toggleInputFormError('uc-isolation-zip', '' !== data['isolation-zip']);
+                isValid &= toggleInputFormError('uc-tos', 'yes' === data['tos']);
+                isValid &= toggleInputFormError('uc-confirm', 'yes' === data['confirm']);
+
+                $.each(data.people, function(personId, person) {
+                    isValid &= toggleInputFormError('uc-first-name-' + personId, '' !== person['first-name']);
+                    isValid &= toggleInputFormError('uc-last-name-' + personId, '' !== person['last-name']);
+                    isValid &= toggleInputFormError('uc-birth-number-' + personId, '' !== person['birth-number']);
+                    isValid &= toggleInputFormError('uc-insurance-' + personId, '' !== person['insurance']);
+                    isValid &= toggleIdFormError('uc-id', person['id-type'], personId, isValidPersonId(person['id-type'], person.id));
+                    isValid &= toggleDateFormError('uc-dob', invalidDateParts(person, 'dob'), personId);
+                });
+            }
 
             return isValid;
         }
@@ -580,6 +579,65 @@ function prefillRcFormWithTestData() {
             return isValid;
         }
 
+        function isSafe() {
+            var data = formData();
+
+            var countryCodes = [data['country-arrival']];
+
+            $.each(data.otherCountries, function(i, country) {
+                countryCodes.push(country.name);
+            });
+
+            RC_SAFE_COUNTRIES = RC_SAFE_COUNTRIES || {};
+
+            var notSafe = false;
+
+            $.each(countryCodes, function(i, countryCode) {
+                // if (RC_SAFE_COUNTRIES[countryCode]) {
+                //     var country = RC_SAFE_COUNTRIES[countryCode];
+                //     var safeFrom = moment.tz(country['safe_from'], "Europe/Bratislava");
+                //
+                //     console.log(safeFrom.format());
+                // }
+                notSafe |= !RC_SAFE_COUNTRIES[countryCode];
+            });
+
+            return !notSafe;
+        }
+
+        function changeFormStep(activeStep, isTriggeredByFormSubmit) {
+            wasFormSubmitted = isTriggeredByFormSubmit;
+            step = activeStep;
+            $submitButton.show();
+
+            if (step === 2) {
+                $('.js-countries').hide();
+                $('.js-back-button').show();
+
+                if (isSafe()) {
+                    $('.js-when-safe').show();
+                    $submitButton.hide();
+                }
+                else {
+                    $('.js-when-unsafe').show();
+                }
+
+                if (isTriggeredByFormSubmit) {
+                    window.location.hash = 'rc-2';
+                }
+            }
+            else {
+                $('.js-when-safe').hide();
+                $('.js-when-unsafe').hide();
+                $('.js-back-button').hide();
+                $('.js-countries').show();
+
+                window.location.hash = '';
+            }
+
+            $submitButton.find('span').text($submitButton.data('step-' + step));
+        }
+
         var rcOtherCountryTemplate = '<div class="govuk-form-group govuk-!-margin-bottom-3">\n' +
             '                        <div><span class="govuk-error-message" id="country-error-$id"\n' +
             '                                   style="display: none;">Vyberte krajinu zo zoznamu.</span></div>\n' +
@@ -591,6 +649,17 @@ function prefillRcFormWithTestData() {
             '                            </button>\n' +
             '                        </div>\n' +
             '                    </div>';
+
+        window.onhashchange = function() {
+            if (step === 2) {
+                if (wasFormSubmitted) {
+                    wasFormSubmitted = false;
+                }
+                else {
+                    changeFormStep(1, false);
+                }
+            }
+        }
 
         $('body')
             .on('click', '.js-uc-add-country', function(event) {
@@ -618,6 +687,10 @@ function prefillRcFormWithTestData() {
                 else {
                     $permanentAddressFields.hide();
                 }
+            })
+            .on('click', '.js-back-button', function(event) {
+                event.preventDefault();
+                changeFormStep(1, false);
             });
 
         var wasDobEntered = false;
@@ -667,89 +740,100 @@ function prefillRcFormWithTestData() {
             event.preventDefault();
 
             if (isFormValid()) {
-                var data = formData();
+                if (step === 2) {
+                    var data = formData();
 
-                var people = [];
+                    var people = [];
 
-                $.each(data.people, function(i, person) {
-                    people.push({
-                        "vPhoneNumber": data['phone'],
-                        "vEmail": data['email'],
-                        "vQuarantineAddressCity": data['isolation-municipality'],
-                        "vQuarantineAddressCityZipCode": data['isolation-zip'],
-                        "vQuarantineAddressStreetName": data['isolation-street'],
-                        "vQuarantineAddressStreetNumber": data['isolation-house-number'],
-                        "dEntry_from_abroad_planned_at": data['arrival-year'] + '-' + rcLpad(data['arrival-month'], '00') + '-' + rcLpad(data['arrival-day'], '00'),
-                        "vHas_come_from_country": data['country-arrival'],
-                        "vOther_countries_visited": $.map(data['otherCountries'], function(country) {
-                            return country.name;
-                        }),
-                        "nHouseHoldPersonsCount": data['household-members-count'],
-                        "vGp_name": data['gp'],
-
-                        "vPersonal_id": person['id-type'] === 'foreign' ? person['id'] : null,
-                        "vSurname": person['last-name'],
-                        "vGivenNames": person['first-name'],
-                        "dDateOfBirth": person['dob-year'] + '-' + rcLpad(person['dob-month'], '00') + '-' + rcLpad(person['dob-day'], '00'),
-                        "vPersonalNumber": person['id-type'] === 'slovak' ? person['id'] : null,
-                        "nHealtInsuranceCompany": person['insurance'],
-
-                        "vSex":"X",
-                        "vQuarantineAddressCountry": 'SK',
-                    });
-                });
-
-                $('main .govuk-width-container > *:not(#rc-form-holder)').hide();
-                $form.hide();
-                $('#uc-loading').show();
-
-                grecaptcha.ready(function() {
-                    grecaptcha.execute('6LeFQ7IZAAAAABuiRASOsOQv4HFxAhGhwQiljFM0', {action: 'submit'}).then(function(token) {
-                        $.ajax({
-                            type: 'POST',
-                            url: 'https://ekarantena.korona.gov.sk/ehranica/',
-                            data: JSON.stringify({
-                                isTest: isInTestMode,
-                                token: token,
-                                people: people
+                    $.each(data.people, function (i, person) {
+                        people.push({
+                            "vPhoneNumber": data['phone'],
+                            "vEmail": data['email'],
+                            "vQuarantineAddressCity": data['isolation-municipality'],
+                            "vQuarantineAddressCityZipCode": data['isolation-zip'],
+                            "vQuarantineAddressStreetName": data['isolation-street'],
+                            "vQuarantineAddressStreetNumber": data['isolation-house-number'],
+                            "dEntry_from_abroad_planned_at": data['arrival-year'] + '-' + rcLpad(data['arrival-month'],
+                                '00') + '-' + rcLpad(data['arrival-day'], '00'),
+                            "vHas_come_from_country": data['country-arrival'],
+                            "vOther_countries_visited": $.map(data['otherCountries'], function (country) {
+                                return country.name;
                             }),
-                            error: function() {
-                                $('#uc-loading').hide();
-                                $('#uc-error').show();
-                            },
-                            success: function(response) {
-                                if (!response.payload || !response.payload.vCovid19Pass) {
-                                    $('#uc-loading').hide();
+                            "nHouseHoldPersonsCount": data['household-members-count'],
+                            "vGp_name": data['gp'],
 
-                                    if (response.errors &&
-                                        response.errors.length > 0 &&
-                                        response.errors[0].description) {
+                            "vPersonal_id": person['id-type'] === 'foreign' ? person['id'] : null,
+                            "vSurname": person['last-name'],
+                            "vGivenNames": person['first-name'],
+                            "dDateOfBirth": person['dob-year'] + '-' + rcLpad(person['dob-month'], '00') + '-' + rcLpad(
+                                person['dob-day'],
+                                '00'),
+                            "vPersonalNumber": person['id-type'] === 'slovak' ? person['id'] : null,
+                            "nHealtInsuranceCompany": person['insurance'],
 
-                                        if (response.errors[0].description.indexOf('odné číslo') > -1) {
-                                            $('#uc-slovak-id-registered').show();
-                                        } else if (response.errors[0].description.indexOf('ahraničný identifikátor') > -1) {
-                                            $('#uc-foreign-id-registered').show();
-                                        }
-                                    }
-                                    $('#uc-error').show();
-                                }
-                                else {
-                                    $('#uc-loading').hide();
-                                    $('#uc-thank-you').show();
-                                }
-                            },
-                            contentType: "application/json",
-                            dataType: 'json'
+                            "vSex": "X",
+                            "vQuarantineAddressCountry": 'SK',
                         });
                     });
-                });
+
+                    $('main .govuk-width-container > *:not(#rc-form-holder)').hide();
+                    $form.hide();
+                    $('.js-when-safe, .js-when-unsafe, .js-back-button').hide();
+                    $('#uc-loading').show();
+
+                    grecaptcha.ready(function () {
+                        grecaptcha.execute('6LeFQ7IZAAAAABuiRASOsOQv4HFxAhGhwQiljFM0',
+                            {action: 'submit'}).then(function (token) {
+                            $.ajax({
+                                type: 'POST',
+                                url: 'https://ekarantena.korona.gov.sk/ehranica/',
+                                data: JSON.stringify({
+                                    isTest: isInTestMode,
+                                    token: token,
+                                    people: people
+                                }),
+                                error: function () {
+                                    $('#uc-loading').hide();
+                                    $('#uc-error').show();
+                                },
+                                success: function (response) {
+                                    if (!response.payload || !response.payload.vCovid19Pass) {
+                                        $('#uc-loading').hide();
+
+                                        if (response.errors &&
+                                            response.errors.length > 0 &&
+                                            response.errors[0].description) {
+
+                                            if (response.errors[0].description.indexOf('odné číslo') > -1) {
+                                                $('#uc-slovak-id-registered').show();
+                                            } else if (response.errors[0].description.indexOf('ahraničný identifikátor') > -1) {
+                                                $('#uc-foreign-id-registered').show();
+                                            }
+                                        }
+                                        $('#uc-error').show();
+                                    } else {
+                                        $('#uc-loading').hide();
+                                        $('#uc-thank-you').show();
+                                    }
+                                },
+                                contentType: "application/json",
+                                dataType: 'json'
+                            });
+                        });
+                    });
+                }
+                else {
+                    changeFormStep(2, true);
+                }
             }
 
             var $firstVisibleErrorMessage = $('.govuk-error-message:visible:first');
             $window.scrollTop($firstVisibleErrorMessage.length === 0 ? 0 : $firstVisibleErrorMessage.offset().top - 50);
-        })
+        });
 
         $form.show();
+
+        window.location.hash = '';
 
         rcCountryAutocompleteInit('uc-country');
         rcAutocompleteInit('uc-isolation-municipality');
