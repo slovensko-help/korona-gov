@@ -1,4 +1,13 @@
-<?php define('RC_ASSETS_VERSION', '1.0.10'); ?>
+<?php define('RC_ASSETS_VERSION', '1.0.11'); ?>
+    <script>
+        var RC_LANGUAGE = '<?php echo apply_filters('wpml_current_language', NULL); ?>';
+        var RC_TRANSLATIONS = {
+            'select-country': '<?php echo __('Vyberte krajinu zo zoznamu.', 'ehranica'); ?>',
+            'county': '<?php echo __('okres', 'ehranica'); ?>',
+            'municipality-not-found': '<?php echo __('Mesto/obec nie je v zozname. Vyberte mesto/obec zo zoznamu.', 'ehranica'); ?>',
+            'country-not-found': '<?php echo __('Krajina nie je v zozname', 'ehranica'); ?>'
+        };
+    </script>
 
     <script src="/wp-content/themes/korona/assets/js/moment.min.js?v=<?php echo RC_ASSETS_VERSION; ?>"></script>
     <script src="/wp-content/themes/korona/assets/js/moment-timezone-with-data.js?v=<?php echo RC_ASSETS_VERSION; ?>"></script>
@@ -76,7 +85,7 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
 
             <div class="js-when-unsafe" style="display: none;">
                 <h2>
-                    Boli ste v rizikovej krajine. Máte povinnosť sa zaregistrovať.
+                    <?php echo __('Boli ste v rizikovej krajine. Máte povinnosť sa zaregistrovať.', 'ehranica'); ?>
                 </h2>
             </div>
 
@@ -98,9 +107,9 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
 
                 <div>
                     <h2 class="govuk-heading-m">
-                        Ďalšie akcie
+                        <?php echo __('Ďalšie akcie', 'ehranica'); ?>
                     </h2>
-                    <a href="." class="govuk-button">Chcem registrovať ďalšiu osobu</a>
+                    <a href="." class="govuk-button"><?php echo __('Chcem registrovať ďalšiu osobu', 'ehranica'); ?></a>
                 </div>
             </div>
         </div>
@@ -131,29 +140,29 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                         <div class="govuk-form-group govuk-!-margin-bottom-1 js-other-countries-label"
                              style="display: none;">
                             <label class="govuk-label">
-                                <strong>Ktoré ďalšie krajiny ste navštívili za posledných 14 dní?</strong>
+                                <strong><?php echo __('Ktoré ďalšie krajiny ste navštívili za posledných 14 dní?', 'ehranica'); ?></strong>
                             </label>
                         </div>
 
-                        <a href="#" class="js-uc-add-country uc-add-country govuk-link">Pridať ďalšiu navštívenú
-                            krajinu</a>
+                        <a href="#" class="js-uc-add-country uc-add-country govuk-link">
+                            <?php echo __('Pridať ďalšiu navštívenú krajinu', 'ehranica'); ?></a>
                     </div>
 
                     <div class="govuk-form-group js-when-unsafe" style="display: none;">
                         <label class="govuk-label" for="uc-arrival-date-day">
-                            <strong>Dátum príchodu na Slovensko</strong>
+                            <strong><?php echo __('Dátum príchodu na Slovensko', 'ehranica'); ?></strong>
                         </label>
                         <span class="govuk-hint">
-                      Mesiac zadávajte ako číslo od 1 do 12.
-                    </span>
+                          <?php echo __('Mesiac zadávajte ako číslo od 1 do 12.', 'ehranica'); ?>
+                        </span>
                         <span id="uc-arrival-date-error" class="govuk-error-message" style="display: none;">
-                              Zadajte správny deň a mesiac príchodu.
+                              <?php echo __('Zadajte správny deň a mesiac príchodu.', 'ehranica'); ?>
                             </span>
                         <div class="govuk-date-input" id="uc-arrival-date">
                             <div class="govuk-date-input__item">
                                 <div class="govuk-form-group">
                                     <label class="govuk-label govuk-date-input__label" for="uc-arrival-date-day">
-                                        Deň
+                                        <?php echo __('Deň', 'ehranica'); ?>
                                     </label>
                                     <input class="govuk-input govuk-date-input__input govuk-input--width-2"
                                            id="uc-arrival-date-day"
@@ -164,7 +173,7 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                             <div class="govuk-date-input__item">
                                 <div class="govuk-form-group">
                                     <label class="govuk-label govuk-date-input__label" for="uc-arrival-date-month">
-                                        Mesiac
+                                        <?php echo __('Mesiac', 'ehranica'); ?>
                                     </label>
                                     <input class="govuk-input govuk-date-input__input govuk-input--width-2"
                                            id="uc-arrival-date-month"
@@ -175,7 +184,7 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                             <div class="govuk-date-input__item">
                                 <div class="govuk-form-group">
                                     <label class="govuk-label govuk-date-input__label">
-                                        Rok
+                                        <?php echo __('Rok', 'ehranica'); ?>
                                     </label>
 
                                     <input type="hidden" name="arrival-year" value="2020">
@@ -194,16 +203,16 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                               aria-describedby="uc-personal-data">
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                             <h2 class="govuk-fieldset__heading" id="uc-personal-data">
-                                Osobné údaje
+                                <?php echo __('Osobné údaje', 'ehranica'); ?>
                             </h2>
                         </legend>
 
                         <div class="govuk-form-group govuk-!-margin-bottom-3">
                             <label class="govuk-label" for="uc-first-name-1">
-                                <strong>Meno</strong>
+                                <strong><?php echo __('Meno', 'ehranica'); ?></strong>
                             </label>
                             <span id="uc-first-name-1-error" class="govuk-error-message" style="display: none;">
-                              Zadajte meno.
+                              <?php echo __('Zadajte meno.', 'ehranica'); ?>
                             </span>
                             <input class="govuk-input govuk-input--width-20" id="uc-first-name-1" name="first-name-1"
                                    type="text">
@@ -211,10 +220,10 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
 
                         <div class="govuk-form-group govuk-!-margin-bottom-3">
                             <label class="govuk-label" for="uc-last-name-1">
-                                <strong>Priezvisko</strong>
+                                <strong><?php echo __('Priezvisko', 'ehranica'); ?></strong>
                             </label>
                             <span id="uc-last-name-1-error" class="govuk-error-message" style="display: none;">
-                              Zadajte priezvisko.
+                              <?php echo __('Zadajte priezvisko.', 'ehranica'); ?>
                             </span>
                             <input class="govuk-input govuk-input--width-20" id="uc-last-name-1" name="last-name-1"
                                    type="text">
@@ -222,10 +231,10 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
 
                         <div class="govuk-form-group govuk-!-margin-bottom-1">
                             <label class="govuk-label">
-                                <strong>Identifikačné číslo</strong>
+                                <strong><?php echo __('Identifikačné číslo', 'ehranica'); ?></strong>
                             </label>
                             <span id="uc-id-1-error" class="govuk-error-message" style="display: none;">
-                              Zadajte správne rodné číslo, BIČ alebo ID pridelené inou krajinou.
+                              <?php echo __('Zadajte správne rodné číslo, BIČ alebo ID pridelené inou krajinou.', 'ehranica'); ?>
                             </span>
                             <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
                                 <div class="govuk-radios__item">
@@ -233,7 +242,7 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                                            type="radio" value="slovak" data-aria-controls="id-type-conditional-slovak-1"
                                            checked>
                                     <label class="govuk-label govuk-radios__label" for="uc-id-type-1-slovak">
-                                        Slovenské rodné číslo alebo BIČ
+                                        <?php echo __('Slovenské rodné číslo alebo BIČ', 'ehranica'); ?>
                                     </label>
                                 </div>
                                 <div class="govuk-radios__conditional govuk-radios__conditional--hidden"
@@ -246,13 +255,13 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                                            type="radio" value="foreign"
                                            data-aria-controls="id-type-conditional-foreign-1">
                                     <label class="govuk-label govuk-radios__label" for="uc-id-type-1-foreign">
-                                        ID pridelené inou krajinou
+                                        <?php echo __('ID pridelené inou krajinou', 'ehranica'); ?>
                                     </label>
                                 </div>
                                 <div class="govuk-radios__conditional govuk-radios__conditional--hidden"
                                      id="id-type-conditional-foreign-1">
                             <span class="govuk-hint govuk-radios__hint" style="padding-left: 0;">
-                                Vyplňte iba ak nemáte slovenské rodné číslo alebo BIČ.
+                                <?php echo __('Vyplňte iba ak nemáte slovenské rodné číslo alebo BIČ.', 'ehranica'); ?>
                               </span>
                                     <input class="govuk-input govuk-!-width-one-third" name="id-foreign-1" type="text"
                                            id="uc-id-foreign-1">
@@ -262,19 +271,19 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
 
                         <div class="govuk-form-group">
                             <label class="govuk-label" for="uc-dob-day-1">
-                                <strong>Dátum narodenia</strong>
+                                <strong><?php echo __('Dátum narodenia', 'ehranica'); ?></strong>
                             </label>
                             <span class="govuk-hint">
-                      Mesiac zadávajte ako číslo od 1 do 12.
-                    </span>
+                                <?php echo __('Mesiac zadávajte ako číslo od 1 do 12.', 'ehranica'); ?>
+                            </span>
                             <span id="uc-dob-1-error" class="govuk-error-message" style="display: none;">
-                              Zadajte správny deň, mesiac a rok narodenia.
+                              <?php echo __('Zadajte správny deň, mesiac a rok narodenia.', 'ehranica'); ?>
                             </span>
                             <div class="govuk-date-input" id="uc-dob-1">
                                 <div class="govuk-date-input__item">
                                     <div class="govuk-form-group">
                                         <label class="govuk-label govuk-date-input__label" for="uc-dob-day-1">
-                                            Deň
+                                            <?php echo __('Deň', 'ehranica'); ?>
                                         </label>
                                         <input class="govuk-input govuk-date-input__input govuk-input--width-2"
                                                id="uc-dob-day-1"
@@ -285,7 +294,7 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                                 <div class="govuk-date-input__item">
                                     <div class="govuk-form-group">
                                         <label class="govuk-label govuk-date-input__label" for="uc-dob-month-1">
-                                            Mesiac
+                                            <?php echo __('Mesiac', 'ehranica'); ?>
                                         </label>
                                         <input class="govuk-input govuk-date-input__input govuk-input--width-2"
                                                id="uc-dob-month-1"
@@ -296,7 +305,7 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                                 <div class="govuk-date-input__item">
                                     <div class="govuk-form-group">
                                         <label class="govuk-label govuk-date-input__label" for="uc-dob-year-1">
-                                            Rok
+                                            <?php echo __('Rok', 'ehranica'); ?>
                                         </label>
                                         <input class="govuk-input govuk-date-input__input govuk-input--width-4"
                                                id="uc-dob-year-1"
@@ -309,10 +318,10 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
 
                         <div class="govuk-form-group">
                             <label class="govuk-label">
-                                <strong>Zdravotná poisťovňa</strong>
+                                <strong><?php echo __('Zdravotná poisťovňa', 'ehranica'); ?></strong>
                             </label>
                             <span id="uc-insurance-1-error" class="govuk-error-message" style="display: none;">
-                              Zvoľte spôsob poistenia
+                              <?php echo __('Zvoľte spôsob poistenia.', 'ehranica'); ?>
                             </span>
                             <div class="govuk-radios">
                                 <div class="govuk-radios__item">
@@ -320,7 +329,7 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                                            type="radio"
                                            value="25">
                                     <label class="govuk-label govuk-radios__label" for="uc-insurance-1-vseobecna">
-                                        Všeobecná zdravotná poisťovňa
+                                        <?php echo __('Všeobecná zdravotná poisťovňa', 'ehranica'); ?>
                                     </label>
                                 </div>
                                 <div class="govuk-radios__item">
@@ -328,7 +337,7 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                                            type="radio"
                                            value="24">
                                     <label class="govuk-label govuk-radios__label" for="uc-insurance-1-dovera">
-                                        Dôvera zdravotná poisťovňa
+                                        <?php echo __('Dôvera zdravotná poisťovňa', 'ehranica'); ?>
                                     </label>
                                 </div>
                                 <div class="govuk-radios__item">
@@ -336,7 +345,7 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                                            type="radio"
                                            value="27">
                                     <label class="govuk-label govuk-radios__label" for="uc-insurance-1-union">
-                                        Union zdravotná poisťovňa
+                                        <?php echo __('Union zdravotná poisťovňa', 'ehranica'); ?>
                                     </label>
                                 </div>
                                 <div class="govuk-radios__item">
@@ -344,7 +353,7 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                                            type="radio"
                                            value="98">
                                     <label class="govuk-label govuk-radios__label" for="uc-insurance-1-eu">
-                                        Poistenie v inej krajine EÚ
+                                        <?php echo __('Poistenie v inej krajine EÚ', 'ehranica'); ?>
                                     </label>
                                 </div>
                                 <div class="govuk-radios__item">
@@ -352,7 +361,7 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                                            type="radio"
                                            value="99">
                                     <label class="govuk-label govuk-radios__label" for="uc-insurance-1-none">
-                                        Bez poistenia v EÚ
+                                        <?php echo __('Bez poistenia v EÚ', 'ehranica'); ?>
                                     </label>
                                 </div>
                             </div>
@@ -362,28 +371,28 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                     <fieldset class="govuk-fieldset govuk-!-margin-bottom-5" role="group" aria-describedby="uc-contact">
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                             <h2 class="govuk-fieldset__heading" id="uc-contact">
-                                Kontaktné údaje
+                                <?php echo __('Kontaktné údaje', 'ehranica'); ?>
                             </h2>
                         </legend>
 
                         <div class="govuk-form-group govuk-!-margin-bottom-3">
                             <label class="govuk-label" for="uc-email">
-                                <strong>Emailová adresa</strong>
+                                <strong><?php echo __('Emailová adresa', 'ehranica'); ?></strong>
                             </label>
                             <span id="uc-email-error" class="govuk-error-message" style="display: none;">
-                              Zadajte správnu emailovú adresu.
+                              <?php echo __('Zadajte správnu emailovú adresu.', 'ehranica'); ?>
                             </span>
                             <input class="govuk-input govuk-input--width-20" id="uc-email" name="email" type="email">
                         </div>
 
                         <div class="govuk-form-group">
                             <label class="govuk-label" for="uc-phone">
-                                <strong>Telefónne číslo</strong>
+                                <strong><?php echo __('Telefónne číslo', 'ehranica'); ?></strong>
                                 <span class="govuk-hint">
-                        Zadajte aj s medzinárodnou predvoľbou, napríklad +421 pre slovenské čísla.
-                      </span>
+                                    <?php echo __('Zadajte aj s medzinárodnou predvoľbou, napríklad +421 pre slovenské čísla.', 'ehranica'); ?>
+                                  </span>
                             </label><span id="uc-phone-error" class="govuk-error-message" style="display: none;">
-                              Zadajte správne telefónne číslo. Musí začínať medzinárodnou predvoľbou + alebo 00.
+                              <?php echo __('Zadajte správne telefónne číslo. Musí začínať medzinárodnou predvoľbou + alebo 00.', 'ehranica'); ?>
                             </span>
                             <input class="govuk-input govuk-input--width-20" id="uc-phone" name="phone" type="text">
                         </div>
@@ -393,16 +402,16 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                               aria-describedby="uc-isolation-address">
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                             <h2 class="govuk-fieldset__heading" id="uc-isolation-address">
-                                Adresa absolvovania domácej izolácie
+                                <?php echo __('Adresa absolvovania domácej izolácie', 'ehranica'); ?>
                             </h2>
                         </legend>
                         <div class="govuk-form-group govuk-!-margin-bottom-3">
                             <div class="uc-municipality-holder">
                                 <label class="govuk-label" for="municipality-inner-uc-isolation-municipality">
-                                    <strong>Mesto/obec</strong>
+                                    <strong><?php echo __('Mesto/obec', 'ehranica'); ?></strong>
                                 </label>
                                 <div><span class="govuk-error-message" id="municipality-error-uc-isolation-municipality"
-                                           style="display: none;">Vyberte mesto/obec zo zoznamu.</span></div>
+                                           style="display: none;"><?php echo __('Vyberte mesto/obec zo zoznamu.', 'ehranica'); ?></span></div>
                                 <input type="hidden" name="isolation-municipality"
                                        id="municipality-input-uc-isolation-municipality">
                                 <input type="hidden" name="isolation-county"
@@ -413,10 +422,10 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
 
                         <div class="govuk-form-group govuk-!-margin-bottom-3">
                             <label class="govuk-label" for="uc-isolation-street">
-                                <strong>Ulica</strong>
+                                <strong><?php echo __('Ulica', 'ehranica'); ?></strong>
                             </label>
                             <span id="uc-isolation-street-error" class="govuk-error-message" style="display: none;">
-                              Zadajte ulicu.
+                              <?php echo __('Zadajte ulicu.', 'ehranica'); ?>
                             </span>
                             <input class="govuk-input govuk-input--width-20" id="uc-isolation-street"
                                    name="isolation-street"
@@ -425,11 +434,11 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
 
                         <div class="govuk-form-group govuk-!-margin-bottom-3">
                             <label class="govuk-label" for="uc-isolation-house-number">
-                                <strong>Orientačné číslo (číslo domu)</strong>
+                                <strong><?php echo __('Orientačné číslo (číslo domu)', 'ehranica'); ?></strong>
                             </label>
                             <span id="uc-isolation-house-number-error" class="govuk-error-message"
                                   style="display: none;">
-                              Zadajte číslo domu.
+                              <?php echo __('Zadajte číslo domu.', 'ehranica'); ?>
                             </span>
                             <input class="govuk-input govuk-input--width-20" id="uc-isolation-house-number"
                                    name="isolation-house-number" type="text">
@@ -437,10 +446,10 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
 
                         <div class="govuk-form-group">
                             <label class="govuk-label" for="uc-isolation-zip">
-                                <strong>PSČ</strong>
+                                <strong><?php echo __('PSČ', 'ehranica'); ?></strong>
                             </label>
                             <span id="uc-isolation-zip-error" class="govuk-error-message" style="display: none;">
-                              Zadajte PSČ.
+                              <?php echo __('Zadajte PSČ.', 'ehranica'); ?>
                             </span>
                             <input class="govuk-input govuk-input--width-20" id="uc-isolation-zip" name="isolation-zip"
                                    type="text">
@@ -451,18 +460,20 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                               aria-describedby="uc-isolation-address">
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                             <h2 class="govuk-fieldset__heading" id="uc-isolation-address">
-                                Dodatočné údaje
+                                <?php echo __('Dodatočné údaje', 'ehranica'); ?>
                             </h2>
                         </legend>
 
                         <p style="margin-top: 0;" class="govuk-body">
-                            V prípade pozitívneho testu, v záujme ochrany Vás a Vašich blízkych, budú od&nbsp;Vás
-                            hygienici vyžadovať dodatočné informácie. Pomôžete nám, ak ich dobrovoľne zadáte už teraz.
+                            <?php echo __('V prípade pozitívneho testu, v záujme ochrany Vás a Vašich blízkych, budú od&nbsp;Vás
+                            hygienici vyžadovať dodatočné informácie. Pomôžete nám, ak ich dobrovoľne zadáte už teraz.', 'ehranica'); ?>
                         </p>
 
                         <div class="govuk-form-group govuk-!-margin-bottom-3">
                             <label class="govuk-label" for="uc-household-members-count">
-                                <strong>Počet osôb žijúcich alebo zdržiavajúcich sa v mieste izolácie</strong>
+                                <strong>
+                                    <?php echo __('Počet osôb žijúcich alebo zdržiavajúcich sa v mieste izolácie', 'ehranica'); ?>
+                                </strong>
                             </label>
                             <input class="govuk-input govuk-input--width-20" id="uc-household-members-count"
                                    name="household-members-count" type="text" maxlength="2">
@@ -470,7 +481,7 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
 
                         <div class="govuk-form-group">
                             <label class="govuk-label" for="uc-gp">
-                                <strong>Meno a priezvisko všeobecného lekára</strong>
+                                <strong><?php echo __('Meno a priezvisko všeobecného lekára', 'ehranica'); ?></strong>
                             </label>
                             <input class="govuk-input govuk-input--width-20" id="uc-gp" name="gp"
                                    type="text">
@@ -480,36 +491,36 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                     <fieldset class="govuk-fieldset" role="group">
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                             <h2 class="govuk-fieldset__heading" id="uc-isolation-address">
-                                Potvrdenia
+                                <?php echo __('Potvrdenia', 'ehranica'); ?>
                             </h2>
                         </legend>
                         <div class="govuk-form-group">
                           <span id="uc-tos-error" class="govuk-error-message" style="display: none;">
-                          Prosím, akceptujte súhlas so spracovaním osobných údajov.
+                          <?php echo __('Prosím, akceptujte súhlas so spracovaním osobných údajov.', 'ehranica'); ?>
                           </span>
                             <div class="govuk-checkboxes">
                                 <div class="govuk-checkboxes__item">
                                     <input class="govuk-checkboxes__input" id="uc-tos" name="tos" type="checkbox"
                                            value="yes" aria-describedby="uc-tos-error">
                                     <label class="govuk-label govuk-checkboxes__label" for="uc-tos">
-                                        Potvrdzujem, že súhlasím so spracovaním osobných údajov
+                                        <?php echo __('Potvrdzujem, že súhlasím so spracovaním osobných údajov', 'ehranica'); ?>
                                     </label>
                                     <span class="govuk-hint govuk-checkboxes__hint">
-                                <a href="/poucenie-o-ochrane-osobnych-udajov/" target="_blank">Poučenie o ochrane osobných údajov</a>
-                              </span>
+                                        <?php echo __('<a href="/poucenie-o-ochrane-osobnych-udajov/" target="_blank">Poučenie o ochrane osobných údajov</a>', 'ehranica'); ?>
+                                    </span>
                                 </div>
                             </div>
                         </div>
                         <div class="govuk-form-group">
                           <span id="uc-confirm-error" class="govuk-error-message" style="display: none;">
-                          Prosím, potvrďte správnosť zadaných údajov.
+                              <?php echo __('Prosím, potvrďte správnosť zadaných údajov.', 'ehranica'); ?>
                           </span>
                             <div class="govuk-checkboxes">
                                 <div class="govuk-checkboxes__item">
                                     <input class="govuk-checkboxes__input" id="uc-confirm" name="confirm"
                                            type="checkbox" value="yes" aria-describedby="uc-confirm-error">
                                     <label class="govuk-label govuk-checkboxes__label" for="uc-confirm">
-                                        Potvrdzujem a prehlasujem, že všetky uvedené údaje sú pravdivé.
+                                        <?php echo __('Potvrdzujem a prehlasujem, že všetky uvedené údaje sú pravdivé', 'ehranica'); ?>
                                     </label>
                                 </div>
                             </div>
@@ -518,7 +529,7 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                 </div>
 
                 <button class="govuk-button js-uc-submit govuk-button--start" type="submit"
-                        data-step-2="Odoslať registráciu" data-step-1="Pokračovať"><span>Pokračovať</span>
+                        data-step-2="<?php echo __('Odoslať registráciu', 'ehranica'); ?>" data-step-1="<?php echo __('Pokračovať', 'ehranica'); ?>"><span><?php echo __('Pokračovať', 'ehranica'); ?></span>
                     <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19"
                          viewBox="0 0 33 40" role="presentation" focusable="false">
                         <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
@@ -526,8 +537,7 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                 </button>
 
                 <p style="margin-top: 0;" class="govuk-body">
-                    V prípade otázok zavolajte na číslo <a href="tel:+421232353030" style="display: inline-block;">+421
-                        2 32 35 30 30</a>.
+                    <?php echo __('V prípade otázok zavolajte na číslo <a href="tel:+421232353030" style="display: inline-block;">+421 2 32 35 30 30</a>.', 'ehranica'); ?>
                 </p>
             </form>
         </div>
@@ -535,348 +545,57 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
         <div class="govuk-grid-column-full">
             <div style="display: none;" id="uc-loading">
                 <h1 class="govuk-heading-l">
-                    Registrácia sa odosiela
+                    <?php echo __('Registrácia sa odosiela', 'ehranica'); ?>
                 </h1>
 
                 <p>
-                    Prosím, čakajte na výsledok registrácie.
+                    <?php echo __('Prosím, čakajte na výsledok registrácie.', 'ehranica'); ?>
                 </p>
             </div>
 
             <div style="display: none;" id="uc-error">
                 <h1 class="govuk-heading-l">
-                    Pri registrácii nastala chyba
+                    <?php echo __('Pri registrácii nastala chyba', 'ehranica'); ?>
                 </h1>
 
                 <p id="uc-slovak-id-registered" style="display: none;" class="govuk-body">
-                    Zadané rodné číslo alebo BIČ už bolo registrované (napr. pri registrácii na vyšetrenie na COVID-19).
+                    <?php echo __('Zadané rodné číslo alebo BIČ už bolo registrované (napr. pri registrácii na vyšetrenie na COVID-19).', 'ehranica'); ?>
                 </p>
 
                 <p id="uc-foreign-id-registered" style="display: none;" class="govuk-body">
-                    Zadané ID pridelené inou krajinou už bolo registrované (napr. pri registrácii na vyšetrenie na
-                    COVID-19).
+                    <?php echo __('Zadané ID pridelené inou krajinou už bolo registrované (napr. pri registrácii na vyšetrenie na COVID-19).', 'ehranica'); ?>
                 </p>
 
                 <p class="govuk-body">
-                    Pre dokončenie registrácie, prosím, zavolajte na číslo <a href="tel:+421232353030"
-                                                                              style="display: inline-block;">+421 2 32
-                        35 30 30</a>.
+                    <?php echo __('Pre dokončenie registrácie, prosím, zavolajte na číslo <a href="tel:+421232353030" style="display: inline-block;">+421 2 32 35 30 30</a>.', 'ehranica'); ?>
                 </p>
 
                 <div>
                     <h2 class="govuk-heading-m">
-                        Ďalšie akcie
+                        <?php echo __('Ďalšie akcie', 'ehranica'); ?>
                     </h2>
-                    <a href="." class="govuk-button">Chcem registrovať ďalšiu osobu</a>
+                    <a href="." class="govuk-button"><?php echo __('Chcem registrovať ďalšiu osobu', 'ehranica'); ?></a>
                 </div>
             </div>
 
             <div style="display: none;" id="uc-thank-you">
                 <div class="govuk-panel govuk-panel--confirmation">
                     <h1 class="govuk-panel__title">
-                        Registrácia dokončená
+                        <?php echo __('Registrácia dokončená', 'ehranica'); ?>
                     </h1>
                     <div class="govuk-panel__body">
-                        Ďalšie inštrukcie Vám prídu v najbližších dňoch v&nbsp;SMS&nbsp;správe alebo emailom.
+                        <?php echo __('Ďalšie inštrukcie Vám prídu v najbližších dňoch v&nbsp;SMS&nbsp;správe alebo emailom.', 'ehranica'); ?>
                     </div>
                 </div>
 
                 <div>
                     <h2 class="govuk-heading-m">
-                        Ďalšie akcie
+                        <?php echo __('Ďalšie akcie', 'ehranica'); ?>
                     </h2>
-                    <a href="." class="govuk-button">Chcem registrovať ďalšiu osobu</a>
+                    <a href="." class="govuk-button"><?php echo __('Chcem registrovať ďalšiu osobu', 'ehranica'); ?></a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- I Am Part of the Resistance Inside the Klingon Administration -->
-
-
-<?php
-
-/*
- *
-
-            <fieldset class="govuk-fieldset" role="group" aria-describedby="uc-permanent-address">
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                    <h2 class="govuk-fieldset__heading" id="uc-permanent-address">
-                        Adresa trvalého bydliska
-                    </h2>
-                </legend>
-
-                <div class="govuk-form-group">
-                    <div class="govuk-radios govuk-radios--small">
-                        <div class="govuk-radios__item">
-                            <input class="js-uc-permanent-type govuk-radios__input"
-                                   id="uc-permanent-same-as-isolation" name="permanent-address"
-                                   type="radio"
-                                   value="same-as-isolation" checked>
-                            <label class="govuk-label govuk-radios__label" for="uc-permanent-same-as-isolation">
-                                Rovnaká ako adresa domácej izolácie
-                            </label>
-                        </div>
-                        <div class="govuk-radios__item">
-                            <input class="js-uc-permanent-type govuk-radios__input"
-                                   id="uc-permanent-other-than-isolation" name="permanent-address" type="radio"
-                                   value="other-than-isolation">
-                            <label class="govuk-label govuk-radios__label" for="uc-permanent-other-than-isolation">
-                                Iná ako adresa domácej izolácie
-                            </label>
-                        </div>
-                        <div class="govuk-radios__item">
-                            <input class="js-uc-permanent-type govuk-radios__input" id="uc-permanent-none"
-                                   name="permanent-address" type="radio"
-                                   value="none">
-                            <label class="govuk-label govuk-radios__label" for="uc-permanent-none">
-                                Bez trvalého bydliska na Slovensku
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="js-uc-permanent-fields" style="display: none;">
-                    <div class="govuk-form-group govuk-!-margin-bottom-3">
-                        <div class="uc-municipality-holder">
-                            <label class="govuk-label" for="municipality-inner-uc-permanent-municipality">
-                                <strong>Mesto/obec</strong>
-                            </label>
-                            <div><span class="govuk-error-message" id="municipality-error-uc-permanent-municipality"
-                                       style="display: none;">Vyberte mesto/obec zo zoznamu.</span></div>
-                            <input type="hidden" name="permanent-municipality" id="municipality-input-uc-permanent-municipality">
-                            <input type="hidden" name="permanent-county" id="county-input-uc-permanent-municipality">
-                            <div id="municipality-field-uc-permanent-municipality"></div>
-                        </div>
-                    </div>
-
-                    <div class="govuk-form-group govuk-!-margin-bottom-3">
-                        <label class="govuk-label" for="uc-permanent-street">
-                            <strong>Ulica</strong>
-                        </label>
-                        <span id="uc-permanent-street-error" class="govuk-error-message" style="display: none;">
-                              Zadajte ulicu.
-                            </span>
-                        <input class="govuk-input govuk-input--width-20" id="uc-permanent-street"
-                               name="permanent-street" type="text">
-                    </div>
-
-                    <div class="govuk-form-group govuk-!-margin-bottom-3">
-                        <label class="govuk-label" for="uc-permanent-house-number">
-                            <strong>Orientačné číslo (číslo domu)</strong>
-                        </label>
-                        <span id="uc-permanent-house-number-error" class="govuk-error-message" style="display: none;">
-                              Zadajte číslo domu.
-                            </span>
-                        <input class="govuk-input govuk-input--width-20" id="uc-permanent-house-number"
-                               name="permanent-house-number" type="text">
-                    </div>
-
-                    <div class="govuk-form-group">
-                        <label class="govuk-label" for="uc-permanent-zip">
-                            <strong>PSČ</strong>
-                        </label>
-                        <span id="uc-permanent-zip-error" class="govuk-error-message" style="display: none;">
-                              Zadajte PSČ.
-                            </span>
-                        <input class="govuk-input govuk-input--width-20" id="uc-permanent-zip" name="permanent-zip"
-                               type="text">
-                    </div>
-                </div>
-            </fieldset>
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="js-uc-summary" style="display: none;">
-        <div class="govuk-grid-column-full">
-            <h1 class="govuk-heading-xl">Skontrolujte svoje odpovede pred odoslaním registrácie</h1>
-        </div>
-
-        <div class="govuk-grid-column-two-thirds-from-desktop">
-
-            <h2 class="govuk-heading-m">Navštívené krajiny za ostatných 14 dní</h2>
-
-
-            <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        Prišli ste z krajiny
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        Česko
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="#">
-                            Zmeniť
-                        </a>
-                    </dd>
-                </div>
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        Ďalšie navštívené krajiny
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        USA<br>
-                        Somálsko
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="#">
-                            Zmeniť
-                        </a>
-                    </dd>
-                </div>
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        Dátum príchodu
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        28. 6. 2020
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="#">
-                            Zmeniť
-                        </a>
-                    </dd>
-                </div>
-            </dl>
-
-
-            <h2 class="govuk-heading-m">Osoby</h2>
-
-
-            <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        Vy
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        Janko Mrkvička<br>
-                        123456/1234<br>
-                        13. 8. 1989<br>
-                        Všeobecná zdravotná poisťovňa
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="#">
-                            Zmeniť
-                        </a>
-                    </dd>
-                </div>
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        2. osoba
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        Janko Mrkvička<br>
-                        123456/1234<br>
-                        31. 2. 1952<br>
-                        Všeobecná zdravotná poisťovňa
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="#">
-                            Zmeniť
-                        </a>
-                    </dd>
-                </div>
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="#">
-                            Pridať ďalšiu osobu
-                        </a>
-                    </dd>
-                </div>
-            </dl>
-
-            <h2 class="govuk-heading-m">Kontaktné údaje</h2>
-
-
-            <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        Emailová adresa
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        janko.mrkvicka@gmail.com
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="#">
-                            Zmeniť
-                        </a>
-                    </dd>
-                </div>
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        Telefónne číslo
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        +421 910 123 321
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="#">
-                            Zmeniť
-                        </a>
-                    </dd>
-                </div>
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        Adresa absolvovania domácej izolácie
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        Dubova 8<br>
-                        82105<br>
-                        Bratislava
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="#">
-                            Zmeniť
-                        </a>
-                    </dd>
-                </div>
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        Adresa trvalého bydliska
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        Dubova 8<br>
-                        82105<br>
-                        Bratislava
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="#">
-                            Zmeniť
-                        </a>
-                    </dd>
-                </div>
-            </dl>
-
-
-            <h2 class="govuk-heading-m">Teraz odošlite registráciu</h2>
-
-            <p class="govuk-body">Odoslaním tejto registrácie potvrdzujete, že podľa Vášho najlepšieho vedomia ste
-                registráciu vyplnili správne a úplne.
-
-            <form action="/form-handler" method="post" novalidate="">
-
-                <input type="hidden" name="answers-checked" value="true">
-
-                <button class="govuk-button" data-module="govuk-button">
-                    Potvrdiť a odoslať
-                </button>
-
-            </form>
-
-        </div>
-    </div>
- */

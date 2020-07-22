@@ -1,3 +1,7 @@
+function rcTranslate(string) {
+    return RC_TRANSLATIONS[string];
+}
+
 function rcLpad(string, padstring) {
     return padstring.substring(0, padstring.length - string.length) + string;
 }
@@ -61,7 +65,7 @@ function prefillRcFormWithTestData() {
         var municipality = MUNICIPALITY_TO_COUNTY[i];
 
         var searchText = replaceDiacritics(municipality[0]).toLowerCase();
-        var label = municipality[0] + (duplicateMunicipalityNames[municipality[0]] ? (' (okres ' + municipality[1] + ')') : '');
+        var label = municipality[0] + (duplicateMunicipalityNames[municipality[0]] ? (' (' + rcTranslate('county') + ' ' + municipality[1] + ')') : '');
 
         MUNICIPALITY_TO_COUNTY[i][2] = searchText.replace(/[ -\.]+/g, ' ');
         MUNICIPALITY_TO_COUNTY[i][3] = label;
@@ -91,7 +95,7 @@ function prefillRcFormWithTestData() {
                 $(element).addClass('autocomplete-error');
                 $formGroup.addClass('govuk-form-group--error');
 
-                return 'Mesto/obec nie je v zozname. Vyberte mesto/obec zo zoznamu.'
+                return rcTranslate('municipality-not-found');
             };
 
             var onConfirm = function (value) {
@@ -165,14 +169,16 @@ function prefillRcFormWithTestData() {
     var countries = [];
     var countryStates = {};
 
+    var countryLabelIndex = 'sk' === RC_LANGUAGE ? 2 : 4;
+
     for (var i = 0; i < COUNTRY_LIST.length; i++) {
         var country = COUNTRY_LIST[i];
 
         COUNTRY_LIST[i][5] = replaceDiacritics([country[1], country[2], country[3], country[4]].join(' ')).toLowerCase().replace(/[ -\.]+/g, ' ');
 
-        countries.push(country[2]);
+        countries.push(country[countryLabelIndex]);
 
-        countryStates[replaceDiacritics(country[2]).toLowerCase()] = country[0];
+        countryStates[replaceDiacritics(country[countryLabelIndex]).toLowerCase()] = country[0];
     }
 
     var rcCountryAutocompleteInit = function (name, disableDropdownArrow) {
@@ -191,7 +197,7 @@ function prefillRcFormWithTestData() {
                 $(element).addClass('autocomplete-error');
                 $formGroup.addClass('govuk-form-group--error');
 
-                return 'Krajina nie je v zozname';
+                return rcTranslate('country-not-found');
             };
 
             var onConfirm = function (value) {
@@ -235,13 +241,13 @@ function prefillRcFormWithTestData() {
                         for (var i = 0; i < countries.length && results.length < 50; i++) {
                             var country = COUNTRY_LIST[i];
 
-                            if (country[2] === query) {
-                                results.push(country[2]);
+                            if (country[countryLabelIndex] === query) {
+                                results.push(country[countryLabelIndex]);
                             } else {
                                 var index = country[5].indexOf(term);
 
                                 if (index > -1 && (index === 0 || country[5][index - 1] === ' ')) {
-                                    results.push(country[2]);
+                                    results.push(country[countryLabelIndex]);
                                 }
                             }
                         }
@@ -642,7 +648,7 @@ function prefillRcFormWithTestData() {
 
         var rcOtherCountryTemplate = '<div class="govuk-form-group govuk-!-margin-bottom-3">\n' +
             '                        <div><span class="govuk-error-message" id="country-error-$id"\n' +
-            '                                   style="display: none;">Vyberte krajinu zo zoznamu.</span></div>\n' +
+            '                                   style="display: none;">' + rcTranslate('select-country') + '</span></div>\n' +
             '                        <div class="uc-country-holder">\n' +
             '                            <input type="hidden" name="country-$id" id="country-input-$id">\n' +
             '                            <div id="country-field-$id"></div>\n' +
