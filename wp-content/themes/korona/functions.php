@@ -208,6 +208,15 @@ include 'inc/block-editor-adjustments.php';
 
     if ( function_exists('register_sidebar') ) {
         register_sidebar(array(
+                             'name' => 'Footer logo',
+                             'id' => 'sidebar-3',
+                             'before_widget' => '',
+                             'after_widget' => '',
+                             'before_title' => '',
+                             'after_title' => '',
+                         )
+        );
+        register_sidebar(array(
                 'name' => 'Footer widget first',
                 'id' => 'sidebar-1',
                 'before_widget' => '<span class="idsk-footer__licence-description">',
