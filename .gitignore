@@ -18,3 +18,4 @@ wp-content/plugins/acf-php-recovery.php
 /tools/cache-api/*.csv
 /tools/update-content/config.php
 /static/*
+/ehranica-post/_config.php

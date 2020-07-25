@@ -43,7 +43,7 @@ include 'inc/block-editor-adjustments.php';
         $theme_version = wp_get_theme()->get( 'Version' );
 
         wp_enqueue_script( 'korona-js', '/wp-content/themes/korona/assets/js/index.js', array (), $theme_version, TRUE );
-        wp_enqueue_script( 'korona-js-autocomplete', '/wp-content/themes/korona/assets/js/autocomplete.js', array (), $theme_version, TRUE );
+        wp_enqueue_script( 'korona-js-autocomplete', '/wp-content/themes/korona/assets/js/autocomplete.js', array (), $theme_version, false );
         wp_enqueue_script( 'korona-js-upsvr-emails', '/wp-content/themes/korona/assets/js/upsvr-emails.js', array (), $theme_version, TRUE );
         wp_enqueue_script( 'korona-js-lang-picker', '/wp-content/themes/korona/assets/js/lang-picker.js', array (), $theme_version, TRUE );
         wp_enqueue_script( 'korona-js-esri', '/wp-content/themes/korona/assets/js/slovakia_esri_epsg_4326.js', array (), $theme_version, TRUE );
@@ -139,7 +139,45 @@ include 'inc/block-editor-adjustments.php';
 
     add_action( 'save_post', 'gov_back_button_save' );
 
-    /**
+    function korona_include_box () {
+        add_meta_box(
+            'korona_include_box',
+            __( 'Súbor na vloženie pod obsah', 'korona_include_box' ),
+            'korona_include_html',
+            'page',
+            'normal',
+            'high'
+        );
+    }
+
+    add_action( 'add_meta_boxes', 'korona_include_box' );
+
+    function korona_include_html ( $post ) {
+        wp_nonce_field( '_korona_include_nonce', 'korona_include_nonce' ); ?>
+
+        <p>
+            <label for="korona_include"><?php _e( 'Vložený súbor - nechaj prázdny, ak nevieš o čo ide ;-)', 'gov_back_button' ); ?></label>
+            <input type="text" name="korona_include" id="korona_include"
+                   value="<?php echo gov_back_button_get_meta( 'korona_include' ); ?>">
+        </p><?php
+
+    }
+
+    function korona_include_save ( $post_id ) {
+        if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
+            return;
+        if ( !isset( $_POST['korona_include_nonce'] ) || !wp_verify_nonce( $_POST['korona_include_nonce'], '_korona_include_nonce' ) )
+            return;
+        if ( !current_user_can( 'edit_post', $post_id ) )
+            return;
+
+        if ( isset( $_POST['korona_include'] ) )
+            update_post_meta( $post_id, 'korona_include', esc_attr( $_POST['korona_include'] ) );
+    }
+
+    add_action( 'save_post', 'korona_include_save' );
+
+/**
      * Block, ACF functions
      */
     require get_template_directory() . '/inc/register-blocks.php';
@@ -169,6 +207,15 @@ include 'inc/block-editor-adjustments.php';
     remove_filter('widget_text_content', 'wpautop');
 
     if ( function_exists('register_sidebar') ) {
+        register_sidebar(array(
+                             'name' => 'Footer logo',
+                             'id' => 'sidebar-3',
+                             'before_widget' => '',
+                             'after_widget' => '',
+                             'before_title' => '',
+                             'after_title' => '',
+                         )
+        );
         register_sidebar(array(
                 'name' => 'Footer widget first',
                 'id' => 'sidebar-1',
