@@ -387,7 +387,7 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
 
                         <div class="govuk-form-group">
                             <label class="govuk-label" for="uc-phone">
-                                <strong><?php echo __('Telefónne číslo', 'ehranica'); ?></strong>
+                                <strong><?php echo __('Telefónne číslo (s ktorým ste pricestovali zo zahraničia)', 'ehranica'); ?></strong>
                                 <span class="govuk-hint">
                                     <?php echo __('Zadajte aj s medzinárodnou predvoľbou, napríklad +421 pre slovenské čísla.', 'ehranica'); ?>
                                   </span>
