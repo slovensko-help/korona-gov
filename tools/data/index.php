@@ -30,6 +30,20 @@ $content = '
 
 if ($result['checks']['health-check']) {
     $content .= '<p style="color: green;">Data health check: All good</p>';
+
+    if (!empty($result['checks'])) {
+        $content .= '<ul style="color: #02bf85;">';
+    }
+
+    foreach ($result['checks'] as $key => $value) {
+        if ('health-check' !== $key) {
+            $content .= '<li>' . $value . '</li>';
+        }
+    }
+
+    if (!empty($result['checks'])) {
+        $content .= '</ul>';
+    }
 } else {
     $content .= '<div style="color: red;">Data health check: We have issues<br><ul>';
 

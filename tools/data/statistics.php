@@ -30,10 +30,9 @@ function updateStatistics()
         return ['checks' => updateResult($result, 'all-countries-file', false, 'ALL COUNTRIES data file does not exist.')];
     }
 
-    list($result, $resultData) = ncziResultData($ncziDataFilePath, $result, []);
-
     $manualData = loadCsvFile($manualDataFilePath);
 
+    list($result, $resultData) = ncziResultData($ncziDataFilePath, $manualData, $result, []);
     list($resultData, $result) = manualResultData($manualData, $resultData, $result);
     list($medians, $resultData, $result) = medians($manualData, $resultData, $result);
 
@@ -172,10 +171,11 @@ function manualResultData(array $manualData, $resultData, $result): array
  * @param array $resultData
  * @return array
  */
-function ncziResultData(string $ncziDataFilePath, array $result, array $resultData): array
+function ncziResultData(string $ncziDataFilePath, array $manualData, array $result, array $resultData): array
 {
     list($result, $ncziStats, $lastUpdate) = ncziStats(
         loadJsonFile($ncziDataFilePath),
+        fallbackData($manualData),
         $result);
 
     // 1.) NCZI CORE DATA
@@ -202,12 +202,23 @@ function loadCsvFile($filePath)
     return array_map("str_getcsv", explode("\n", $csv));
 }
 
+function fallbackData(array $manualData)
+{
+    return [
+        'lab-tests' => [
+            'total' => (int) $manualData[6][11],
+            'delta' => (int) $manualData[6][12]
+        ],
+        'last-update' => (DateTimeImmutable::createFromFormat('j. n. Y', $manualData[7][11], new DateTimeZone('Europe/Bratislava')))->getTimestamp(),
+    ];
+}
+
 /**
  * @param $ncziData
  * @param array $result
  * @return array
  */
-function ncziStats($ncziData, array $result): array
+function ncziStats($ncziData, array $fallbackData, array $result): array
 {
     $numberTypes = [
         'k5' => 'positives',
@@ -222,7 +233,16 @@ function ncziStats($ncziData, array $result): array
 
     foreach ($numberTypes as $tileId => $numberType) {
         if (isArrayInTreeEmpty($ncziData, ['tiles', $tileId, 'data', 'd'])) {
-            updateResult($result, $numberType, false, 'Data is not available.');
+            if (isset($fallbackData[$numberType])) {
+
+                $ncziStats[$numberType] = formattedNumberValue($fallbackData[$numberType]['total']);
+                $ncziStats[$numberType . '-delta'] = formattedNumberValue($fallbackData[$numberType]['delta']);
+
+                updateResult($result, $numberType, true, 'Data for ' . $numberType . ' is not available in NCZI API. Falling back to Spreadsheet data.');
+            }
+            else {
+                updateResult($result, $numberType, false, 'Data for ' . $numberType . ' is not available in NCZI API or Spreadsheet data.');
+            }
         } else {
             $currentNumberData = array_pop($ncziData['tiles'][$tileId]['data']['d']);
             $previousNumberData = array_pop($ncziData['tiles'][$tileId]['data']['d']);
@@ -247,7 +267,15 @@ function ncziStats($ncziData, array $result): array
     }
 
     if (empty($lastUpdate)) {
-        updateResult($result, 'last-update', false, 'Last update date from NCZI is not available.');
+        if (empty($fallbackData['last-update']))
+        {
+            updateResult($result, 'last-update', false, 'Last update date from NCZI and Spreadsheet is not available.');
+        }
+        else
+        {
+            $lastUpdate = $fallbackData['last-update'];
+            updateResult($result, 'last-update', true, 'Last update date from NCZI is not available. Falling back to Spreadsheet data.');
+        }
     } else {
         if ($lastUpdate < (new DateTimeImmutable('today 9:15'))->getTimestamp()) {
             updateResult($result, 'last-update', false, 'Last update date from NCZI is older than today at 9:15.');
