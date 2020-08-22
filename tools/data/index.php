@@ -75,8 +75,8 @@ if (isset($result['koronastats'])) {
     $content .= '
     <h2>koronastats</h2>
     <p>Usage: <code>[koronastats item=&lt;Item&gt;]</code></p>
-    <p>Example: <code>[koronastats item=lab-tests]</code> puts 
-    <strong>' . $result['koronastats']['lab-tests']['formatted_value'] . '</strong> to the page.</p>
+    <p>Example: <code>[koronastats item=hospitalized-delta]</code> puts 
+    <strong>' . $result['koronastats']['hospitalized-delta']['formatted_value'] . '</strong> to the page.</p>
     <h3>Values</h3>
     <table>
         <tr>
