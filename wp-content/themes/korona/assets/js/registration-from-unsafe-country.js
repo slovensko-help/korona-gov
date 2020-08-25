@@ -790,12 +790,21 @@ function prefillRcFormWithTestData() {
                             "vQuarantineAddressCountry": 'SK',
                         }
 
-                        if (data['permanent-address'] === 'other-than-isolation') {
+                        if (data['permanent-address'] === 'same-as-isolation') {
                             personData['vPermanentAddressCountry'] = 'SK';
-                            personData['vPermanentAddressCity'] = data['permanent-municipality'];
-                            personData['vPermanentAddressCityZipCode'] = data['permanent-zip'];
-                            personData['vPermanentAddressStreetName'] = data['permanent-street'];
-                            personData['vPermanentAddressStreetNumber'] = data['permanent-house-number'];
+                            personData['vPermanentAddressCity'] = data['isolation-municipality'];
+                            personData['vPermanentAddressCityZipCode'] = data['isolation-zip'];
+                            personData['vPermanentAddressStreetName'] = data['isolation-street'];
+                            personData['vPermanentAddressStreetNumber'] = data['isolation-house-number'];
+                        }
+                        else {
+                            if (data['permanent-address'] === 'other-than-isolation') {
+                                personData['vPermanentAddressCountry'] = 'SK';
+                                personData['vPermanentAddressCity'] = data['permanent-municipality'];
+                                personData['vPermanentAddressCityZipCode'] = data['permanent-zip'];
+                                personData['vPermanentAddressStreetName'] = data['permanent-street'];
+                                personData['vPermanentAddressStreetNumber'] = data['permanent-house-number'];
+                            }
                         }
 
                         people.push(personData);
