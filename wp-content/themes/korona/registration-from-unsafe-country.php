@@ -464,7 +464,7 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                         </legend>
 
                         <div class="govuk-form-group">
-                            <div class="govuk-radios govuk-radios--small">
+                            <div class="govuk-radios">
                                 <div class="govuk-radios__item">
                                     <input class="js-uc-permanent-type govuk-radios__input"
                                            id="uc-permanent-same-as-isolation" name="permanent-address"
