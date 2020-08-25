@@ -1,4 +1,4 @@
-<?php define('RC_ASSETS_VERSION', '1.0.13'); ?>
+<?php define('RC_ASSETS_VERSION', '1.0.14'); ?>
     <script>
         var RC_LANGUAGE = '<?php echo apply_filters('wpml_current_language', NULL); ?>';
         var RC_TRANSLATIONS = {

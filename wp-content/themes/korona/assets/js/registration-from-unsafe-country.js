@@ -795,7 +795,7 @@ function prefillRcFormWithTestData() {
                             personData['vPermanentAddressCity'] = data['permanent-municipality'];
                             personData['vPermanentAddressCityZipCode'] = data['permanent-zip'];
                             personData['vPermanentAddressStreetName'] = data['permanent-street'];
-                            personData['vPermanentAddressStreetNumber'] = data['house-number'];
+                            personData['vPermanentAddressStreetNumber'] = data['permanent-house-number'];
                         }
 
                         people.push(personData);
