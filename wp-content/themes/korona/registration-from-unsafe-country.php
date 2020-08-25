@@ -456,6 +456,93 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                         </div>
                     </fieldset>
 
+                    <fieldset class="govuk-fieldset" role="group" aria-describedby="uc-permanent-address">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                            <h2 class="govuk-fieldset__heading" id="uc-permanent-address">
+                                <?php echo __('Adresa trvalého bydliska', 'ehranica'); ?>
+                            </h2>
+                        </legend>
+
+                        <div class="govuk-form-group">
+                            <div class="govuk-radios govuk-radios--small">
+                                <div class="govuk-radios__item">
+                                    <input class="js-uc-permanent-type govuk-radios__input"
+                                           id="uc-permanent-same-as-isolation" name="permanent-address"
+                                           type="radio"
+                                           value="same-as-isolation" checked>
+                                    <label class="govuk-label govuk-radios__label" for="uc-permanent-same-as-isolation">
+                                        <?php echo __('Rovnaká ako adresa domácej izolácie', 'ehranica'); ?>
+                                    </label>
+                                </div>
+                                <div class="govuk-radios__item">
+                                    <input class="js-uc-permanent-type govuk-radios__input"
+                                           id="uc-permanent-other-than-isolation" name="permanent-address" type="radio"
+                                           value="other-than-isolation">
+                                    <label class="govuk-label govuk-radios__label" for="uc-permanent-other-than-isolation">
+                                        <?php echo __('Iná ako adresa domácej izolácie', 'ehranica'); ?>
+                                    </label>
+                                </div>
+                                <div class="govuk-radios__item">
+                                    <input class="js-uc-permanent-type govuk-radios__input" id="uc-permanent-none"
+                                           name="permanent-address" type="radio"
+                                           value="none">
+                                    <label class="govuk-label govuk-radios__label" for="uc-permanent-none">
+                                        <?php echo __('Bez trvalého bydliska na Slovensku', 'ehranica'); ?>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="js-uc-permanent-fields" style="display: none;">
+                            <div class="govuk-form-group govuk-!-margin-bottom-3">
+                                <div class="uc-municipality-holder">
+                                    <label class="govuk-label" for="municipality-inner-uc-permanent-municipality">
+                                        <strong><?php echo __('Mesto/obec', 'ehranica'); ?></strong>
+                                    </label>
+
+                                    <div><span class="govuk-error-message" id="municipality-error-uc-permanent-municipality"
+                                               style="display: none;"><?php echo __('Vyberte mesto/obec zo zoznamu.', 'ehranica'); ?></span></div>
+                                    <input type="hidden" name="permanent-municipality" id="municipality-input-uc-permanent-municipality">
+                                    <input type="hidden" name="permanent-county" id="county-input-uc-permanent-municipality">
+                                    <div id="municipality-field-uc-permanent-municipality"></div>
+                                </div>
+                            </div>
+
+                            <div class="govuk-form-group govuk-!-margin-bottom-3">
+                                <label class="govuk-label" for="uc-permanent-street">
+                                    <strong><?php echo __('Ulica', 'ehranica'); ?></strong>
+                                </label>
+                                <span id="uc-permanent-street-error" class="govuk-error-message" style="display: none;">
+                              <?php echo __('Zadajte ulicu.', 'ehranica'); ?>
+                            </span>
+                                <input class="govuk-input govuk-input--width-20" id="uc-permanent-street"
+                                       name="permanent-street" type="text">
+                            </div>
+
+                            <div class="govuk-form-group govuk-!-margin-bottom-3">
+                                <label class="govuk-label" for="uc-permanent-house-number">
+                                    <strong><?php echo __('Orientačné číslo (číslo domu)', 'ehranica'); ?></strong>
+                                </label>
+                                <span id="uc-permanent-house-number-error" class="govuk-error-message" style="display: none;">
+                              <?php echo __('Zadajte číslo domu.', 'ehranica'); ?>
+                            </span>
+                                <input class="govuk-input govuk-input--width-20" id="uc-permanent-house-number"
+                                       name="permanent-house-number" type="text">
+                            </div>
+
+                            <div class="govuk-form-group">
+                                <label class="govuk-label" for="uc-permanent-zip">
+                                    <strong><?php echo __('PSČ', 'ehranica'); ?></strong>
+                                </label>
+                                <span id="uc-permanent-zip-error" class="govuk-error-message" style="display: none;">
+                              <?php echo __('Zadajte PSČ.', 'ehranica'); ?>
+                            </span>
+                                <input class="govuk-input govuk-input--width-20" id="uc-permanent-zip" name="permanent-zip"
+                                       type="text">
+                            </div>
+                        </div>
+                    </fieldset>
+
                     <fieldset class="govuk-fieldset govuk-!-margin-bottom-5" role="group"
                               aria-describedby="uc-isolation-address">
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
