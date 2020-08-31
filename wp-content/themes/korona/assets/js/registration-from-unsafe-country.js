@@ -786,6 +786,7 @@ function prefillRcFormWithTestData() {
                             "vPersonalNumber": person['id-type'] === 'slovak' ? person['id'] : null,
                             "nHealtInsuranceCompany": person['insurance'],
 
+                            "vOtherSymptoms": data['note'],
                             "vSex": "X",
                             "vQuarantineAddressCountry": 'SK',
                         }

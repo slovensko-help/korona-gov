@@ -1,4 +1,4 @@
-<?php define('RC_ASSETS_VERSION', '1.0.15'); ?>
+<?php define('RC_ASSETS_VERSION', '1.0.16'); ?>
     <script>
         var RC_LANGUAGE = '<?php echo apply_filters('wpml_current_language', NULL); ?>';
         var RC_TRANSLATIONS = {
@@ -379,6 +379,9 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                             <label class="govuk-label" for="uc-email">
                                 <strong><?php echo __('Emailová adresa', 'ehranica'); ?></strong>
                             </label>
+                            <span class="govuk-hint">
+                              <?php echo __('Zadajte email, na ktorý Vám odošleme potvrdenie o registrácii. Potvrdením sa preukážete na hraniciach pri príchode na Slovensko.', 'ehranica'); ?>
+                            </span>
                             <span id="uc-email-error" class="govuk-error-message" style="display: none;">
                               <?php echo __('Zadajte správnu emailovú adresu.', 'ehranica'); ?>
                             </span>
@@ -566,12 +569,22 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                                    name="household-members-count" type="text" maxlength="2">
                         </div>
 
-                        <div class="govuk-form-group">
+                        <div class="govuk-form-group govuk-!-margin-bottom-3">
                             <label class="govuk-label" for="uc-gp">
                                 <strong><?php echo __('Meno a priezvisko všeobecného lekára', 'ehranica'); ?></strong>
                             </label>
                             <input class="govuk-input govuk-input--width-20" id="uc-gp" name="gp"
                                    type="text">
+                        </div>
+
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="uc-gp">
+                                <strong><?php echo __('Poznámka', 'ehranica'); ?></strong>
+                            </label>
+                            <span class="govuk-hint">
+                          <?php echo __('Do poznámky môžete uviesť upresňujúce informácie.', 'ehranica'); ?>
+                        </span>
+                            <textarea class="govuk-textarea" id="uc-note" name="note"></textarea>
                         </div>
                     </fieldset>
 
