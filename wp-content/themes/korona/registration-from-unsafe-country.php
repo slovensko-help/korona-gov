@@ -659,15 +659,11 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                 </h1>
 
                 <p id="uc-slovak-id-registered" style="display: none;" class="govuk-body">
-                    <?php echo __('Zadané rodné číslo alebo BIČ už bolo registrované (napr. pri registrácii na vyšetrenie na COVID-19).', 'ehranica'); ?>
+                    <?php echo __('Nie je možné vám vytvoriť novú požiadavku o vyšetrenie na COVID-19. Prosím kontaktujte Call centrum na telefónnom čísle: <a href="tel:+421232353030" style="display: inline-block;">+421 2 32 35 30 30</a>. Ďakujeme, že ste zodpovedný.', 'ehranica'); ?>
                 </p>
 
                 <p id="uc-foreign-id-registered" style="display: none;" class="govuk-body">
-                    <?php echo __('Zadané ID pridelené inou krajinou už bolo registrované (napr. pri registrácii na vyšetrenie na COVID-19).', 'ehranica'); ?>
-                </p>
-
-                <p class="govuk-body">
-                    <?php echo __('Pre dokončenie registrácie, prosím, zavolajte na číslo <a href="tel:+421232353030" style="display: inline-block;">+421 2 32 35 30 30</a>.', 'ehranica'); ?>
+                    <?php echo __('Nie je možné vám vytvoriť novú požiadavku o vyšetrenie na COVID-19. Prosím kontaktujte Call centrum na telefónnom čísle: <a href="tel:+421232353030" style="display: inline-block;">+421 2 32 35 30 30</a>. Ďakujeme, že ste zodpovedný.', 'ehranica'); ?>
                 </p>
 
                 <div>
