@@ -1,4 +1,4 @@
-<?php define('RC_ASSETS_VERSION', '1.0.16'); ?>
+<?php define('RC_ASSETS_VERSION', '1.0.17'); ?>
     <script>
         var RC_LANGUAGE = '<?php echo apply_filters('wpml_current_language', NULL); ?>';
         var RC_TRANSLATIONS = {
@@ -398,6 +398,18 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                               <?php echo __('Zadajte správne telefónne číslo. Musí začínať medzinárodnou predvoľbou + alebo 00.', 'ehranica'); ?>
                             </span>
                             <input class="govuk-input govuk-input--width-20" id="uc-phone" name="phone" type="text">
+                        </div>
+
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="uc-phone-verify">
+                                <strong><?php echo __('Zadajte telefónne číslo ešte raz', 'ehranica'); ?></strong>
+                                <span class="govuk-hint">
+                                    <?php echo __('Pozorne si skontrolujte, či ste vo Vašom telefónnom čísle omylom nezamenili niektorú číslicu.', 'ehranica'); ?>
+                                  </span>
+                            </label><span id="uc-phone-verify-error" class="govuk-error-message" style="display: none;">
+                              <?php echo __('Zadané telefónne číslo nie je rovnaké ako v&nbsp;predchádzajúcom políčku.', 'ehranica'); ?>
+                            </span>
+                            <input class="govuk-input govuk-input--width-20" id="uc-phone-verify" name="phone-verify" type="text">
                         </div>
                     </fieldset>
 

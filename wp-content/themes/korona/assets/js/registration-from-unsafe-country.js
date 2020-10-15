@@ -313,8 +313,8 @@ function prefillRcFormWithTestData() {
                     return
                 }
 
-                if ('phone' === item.name) {
-                    result['phone'] = item.value.replace(/[ \-\(\)]/g, '');
+                if (item.name.indexOf('phone') === 0) {
+                    result[item.name] = item.value.replace(/[ \-\(\)]/g, '');
                     return;
                 }
 
@@ -459,7 +459,7 @@ function prefillRcFormWithTestData() {
         }
 
         function isValidPhoneNumber(phoneNumber) {
-            return null !== phoneNumber.match(/^(\+|00)\d{8}\d*$/);
+            return /^(\+|00)\d{8}\d*$/.test(phoneNumber);
         }
 
         function isFormValid() {
@@ -482,6 +482,11 @@ function prefillRcFormWithTestData() {
                 isValid &= toggleDateFormError('uc-arrival-date', invalidDateParts(data, 'arrival'));
                 isValid &= toggleInputFormError('uc-phone', isValidPhoneNumber(data['phone']));
                 isValid &= toggleInputFormError('uc-email', '' !== data['email']);
+
+                if (isValidPhoneNumber(data['phone']))
+                {
+                    isValid &= toggleInputFormError('uc-phone-verify', data['phone'] === data['phone-verify']);
+                }
 
                 isValid &= toggleAutoselectFormError('municipality', 'uc-isolation-municipality', '' !== data['isolation-municipality']);
                 isValid &= toggleInputFormError('uc-isolation-street', '' !== data['isolation-street']);
