@@ -245,11 +245,14 @@ ol ul {
 .app-pane-red p {
     color: #fff;
 }
+.app-pane-red .govuk-link,
 .app-pane-red a {
-    color: #fff;
-}
-.app-pane-red a:visited {
     color: #f3f3f3;
+}
+
+.app-pane-red .govuk-link:visited,
+.app-pane-red a:visited {
+    color: #f3f3f3 !important;
 }
 .app-pane-red a:hover {
     color: #f1f1f1;
