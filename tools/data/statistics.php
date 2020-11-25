@@ -34,7 +34,7 @@ function updateStatistics()
 
     list($result, $resultData) = ncziResultData($ncziDataFilePath, $manualData, $result, []);
     list($resultData, $result) = manualResultData($manualData, $resultData, $result);
-    list($medians, $resultData, $result) = medians($manualData, $resultData, $result);
+    list($medians, $averages, $resultData, $result) = aggregations($manualData, $resultData, $result);
 
     list($safeCountries, $result) = safeCountries($allCountriesDataFilePath, $safeCountriesDataFilePath, $result);
 
@@ -50,7 +50,7 @@ function updateStatistics()
 //    $manualData = array_map("str_getcsv", explode("\n", $csv));
 //    $ncziData = json_decode(file_get_contents($ncziDataFilePath), true);
 
-    return ['checks' => $result, 'koronastats' => $resultData, 'koronamedians' => $medians, 'safecountries' => $safeCountries];
+    return ['checks' => $result, 'koronastats' => $resultData, 'koronamedians' => $medians, 'koronaaverages' => $averages, 'safecountries' => $safeCountries];
 }
 
 /**
@@ -156,12 +156,15 @@ function datetimeFromString($string)
  */
 function manualResultData(array $manualData, $resultData, $result): array
 {
-// 3.) MANUAL REGIONAL DATA
+    // 3.) MANUAL REGIONAL DATA
     list($resultData, $result) = regionalStats($manualData, $resultData, $result);
 
     // 4. MANUAL COVID-19 HOSPITALIZED DATA
-
     $resultData = hospitalizationStats($manualData, $resultData);
+
+    // 4. MANUAL AG TESTING DATA
+    $resultData = agTestingStats($manualData, $resultData);
+
     return array($resultData, $result);
 }
 
@@ -204,12 +207,14 @@ function loadCsvFile($filePath)
 
 function fallbackData(array $manualData)
 {
+    $FIRST_COL = 12;
+
     return [
         'lab-tests' => [
-            'total' => (int) $manualData[6][11],
-            'delta' => (int) $manualData[6][12]
+            'total' => (int)$manualData[6][$FIRST_COL],
+            'delta' => (int)$manualData[6][$FIRST_COL + 1]
         ],
-        'last-update' => (DateTimeImmutable::createFromFormat('j. n. Y', $manualData[7][11], new DateTimeZone('Europe/Bratislava')))->getTimestamp(),
+        'last-update' => (DateTimeImmutable::createFromFormat('j. n. Y', $manualData[7][$FIRST_COL], new DateTimeZone('Europe/Bratislava')))->getTimestamp(),
     ];
 }
 
@@ -239,8 +244,7 @@ function ncziStats($ncziData, array $fallbackData, array $result): array
                 $ncziStats[$numberType . '-delta'] = formattedNumberValue($fallbackData[$numberType]['delta']);
 
                 updateResult($result, $numberType, true, 'Data for ' . $numberType . ' is not available in NCZI API. Falling back to Spreadsheet data.');
-            }
-            else {
+            } else {
                 updateResult($result, $numberType, false, 'Data for ' . $numberType . ' is not available in NCZI API or Spreadsheet data.');
             }
         } else {
@@ -267,12 +271,9 @@ function ncziStats($ncziData, array $fallbackData, array $result): array
     }
 
     if (empty($lastUpdate)) {
-        if (empty($fallbackData['last-update']))
-        {
+        if (empty($fallbackData['last-update'])) {
             updateResult($result, 'last-update', false, 'Last update date from NCZI and Spreadsheet is not available.');
-        }
-        else
-        {
+        } else {
             $lastUpdate = $fallbackData['last-update'];
             updateResult($result, 'last-update', true, 'Last update date from NCZI is not available. Falling back to Spreadsheet data.');
         }
@@ -289,11 +290,31 @@ function ncziStats($ncziData, array $fallbackData, array $result): array
  * @param array $resultData
  * @return array
  */
+function agTestingStats($manualData, array $resultData): array
+{
+    $FIRST_COL = 7;
+
+    $resultData['ag-tests'] = formattedNumberValue((int)$manualData[11][$FIRST_COL]);
+    $resultData['ag-tests-delta'] = formattedNumberValue((int)$manualData[11][$FIRST_COL + 1]);
+
+    $resultData['ag-positives'] = formattedNumberValue((int)$manualData[12][$FIRST_COL]);
+    $resultData['ag-positives-delta'] = formattedNumberValue((int)$manualData[12][$FIRST_COL + 1]);
+
+    return $resultData;
+}
+
+/**
+ * @param $manualData
+ * @param array $resultData
+ * @return array
+ */
 function hospitalizationStats($manualData, array $resultData): array
 {
-    $resultData['hospitalized-covid19'] = formattedNumberValue((int)$manualData[1][11]);
-    $resultData['hospitalized-covid19-intensive'] = formattedNumberValue((int)$manualData[1][12]);
-    $resultData['hospitalized-covid19-ventilation'] = formattedNumberValue((int)$manualData[1][13]);
+    $FIRST_COL = 12;
+
+    $resultData['hospitalized-covid19'] = formattedNumberValue((int)$manualData[1][$FIRST_COL]);
+    $resultData['hospitalized-covid19-intensive'] = formattedNumberValue((int)$manualData[1][$FIRST_COL + 1]);
+    $resultData['hospitalized-covid19-ventilation'] = formattedNumberValue((int)$manualData[1][$FIRST_COL + 2]);
     return $resultData;
 }
 
@@ -305,6 +326,8 @@ function hospitalizationStats($manualData, array $resultData): array
  */
 function regionalStats($manualData, array $resultData, array $result): array
 {
+    $FIRST_COL = 6;
+
     $regionMappings = [
         'Banskobystrický' => 'bb',
         'Bratislavský' => 'ba',
@@ -317,13 +340,13 @@ function regionalStats($manualData, array $resultData, array $result): array
     ];
 
     for ($f = 0; $f < 8; $f++) {
-        if (isset($regionMappings[$manualData[1 + $f][5]])) {
-            $regionKey = 'positives-region-' . $regionMappings[$manualData[1 + $f][5]];
+        if (isset($regionMappings[$manualData[1 + $f][$FIRST_COL]])) {
+            $regionKey = 'positives-region-' . $regionMappings[$manualData[1 + $f][$FIRST_COL]];
 
-            $resultData[$regionKey] = formattedNumberValue((int)$manualData[1 + $f][6]);
-            $resultData[$regionKey . '-delta'] = formattedNumberValue((int)$manualData[1 + $f][7]);
+            $resultData[$regionKey] = formattedNumberValue((int)$manualData[1 + $f][$FIRST_COL + 1]);
+            $resultData[$regionKey . '-delta'] = formattedNumberValue((int)$manualData[1 + $f][$FIRST_COL + 2]);
         } else {
-            updateResult($result, 'manual-region-data', false, 'Unknown region "' . ($manualData[1 + $f][5]) . '"');
+            updateResult($result, 'manual-region-data', false, 'Unknown region "' . ($manualData[1 + $f][$FIRST_COL]) . '"');
         }
     }
     return array($resultData, $result);
@@ -335,15 +358,17 @@ function regionalStats($manualData, array $resultData, array $result): array
  * @param array $result
  * @return array
  */
-function medians(array $manualData, array $resultData, array $result): array
+function aggregations(array $manualData, array $resultData, array $result): array
 {
     $yesterday = new DateTime('yesterday 9:15:00');
     $day = 1;
     $medianSourceData = [];
     $shouldBeTime = new DateTime('2020-04-16 9:15:00');
     $lastTime = null;
-    $medianRange = [];
+    $range = [];
     $medians = [];
+    $averages = [];
+    $sum = 0;
 
     while (isset($manualData[$day][1]) && $manualData[$day][1] != '') {
         $date = DateTimeImmutable::createFromFormat('j.n.Y H:i:s', $manualData[$day][0] . '2020 9:15:00');
@@ -354,14 +379,15 @@ function medians(array $manualData, array $resultData, array $result): array
             $medianSourceData[$date->getTimestamp()] = $value;
             $shouldBeTime->add(new DateInterval('P1D'));
 
-            $medianRange[] = $value;
+            $range[] = $value;
+            $sum += $value;
 
-            if (count($medianRange) === 8) {
-                array_shift($medianRange);
+            if (count($range) === 8) {
+                $sum -= array_shift($range);
             }
 
-            if (count($medianRange) === 7) {
-                $medianRangeSorted = $medianRange;
+            if (count($range) === 7) {
+                $medianRangeSorted = $range;
                 sort($medianRangeSorted);
 
                 $medianData = formattedNumberValue($medianRangeSorted[3]);
@@ -369,6 +395,12 @@ function medians(array $manualData, array $resultData, array $result): array
                 $medianData['formatted_date'] = date('j. n. Y', $medianData['timestamp']);
 
                 $medians[] = $medianData;
+
+                $averageData = formattedNumberValue((int)round($sum / 7));
+                $averageData['timestamp'] = $date->getTimestamp();
+                $averageData['formatted_date'] = date('j. n. Y', $averageData['timestamp']);
+
+                $averages[] = $averageData;
             }
         }
 
@@ -376,6 +408,14 @@ function medians(array $manualData, array $resultData, array $result): array
     }
 
     if ($lastTime->getTimestamp() === $yesterday->getTimestamp()) {
+        $averagesCount = count($averages);
+
+        $lastAverage = $averages[$averagesCount - 1];
+        $oneBeforeLastAverage = $averages[$averagesCount - 2];
+
+        $resultData['average'] = formattedNumberValue($lastAverage['value']);
+        $resultData['average-delta'] = formattedNumberValue($lastAverage['value'] - $oneBeforeLastAverage['value']);
+
         $mediansCount = count($medians);
 
         $lastMedian = $medians[$mediansCount - 1];
@@ -384,12 +424,13 @@ function medians(array $manualData, array $resultData, array $result): array
         $resultData['median'] = formattedNumberValue($lastMedian['value']);
         $resultData['median-delta'] = formattedNumberValue($lastMedian['value'] - $oneBeforeLastMedian['value']);
     } else {
-        updateResult($result, 'median-last-update', false, 'Data is missing for calculation of 7-day moving median.');
+        updateResult($result, 'aggregates-last-update', false, 'Data is missing for calculation of 7-day moving median and 7-day moving average.');
     }
 
+    $averages = array_reverse($averages);
     $medians = array_reverse($medians);
 
-    return [$medians, $resultData, $result];
+    return [$medians, $averages, $resultData, $result];
 }
 
 function formattedNumberValue($value)
