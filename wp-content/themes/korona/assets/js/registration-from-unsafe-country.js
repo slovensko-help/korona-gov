@@ -755,6 +755,7 @@ function prefillRcFormWithTestData() {
 
         $('#uc-arrival-date-day').val(now.getDate());
         $('#uc-arrival-date-month').val(now.getMonth() + 1);
+        $('#uc-arrival-date-year').val(now.getFullYear());
 
         $form.on('submit', function(event) {
             event.preventDefault();

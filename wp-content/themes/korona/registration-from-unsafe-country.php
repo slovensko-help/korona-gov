@@ -1,4 +1,4 @@
-<?php define('RC_ASSETS_VERSION', '1.0.17'); ?>
+<?php define('RC_ASSETS_VERSION', '1.0.18'); ?>
     <script>
         var RC_LANGUAGE = '<?php echo apply_filters('wpml_current_language', NULL); ?>';
         var RC_TRANSLATIONS = {
@@ -166,7 +166,7 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                                     </label>
                                     <input class="govuk-input govuk-date-input__input govuk-input--width-2"
                                            id="uc-arrival-date-day"
-                                           name="arrival-day" type="text" autocomplete="bday-day" pattern="[0-9]*"
+                                           name="arrival-day" type="text" autocomplete="aday-day" pattern="[0-9]*"
                                            inputmode="numeric">
                                 </div>
                             </div>
@@ -177,7 +177,7 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                                     </label>
                                     <input class="govuk-input govuk-date-input__input govuk-input--width-2"
                                            id="uc-arrival-date-month"
-                                           name="arrival-month" type="text" autocomplete="bday-month" pattern="[0-9]*"
+                                           name="arrival-month" type="text" autocomplete="aday-month" pattern="[0-9]*"
                                            inputmode="numeric">
                                 </div>
                             </div>
@@ -187,11 +187,10 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                                         <?php echo __('Rok', 'ehranica'); ?>
                                     </label>
 
-                                    <input type="hidden" name="arrival-year" value="2020">
                                     <input class="govuk-input govuk-date-input__input govuk-input--width-4"
-                                           type="text" autocomplete="off"
-                                           inputmode="numeric" disabled value="2020"
-                                           style="opacity: 0.7; width: 100px; border-color: #dcdcdc;">
+                                           id="uc-arrival-date-year"
+                                           name="arrival-year" type="text" autocomplete="aday-year" pattern="[0-9]*"
+                                           inputmode="numeric">
                                 </div>
                             </div>
                         </div>
