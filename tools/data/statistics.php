@@ -371,7 +371,7 @@ function aggregations(array $manualData, array $resultData, array $result): arra
     $sum = 0;
 
     while (isset($manualData[$day][1]) && $manualData[$day][1] != '') {
-        $date = DateTimeImmutable::createFromFormat('j.n.Y H:i:s', $manualData[$day][0] . '2020 9:15:00');
+        $date = DateTimeImmutable::createFromFormat('j.n.Y H:i:s', $manualData[$day][0] . ' 9:15:00');
 
         if ($date->getTimestamp() === $shouldBeTime->getTimestamp()) {
             $lastTime = $date;
