@@ -50,7 +50,6 @@ include 'inc/block-editor-adjustments.php';
         wp_enqueue_script( 'korona-js-d3', '/wp-content/themes/korona/assets/js/d3.js', array (), $theme_version, TRUE );
         wp_enqueue_script( 'korona-js-leaflet', '/wp-content/themes/korona/assets/js/leaflet.js', array (), $theme_version, TRUE );
         wp_enqueue_script( 'korona-js-boundarycanvas', '/wp-content/themes/korona/assets/js/boundarycanvas.js', array (), $theme_version, TRUE );
-        wp_enqueue_script( 'korona-js-driveinmap', '/wp-content/themes/korona/assets/js/driveinmap.js', array (), $theme_version, TRUE );
     }
 
     add_action( 'wp_enqueue_scripts', 'korona_register_scripts' );
