@@ -2,6 +2,9 @@
 
 include_once '_functions.php';
 
+define('REGION_MAPPINGS', ['Banskobystrický' => 'bb', 'Bratislavský' => 'ba', 'Košický' => 'ke', 'Nitriansky' => 'nr',
+    'Prešovský' => 'po', 'Trenčiansky' => 'tn', 'Trnavský' => 'tt', 'Žilinský' => 'za',]);
+
 function updateStatistics()
 {
     $result = ['health-check' => true];
@@ -10,6 +13,12 @@ function updateStatistics()
 
     if (!is_file($ncziDataFilePath)) {
         return ['checks' => updateResult($result, 'nczi-data-file', false, 'NCZI data file does not exist.')];
+    }
+
+    $ncziMorningEmailsDataFilePath = ROOT_DIR . '../cache-api/nczi-morning-emails.json';
+
+    if (!is_file($ncziMorningEmailsDataFilePath)) {
+        return ['checks' => updateResult($result, 'nczi-morning-emails-data-file', false, 'NCZI morning emails file does not exist.')];
     }
 
     $manualDataFilePath = ROOT_DIR . '../cache-api/manual-stats.csv';
@@ -30,11 +39,20 @@ function updateStatistics()
         return ['checks' => updateResult($result, 'all-countries-file', false, 'ALL COUNTRIES data file does not exist.')];
     }
 
+    $ncziMorningEmailsData = loadJsonFile($ncziMorningEmailsDataFilePath);
     $manualData = loadCsvFile($manualDataFilePath);
 
     list($result, $resultData) = ncziResultData($ncziDataFilePath, $manualData, $result, []);
-    list($resultData, $result) = manualResultData($manualData, $resultData, $result);
-    list($medians, $averages, $resultData, $result) = aggregations($manualData, $resultData, $result);
+    list($resultData, $result) = ncziMorningEmailData($ncziMorningEmailsData, $resultData, $result);
+
+    if ('ÁNO' === $manualData[7][11]) {
+        list($resultData, $result) = manualResultData($manualData, $resultData, $result);
+        list($medians, $averages, $resultData, $result) = aggregations($manualData, $resultData, $result);
+    }
+    else {
+        $medians = [];
+        $averages = [];
+    }
 
     list($safeCountries, $result) = safeCountries($allCountriesDataFilePath, $safeCountriesDataFilePath, $result);
 
@@ -50,7 +68,66 @@ function updateStatistics()
 //    $manualData = array_map("str_getcsv", explode("\n", $csv));
 //    $ncziData = json_decode(file_get_contents($ncziDataFilePath), true);
 
-    return ['checks' => $result, 'koronastats' => $resultData, 'koronamedians' => $medians, 'koronaaverages' => $averages, 'safecountries' => $safeCountries];
+    return ['checks' => $result, 'koronastats' => $resultData,
+        'koronamedians' => $medians,
+        'koronaaverages' => $averages, 'safecountries' => $safeCountries];
+}
+
+function ncziMorningEmailData(array $ncziMorningEmailsData, $resultData, $result): array
+{
+    $emailData = current($ncziMorningEmailsData['page']);
+
+    // 1. regional PCR positives data
+    foreach (REGION_MAPPINGS as $regionAbbreviation) {
+        foreach (['total' => '', 'delta' => '-delta'] as $inputSuffix => $outputSuffix) {
+            $value = $emailData["region_{$regionAbbreviation}_tests_pcr_positive_{$inputSuffix}"];
+            $resultData["positives-region-{$regionAbbreviation}{$outputSuffix}"] = formattedNumberValue(null === $value ? 0 : $value);
+        }
+    }
+
+    // 2. slovak AG positives and all tests
+    foreach (['all' => 'tests', 'positive' => 'positives'] as $inputTypeSuffix => $outputTypeSuffix) {
+        foreach (['total' => '', 'delta' => '-delta'] as $inputPeriodSuffix => $outputPeriodSuffix) {
+            $value = $emailData["slovakia_tests_ag_{$inputTypeSuffix}_{$inputPeriodSuffix}"];
+            $resultData["ag-{$outputTypeSuffix}{$outputPeriodSuffix}"] = formattedNumberValue(null === $value ? 0 : $value);
+        }
+    }
+
+    $emailData['slovakia_vaccination_target'] = 3217305;
+
+    // 3. slovak hospital beds and patients
+    // 4. vaccinations
+    foreach ([
+        'hospital_patients_confirmed_covid' => 'hospitalized-covid19',
+        'hospital_patients_ventilated_covid' => 'hospitalized-covid19-ventilation',
+        'hospital_beds_occupied_jis_covid' => 'hospitalized-covid19-intensive',
+        'slovakia_vaccination_all_total' => 'slovakia_vaccination_all_total',
+        'slovakia_vaccination_all_delta' => 'slovakia_vaccination_all_delta',
+        'slovakia_vaccination_target' => 'slovakia_vaccination_target',
+             ] as $inputName => $outputName) {
+        $resultData[$outputName] = formattedNumberValue(null === $emailData[$inputName] ? 0 : $emailData[$inputName]);
+    }
+
+    $value = round($resultData['slovakia_vaccination_all_total']['value'] / $emailData['slovakia_vaccination_target'] * 100, 2);
+
+    $resultData['slovakia_vaccination_total_percentage'] = [
+        'value' => $value,
+        'formatted_value' => number_format($value, 2, ',', '&nbsp;') . '&nbsp;%',
+    ];
+
+    // 5. median
+    $medianSeries = [];
+    foreach ($ncziMorningEmailsData['page'] as $emailData) {
+        if (count($medianSeries) < 7) {
+            $medianSeries[] = $emailData['slovakia_tests_pcr_positive_delta_without_quarantine'];
+        }
+    }
+
+    sort($medianSeries);
+
+    $resultData['median'] = formattedNumberValue($medianSeries[3]);
+
+    return array($resultData, $result);
 }
 
 /**
@@ -71,10 +148,7 @@ function safeCountries(string $allCountriesDataFilePath, string $safeCountriesDa
             continue;
         }
 
-        $allCountries[$countryData[0]] = [
-            'name_sk' => $countryData[2],
-            'name_en' => $countryData[4],
-        ];
+        $allCountries[$countryData[0]] = ['name_sk' => $countryData[2], 'name_en' => $countryData[4],];
     }
 
     foreach ($safeCountriesData as $safeCountryData) {
@@ -156,6 +230,7 @@ function datetimeFromString($string)
  */
 function manualResultData(array $manualData, $resultData, $result): array
 {
+    updateResult($result, 'nczi-email-data', true, 'Notice: Manual override from Spreadsheet data is in effect.');
     // 3.) MANUAL REGIONAL DATA
     list($resultData, $result) = regionalStats($manualData, $resultData, $result);
 
@@ -176,10 +251,7 @@ function manualResultData(array $manualData, $resultData, $result): array
  */
 function ncziResultData(string $ncziDataFilePath, array $manualData, array $result, array $resultData): array
 {
-    list($result, $ncziStats, $lastUpdate) = ncziStats(
-        loadJsonFile($ncziDataFilePath),
-        fallbackData($manualData),
-        $result);
+    list($result, $ncziStats, $lastUpdate) = ncziStats(loadJsonFile($ncziDataFilePath), fallbackData($manualData), $result);
 
     // 1.) NCZI CORE DATA
     foreach ($ncziStats as $numberType => $values) {
@@ -187,10 +259,7 @@ function ncziResultData(string $ncziDataFilePath, array $manualData, array $resu
     }
 
     // 2.) NCZI LAST UPDATE
-    $resultData['last-update'] = [
-        'value' => $lastUpdate,
-        'formatted_value' => date('j. n. Y', $lastUpdate),
-    ];
+    $resultData['last-update'] = ['value' => $lastUpdate, 'formatted_value' => date('j. n. Y', $lastUpdate),];
     return array($result, $resultData);
 }
 
@@ -207,15 +276,7 @@ function loadCsvFile($filePath)
 
 function fallbackData(array $manualData)
 {
-    $FIRST_COL = 12;
-
-    return [
-        'lab-tests' => [
-            'total' => (int)$manualData[6][$FIRST_COL],
-            'delta' => (int)$manualData[6][$FIRST_COL + 1]
-        ],
-        'last-update' => (DateTimeImmutable::createFromFormat('j. n. Y', $manualData[7][$FIRST_COL], new DateTimeZone('Europe/Bratislava')))->getTimestamp(),
-    ];
+    return ['last-update' => (new DateTimeImmutable('today', new DateTimeZone('Europe/Bratislava')))->getTimestamp(),];
 }
 
 /**
@@ -225,28 +286,15 @@ function fallbackData(array $manualData)
  */
 function ncziStats($ncziData, array $fallbackData, array $result): array
 {
-    $numberTypes = [
-        'k5' => 'positives',
-        'k7' => 'cured',
-        'k8' => 'deceased',
-        'k9' => 'hospitalized',
-        'k23' => 'lab-tests',
-    ];
+    $numberTypes = ['k5' => 'positives', 'k7' => 'cured', 'k8' => 'deceased', 'k9' => 'hospitalized',
+        'k23' => 'lab-tests',];
 
     $ncziStats = [];
     $lastUpdate = 0;
 
     foreach ($numberTypes as $tileId => $numberType) {
         if (isArrayInTreeEmpty($ncziData, ['tiles', $tileId, 'data', 'd'])) {
-            if (isset($fallbackData[$numberType])) {
-
-                $ncziStats[$numberType] = formattedNumberValue($fallbackData[$numberType]['total']);
-                $ncziStats[$numberType . '-delta'] = formattedNumberValue($fallbackData[$numberType]['delta']);
-
-                updateResult($result, $numberType, true, 'Data for ' . $numberType . ' is not available in NCZI API. Falling back to Spreadsheet data.');
-            } else {
-                updateResult($result, $numberType, false, 'Data for ' . $numberType . ' is not available in NCZI API or Spreadsheet data.');
-            }
+            updateResult($result, $numberType, false, 'Data for ' . $numberType . ' is not available in NCZI API or Spreadsheet data.');
         } else {
             $currentNumberData = array_pop($ncziData['tiles'][$tileId]['data']['d']);
             $previousNumberData = array_pop($ncziData['tiles'][$tileId]['data']['d']);
@@ -265,7 +313,7 @@ function ncziStats($ncziData, array $fallbackData, array $result): array
             }
         }
 
-        if (!isArrayInTreeEmpty($ncziData, ['tiles', $tileId, 'updated'])) {
+        if (isArrayInTreeEmpty($ncziData, ['tiles', $tileId, 'updated'])) {
             $lastUpdate = max($lastUpdate, DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $ncziData['tiles'][$tileId]['updated'] . ' 9:15:00')->getTimestamp());
         }
     }
@@ -275,7 +323,7 @@ function ncziStats($ncziData, array $fallbackData, array $result): array
             updateResult($result, 'last-update', false, 'Last update date from NCZI and Spreadsheet is not available.');
         } else {
             $lastUpdate = $fallbackData['last-update'];
-            updateResult($result, 'last-update', true, 'Last update date from NCZI is not available. Falling back to Spreadsheet data.');
+            updateResult($result, 'last-update', true, 'Last update date from NCZI is not available. Using current date.');
         }
     } else {
         if ($lastUpdate < (new DateTimeImmutable('today 9:15'))->getTimestamp()) {
@@ -328,23 +376,14 @@ function regionalStats($manualData, array $resultData, array $result): array
 {
     $FIRST_COL = 6;
 
-    $regionMappings = [
-        'Banskobystrický' => 'bb',
-        'Bratislavský' => 'ba',
-        'Košický' => 'ke',
-        'Nitriansky' => 'nr',
-        'Prešovský' => 'po',
-        'Trenčiansky' => 'tn',
-        'Trnavský' => 'tt',
-        'Žilinský' => 'za',
-    ];
-
     for ($f = 0; $f < 8; $f++) {
-        if (isset($regionMappings[$manualData[1 + $f][$FIRST_COL]])) {
-            $regionKey = 'positives-region-' . $regionMappings[$manualData[1 + $f][$FIRST_COL]];
+        if (isset(REGION_MAPPINGS[$manualData[1 + $f][$FIRST_COL]])) {
+            $regionKey = 'positives-region-' . REGION_MAPPINGS[$manualData[1 + $f][$FIRST_COL]];
 
-            $resultData[$regionKey] = formattedNumberValue((int)$manualData[1 + $f][$FIRST_COL + 1]);
-            $resultData[$regionKey . '-delta'] = formattedNumberValue((int)$manualData[1 + $f][$FIRST_COL + 2]);
+            if (!isset($resultData[$regionKey])) {
+                $resultData[$regionKey] = formattedNumberValue((int)$manualData[1 + $f][$FIRST_COL + 1]);
+                $resultData[$regionKey . '-delta'] = formattedNumberValue((int)$manualData[1 + $f][$FIRST_COL + 2]);
+            }
         } else {
             updateResult($result, 'manual-region-data', false, 'Unknown region "' . ($manualData[1 + $f][$FIRST_COL]) . '"');
         }
@@ -435,10 +474,7 @@ function aggregations(array $manualData, array $resultData, array $result): arra
 
 function formattedNumberValue($value)
 {
-    return [
-        'value' => $value,
-        'formatted_value' => number_format($value, 0, ',', '&nbsp;'),
-    ];
+    return ['value' => $value, 'formatted_value' => number_format($value, 0, ',', '&nbsp;'),];
 }
 
 function statsNumberData(&$result, $numberType, $rawNumberData)
@@ -458,10 +494,7 @@ function statsNumberData(&$result, $numberType, $rawNumberData)
                 updateResult($result, $numberType, false, 'Last update date is more than two days before or after today.');
             }
 
-            return [
-                'value' => $rawNumberData['v'],
-                'last-update' => $lastUpdated,
-            ];
+            return ['value' => $rawNumberData['v'], 'last-update' => $lastUpdated,];
         }
     }
 
