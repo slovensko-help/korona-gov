@@ -29,6 +29,10 @@ class KoronaShortcodes
             $value = $data['formatted_value'];
         }
 
+        if (isset($data['error'])) {
+            $value = $data['error'];
+        }
+
         return '<!-- REPLACE:koronastats-' . $item . ' -->' . $value . '<!-- /REPLACE -->';
     }
 

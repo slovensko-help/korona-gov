@@ -256,6 +256,10 @@ function ncziResultData(string $ncziDataFilePath, array $manualData, array $resu
     // 1.) NCZI CORE DATA
     foreach ($ncziStats as $numberType => $values) {
         $resultData[$numberType] = formattedNumberValue($values['value']);
+
+        if ($values['error']) {
+            $resultData[$numberType]['error'] = $values['error'];
+        }
     }
 
     // 2.) NCZI LAST UPDATE
@@ -289,6 +293,8 @@ function ncziStats($ncziData, array $fallbackData, array $result): array
     $numberTypes = ['k5' => 'positives', 'k7' => 'cured', 'k8' => 'deceased', 'k9' => 'hospitalized',
         'k23' => 'lab-tests',];
 
+    $everIncreasingSeries = ['k5', 'k7', 'k8', 'k23'];
+
     $ncziStats = [];
     $lastUpdate = 0;
 
@@ -309,6 +315,11 @@ function ncziStats($ncziData, array $fallbackData, array $result): array
                 if ($previousStats !== null) {
                     $ncziStats[$numberType . '-delta'] = $currentStats;
                     $ncziStats[$numberType . '-delta']['value'] -= $previousStats['value'];
+
+                    if (in_array($tileId, $everIncreasingSeries) && $ncziStats[$numberType . '-delta']['value'] < 0) {
+                        $ncziStats[$numberType . '-delta']['error'] = 'Chyba v dátach od NCZI';
+                        $ncziStats[$numberType]['error'] = 'Chyba v dátach od NCZI';
+                    }
                 }
             }
         }
