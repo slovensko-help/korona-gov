@@ -93,7 +93,7 @@ function ncziMorningEmailData(array $ncziMorningEmailsData, $resultData, $result
         }
     }
 
-    $emailData['slovakia_vaccination_target'] = 3217305;
+    $emailData['slovakia_vaccination_target'] = 3217305 - $emailData['slovakia_vaccination_all_total'];
 
     // 3. slovak hospital beds and patients
     // 4. vaccinations
