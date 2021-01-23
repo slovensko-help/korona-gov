@@ -14,6 +14,7 @@
     $row_background = get_field( 'row_background' );
     $row_padding_top = get_field( 'row_padding_top' );
     $row_padding_bottom = get_field( 'row_padding_bottom' );
+    $row_with_gray_boxes = get_field( 'row_with_gray_boxes' );
 
     if( $row_background )
         $block_class .= ' ' . $row_background;
@@ -21,9 +22,13 @@
     if( $row_padding_top )
         $block_class .= ' ' . $row_padding_top;
 
-    if( $row_padding_bottom )
+    if( $row_padding_bottom ) {
         $block_class .= ' ' . $row_padding_bottom;
+    }
 
+    if( $row_with_gray_boxes ) {
+        $block_class .= ' ' . $row_with_gray_boxes;
+    }
 
     if( is_admin() ) {
         echo '<p><code> ' . $block_name . '</code></p>';

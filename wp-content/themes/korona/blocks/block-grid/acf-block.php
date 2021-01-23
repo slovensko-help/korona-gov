@@ -409,6 +409,33 @@
                                               'ajax' => 0,
                                               'placeholder' => '',
                                           ),
+                                          [
+                                              'key' => 'field_row_with_gray_boxes',
+                                              'label' => 'Sekcia so sivými boxami?',
+                                              'name' => 'row_with_gray_boxes',
+                                              'type' => 'select',
+                                              'instructions' => '',
+                                              'required' => 0,
+                                              'conditional_logic' => 0,
+                                              'wrapper' => [
+                                                  'width' => '33',
+                                                  'class' => '',
+                                                  'id' => '',
+                                              ],
+                                              'choices' => [
+                                                  '' => 'Nie',
+                                                  'row-with-gray-boxes' => 'Áno',
+                                              ],
+                                              'default_value' => [
+                                                  0 => 'Nie',
+                                              ],
+                                              'allow_null' => 0,
+                                              'multiple' => 0,
+                                              'ui' => 0,
+                                              'return_format' => 'value',
+                                              'ajax' => 0,
+                                              'placeholder' => '',
+                                          ],
                                       ),
                                       'location' => array(
                                           array(

@@ -188,6 +188,7 @@ a[href^="tel:"]:hover,
 a[href^="mailto:"]:hover {
     color: #000;
 }
+
 .with-border {
     border-top: 1px solid #bec1c3;
     border-bottom: 1px solid #bec1c3;
@@ -259,5 +260,56 @@ ol ul {
 }
 .app-pane-yellow {
     background-color: #ffbf47;
+}
+
+.row-with-gray-boxes {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.row-with-gray-boxes > div {
+    display: flex;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+}
+
+.row-with-gray-boxes > div > div {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 0 !important;
+}
+
+@media (max-width: 900px) {
+    .row-with-gray-boxes > div {
+        width: 33% !important;
+    }
+}
+
+@media (max-width: 750px) {
+    .row-with-gray-boxes {
+        margin-left: -7px !important;
+        margin-right: -7px !important;
+    }
+
+    .row-with-gray-boxes > div {
+        width: 50% !important;
+        margin-bottom: 14px;
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+}
+
+@media (max-width: 420px) {
+    .row-with-gray-boxes > div {
+        width: 100% !important;
+        margin-bottom: 15px;
+        padding: 0;
+    }
+}
+
+@media (max-width: 900px) {
+    .row-with-gray-boxes .govuk-heading-l {
+        font-size: 1.5rem !important;
+    }
 }
 
