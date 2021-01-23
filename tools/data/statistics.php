@@ -257,7 +257,7 @@ function ncziResultData(string $ncziDataFilePath, array $manualData, array $resu
     foreach ($ncziStats as $numberType => $values) {
         $resultData[$numberType] = formattedNumberValue($values['value']);
 
-        if ($values['error']) {
+        if (isset($values['error'])) {
             $resultData[$numberType]['error'] = $values['error'];
         }
     }
@@ -318,7 +318,7 @@ function ncziStats($ncziData, array $fallbackData, array $result): array
 
                     if (in_array($tileId, $everIncreasingSeries) && $ncziStats[$numberType . '-delta']['value'] < 0) {
                         $ncziStats[$numberType . '-delta']['error'] = 'Chyba v dátach od NCZI';
-                        $ncziStats[$numberType]['error'] = 'Chyba v dátach od NCZI';
+                        $ncziStats[$numberType]['error'] = '-';
                     }
                 }
             }
