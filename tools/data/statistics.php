@@ -317,7 +317,7 @@ function ncziStats($ncziData, array $fallbackData, array $result): array
                     $ncziStats[$numberType . '-delta']['value'] -= $previousStats['value'];
 
                     if (in_array($tileId, $everIncreasingSeries) && $ncziStats[$numberType . '-delta']['value'] < 0) {
-                        $ncziStats[$numberType . '-delta']['error'] = 'Chyba v dátach od NCZI';
+                        $ncziStats[$numberType . '-delta']['error'] = '-';
                         $ncziStats[$numberType]['error'] = '-';
                     }
                 }
