@@ -93,7 +93,8 @@ function ncziMorningEmailData(array $ncziMorningEmailsData, $resultData, $result
         }
     }
 
-    $emailData['slovakia_vaccination_target'] = 3300000 - $emailData['slovakia_vaccination_all_total'];
+    $totalTarget = 3300000;
+    $emailData['slovakia_vaccination_target'] = $totalTarget - $emailData['slovakia_vaccination_all_total'];
 
     // 3. slovak hospital beds and patients
     // 4. vaccinations
@@ -108,7 +109,7 @@ function ncziMorningEmailData(array $ncziMorningEmailsData, $resultData, $result
         $resultData[$outputName] = formattedNumberValue(null === $emailData[$inputName] ? 0 : $emailData[$inputName]);
     }
 
-    $value = round($resultData['slovakia_vaccination_all_total']['value'] / $emailData['slovakia_vaccination_target'] * 100, 2);
+    $value = round($resultData['slovakia_vaccination_all_total']['value'] / $totalTarget * 100, 2);
 
     $resultData['slovakia_vaccination_total_percentage'] = [
         'value' => $value,

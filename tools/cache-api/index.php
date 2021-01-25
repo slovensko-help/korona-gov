@@ -13,9 +13,9 @@ function download($url, $file)
     }
 }
 
-foreach (array('sk', 'en', 'hu') as $lang) {
-    download('https://mojeezdravie.nczisk.sk/api/v1/web/faq?lang=' . $lang, 'faq-' . $lang . '.json');
-}
+//foreach (array('sk', 'en', 'hu') as $lang) {
+//    download('https://mojeezdravie.nczisk.sk/api/v1/web/faq?lang=' . $lang, 'faq-' . $lang . '.json');
+//}
 
 //download('https://mojeezdravie.nczisk.sk/api/v1/ezdravie-stats-proxy-api.php', 'nczi-stats.json');
 download('https://covid-19.nczisk.sk/webapi/v1/kpi?nocache', 'nczi-stats.json');
