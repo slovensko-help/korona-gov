@@ -21,6 +21,24 @@ function updateStatistics()
         return ['checks' => updateResult($result, 'nczi-morning-emails-data-file', false, 'NCZI morning emails file does not exist.')];
     }
 
+    $vaccinationsDataFilePath = ROOT_DIR . '../cache-api/vaccinations.json';
+
+    if (!is_file($vaccinationsDataFilePath)) {
+        return ['checks' => updateResult($result, 'vaccinations-data-file', false, 'Vaccinations file does not exist.')];
+    }
+
+    $regionVaccinationsDataFilePath = ROOT_DIR . '../cache-api/vaccinations-by-region.json';
+
+    if (!is_file($regionVaccinationsDataFilePath)) {
+        return ['checks' => updateResult($result, 'region-vaccinations-data-file', false, 'Region vaccinations file does not exist.')];
+    }
+
+    $regionsDataFilePath = ROOT_DIR . '../cache-api/regions.json';
+
+    if (!is_file($regionsDataFilePath)) {
+        return ['checks' => updateResult($result, 'regions-data-file', false, 'Regiosn file does not exist.')];
+    }
+
     $manualDataFilePath = ROOT_DIR . '../cache-api/manual-stats.csv';
 
     if (!is_file($manualDataFilePath)) {
@@ -40,10 +58,14 @@ function updateStatistics()
     }
 
     $ncziMorningEmailsData = loadJsonFile($ncziMorningEmailsDataFilePath);
+    $vaccinationsData = loadJsonFile($vaccinationsDataFilePath);
+    $regionVaccinationsData = loadJsonFile($regionVaccinationsDataFilePath);
+    $regionsData = loadJsonFile($regionsDataFilePath);
     $manualData = loadCsvFile($manualDataFilePath);
 
     list($result, $resultData) = ncziResultData($ncziDataFilePath, $manualData, $result, []);
     list($resultData, $result) = ncziMorningEmailData($ncziMorningEmailsData, $resultData, $result);
+    list($resultData, $result) = vaccinationsData($vaccinationsData, $regionVaccinationsData, $regionsData, $resultData, $result);
 
     if ('ÁNO' === $manualData[7][11]) {
         list($resultData, $result) = manualResultData($manualData, $resultData, $result);
@@ -73,6 +95,70 @@ function updateStatistics()
         'koronaaverages' => $averages, 'safecountries' => $safeCountries];
 }
 
+function vaccinationsData(array $vaccinationsData, array $regionVaccinationsData, array $regionsData, $resultData, $result): array
+{
+    $vaccinationsRecord = current($vaccinationsData['page']);
+    $currentRegionVacciantionsRecord = current($regionVaccinationsData['page']);
+
+    $regionVaccinationsRecords = array_filter($regionVaccinationsData['page'], function($record) use ($currentRegionVacciantionsRecord) {
+        return $record['published_on'] === $currentRegionVacciantionsRecord['published_on'];
+    });
+
+
+    $regionVaccinationsByRegionId = [];
+    foreach ($regionVaccinationsRecords as $regionVaccinationsRecord) {
+        $regionVaccinationsByRegionId[$regionVaccinationsRecord['region_id']] = $regionVaccinationsRecord;
+    }
+
+    $totalTarget = 3300000;
+    $vaccinationsRecord['all_sum'] = $vaccinationsRecord['dose1_sum'] + $vaccinationsRecord['dose2_sum'];
+    $vaccinationsRecord['all_delta'] = $vaccinationsRecord['dose1_count'] + $vaccinationsRecord['dose2_count'];
+    $vaccinationsRecord['slovakia_vaccination_target'] = $totalTarget - $vaccinationsRecord['all_sum'];
+
+    $regionDataMappings = [
+        'dose1_count' => 'dose1_delta',
+        'dose2_count' => 'dose2_delta',
+        'dose1_sum' => 'dose1_total',
+        'dose2_sum' => 'dose2_total',
+    ];
+
+    // 1. region vaccinations
+    foreach ($regionsData as $region) {
+        foreach ($regionDataMappings as $inputName => $outputName) {
+            $value = isset($regionVaccinationsByRegionId[$region['id']]) ? $regionVaccinationsByRegionId[$region['id']][$inputName] : 0;
+            $resultData['region_' . strtolower($region['abbreviation']) . '_vaccination_' . $outputName] = formattedNumberValue($value);
+        }
+    }
+
+    // 2. slovak vaccinations
+    foreach ([
+                 'dose1_sum' => 'slovakia_vaccination_dose1_total',
+                 'dose2_sum' => 'slovakia_vaccination_dose2_total',
+                 'all_sum' => 'slovakia_vaccination_all_total',
+                 'dose1_count' => 'slovakia_vaccination_dose1_delta',
+                 'dose2_count' => 'slovakia_vaccination_dose2_delta',
+                 'all_delta' => 'slovakia_vaccination_all_delta',
+                 'slovakia_vaccination_target' => 'slovakia_vaccination_target',
+             ] as $inputName => $outputName) {
+        $resultData[$outputName] = formattedNumberValue(null === $vaccinationsRecord[$inputName] ? 0 : $vaccinationsRecord[$inputName]);
+    }
+
+    $value = round($resultData['slovakia_vaccination_all_total']['value'] / $totalTarget * 100, 2);
+
+    $resultData['slovakia_vaccination_total_percentage'] = [
+        'value' => $value,
+        'formatted_value' => number_format($value, 2, ',', '&nbsp;') . '&nbsp;%',
+    ];
+
+    $regionLastUpdate = DateTimeImmutable::createFromFormat('Y-m-d', $currentRegionVacciantionsRecord['published_on']);
+    $resultData['region_vaccinations_last__update'] = ['value' => $regionLastUpdate->getTimestamp(), 'formatted_value' => $regionLastUpdate->format('j. n. Y'),];
+
+    $slovakiaLastUpdate = DateTimeImmutable::createFromFormat('Y-m-d', $vaccinationsRecord['published_on']);
+    $resultData['slovakia_vaccinations_last_update'] = ['value' => $slovakiaLastUpdate->getTimestamp(), 'formatted_value' => $slovakiaLastUpdate->format('j. n. Y'),];
+
+    return array($resultData, $result);
+}
+
 function ncziMorningEmailData(array $ncziMorningEmailsData, $resultData, $result): array
 {
     $emailData = current($ncziMorningEmailsData['page']);
@@ -97,26 +183,15 @@ function ncziMorningEmailData(array $ncziMorningEmailsData, $resultData, $result
     $emailData['slovakia_vaccination_target'] = $totalTarget - $emailData['slovakia_vaccination_all_total'];
 
     // 3. slovak hospital beds and patients
-    // 4. vaccinations
     foreach ([
         'hospital_patients_confirmed_covid' => 'hospitalized-covid19',
         'hospital_patients_ventilated_covid' => 'hospitalized-covid19-ventilation',
         'hospital_beds_occupied_jis_covid' => 'hospitalized-covid19-intensive',
-        'slovakia_vaccination_all_total' => 'slovakia_vaccination_all_total',
-        'slovakia_vaccination_all_delta' => 'slovakia_vaccination_all_delta',
-        'slovakia_vaccination_target' => 'slovakia_vaccination_target',
              ] as $inputName => $outputName) {
         $resultData[$outputName] = formattedNumberValue(null === $emailData[$inputName] ? 0 : $emailData[$inputName]);
     }
 
-    $value = round($resultData['slovakia_vaccination_all_total']['value'] / $totalTarget * 100, 2);
-
-    $resultData['slovakia_vaccination_total_percentage'] = [
-        'value' => $value,
-        'formatted_value' => number_format($value, 2, ',', '&nbsp;') . '&nbsp;%',
-    ];
-
-    // 5. median
+    // 4. median
     $medianSeries = [];
     foreach ($ncziMorningEmailsData['page'] as $emailData) {
         if (count($medianSeries) < 7) {
