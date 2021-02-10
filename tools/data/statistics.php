@@ -111,8 +111,8 @@ function vaccinationsData(array $vaccinationsData, array $regionVaccinationsData
     }
 
     $totalTarget = 3300000;
-    $vaccinationsRecord['all_sum'] = $vaccinationsRecord['dose1_sum'] + $vaccinationsRecord['dose2_sum'];
-    $vaccinationsRecord['all_delta'] = $vaccinationsRecord['dose1_count'] + $vaccinationsRecord['dose2_count'];
+    $vaccinationsRecord['all_sum'] = $vaccinationsRecord['dose1_sum'];// + $vaccinationsRecord['dose2_sum'];
+    $vaccinationsRecord['all_delta'] = $vaccinationsRecord['dose1_count'];// + $vaccinationsRecord['dose2_count'];
     $vaccinationsRecord['slovakia_vaccination_target'] = $totalTarget - $vaccinationsRecord['all_sum'];
 
     $regionDataMappings = [
