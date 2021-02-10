@@ -614,7 +614,7 @@ echo KoronaShortcodes::getSingleton()->safeCountriesJavascript();
                                     <input class="govuk-checkboxes__input" id="uc-tos" name="tos" type="checkbox"
                                            value="yes" aria-describedby="uc-tos-error">
                                     <label class="govuk-label govuk-checkboxes__label" for="uc-tos">
-                                        <?php echo __('Potvrdzujem, že súhlasím so spracovaním osobných údajov', 'ehranica'); ?>
+                                        <?php echo __('Oboznámil(a) som sa s Poučením o ochrane osobných údajov', 'ehranica'); ?>
                                     </label>
                                     <span class="govuk-hint govuk-checkboxes__hint">
                                         <?php echo __('<a href="/poucenie-o-ochrane-osobnych-udajov/" target="_blank">Poučenie o ochrane osobných údajov</a>', 'ehranica'); ?>
