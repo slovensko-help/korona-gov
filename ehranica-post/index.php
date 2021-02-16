@@ -69,7 +69,7 @@ try {
     ]);
 
     if ($googleResponse['success'] && $googleResponse['score'] > 0.6) {
-        $apiUrl = $requestData['isTest'] ? 'https://t.mojeezdravie.sk/api/v1/risk/new-pass' : 'https://mojeezdravie.nczisk.sk/api/v1/risk/new-pass';
+        $apiUrl = $requestData['isTest'] ? 'https://test-mojeezdravie.nczisk.sk/api/v1/risk/new-pass' : 'https://mojeezdravie.nczisk.sk/api/v1/risk/new-pass';
 
         list($apiResponse, $apiHttpCode) = httpPost($apiUrl, ['people' => $requestData['people']], true);
 

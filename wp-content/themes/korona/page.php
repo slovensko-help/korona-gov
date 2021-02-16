@@ -23,7 +23,7 @@
             //remove_filter('the_content', 'wpautop', 12);
 
             $included_file = get_post_meta($post->ID, 'korona_include', true);
-            $allowed_includes = ['registration-from-unsafe-country.php'];
+            $allowed_includes = ['ehranica-v1.php', 'ehranica-v2.php'];
 
             if (!empty($included_file) && in_array($included_file, $allowed_includes)) {
                 echo '<div class="js-native-content">';

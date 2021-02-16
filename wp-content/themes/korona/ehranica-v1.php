@@ -1,4 +1,4 @@
-<?php define('RC_ASSETS_VERSION', '1.0.18'); ?>
+<?php define('EHR1_ASSETS_VERSION', '1.0.18'); ?>
     <script>
         var RC_LANGUAGE = '<?php echo apply_filters('wpml_current_language', NULL); ?>';
         var RC_TRANSLATIONS = {
@@ -9,10 +9,10 @@
         };
     </script>
 
-    <script src="/wp-content/themes/korona/assets/js/moment.min.js?v=<?php echo RC_ASSETS_VERSION; ?>"></script>
-    <script src="/wp-content/themes/korona/assets/js/moment-timezone-with-data.js?v=<?php echo RC_ASSETS_VERSION; ?>"></script>
-    <script src="/wp-content/themes/korona/assets/js/jquery-3.5.1.min.js?v=<?php echo RC_ASSETS_VERSION; ?>"></script>
-    <script src="/wp-content/themes/korona/assets/js/registration-from-unsafe-country.js?v=<?php echo RC_ASSETS_VERSION; ?>"></script>
+    <script src="/wp-content/themes/korona/assets/js/moment.min.js?v=<?php echo EHR1_ASSETS_VERSION; ?>"></script>
+    <script src="/wp-content/themes/korona/assets/js/moment-timezone-with-data.js?v=<?php echo EHR1_ASSETS_VERSION; ?>"></script>
+    <script src="/wp-content/themes/korona/assets/js/jquery-3.5.1.min.js?v=<?php echo EHR1_ASSETS_VERSION; ?>"></script>
+    <script src="/wp-content/themes/korona/assets/js/ehranica-v1.js?v=<?php echo EHR1_ASSETS_VERSION; ?>"></script>
     <script src="https://www.google.com/recaptcha/api.js?render=6LeFQ7IZAAAAABuiRASOsOQv4HFxAhGhwQiljFM0"></script>
 
     <style>
