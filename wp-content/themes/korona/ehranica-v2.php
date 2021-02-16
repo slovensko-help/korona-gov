@@ -661,7 +661,7 @@
                                 </strong>
                             </div>
                             <p class="govuk-body govuk-!-margin-top-3">
-                                <?php echo __('Povinú karanténu budete môcť opustiť hneď po obdržaní negatívneho PCR testu, ktorý si musíte zaobstarať na vlastné náklady na území Slovenskej republiky.', 'ehranica'); ?>
+                                <?php echo __('Povinnú karanténu budete môcť opustiť hneď po obdržaní negatívneho PCR testu, ktorý si musíte zaobstarať na vlastné náklady na území Slovenskej republiky.', 'ehranica'); ?>
                             </p>
                         </div>
                     </fieldset>
