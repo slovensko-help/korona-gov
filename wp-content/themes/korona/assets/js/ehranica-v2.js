@@ -486,7 +486,8 @@ function prefillRcFormWithTestData() {
             var data = formData();
             var isValid = true;
 
-            $form.find('.govuk-input--error').removeClass('govuk-input--error');
+            $form.find('input.govuk-input--error').removeClass('govuk-input--error');
+            $form.find('textarea.govuk-textarea--error').removeClass('govuk-textarea--error');
             $form.find('.govuk-form-group--error').removeClass('govuk-form-group--error');
             $form.find('.autocomplete-error').removeClass('autocomplete-error');
             $form.find('.govuk-error-message').hide();
@@ -554,11 +555,17 @@ function prefillRcFormWithTestData() {
             if (isValid) {
                 $error.hide();
                 $field.removeClass('govuk-input--error');
+                $field.removeClass('govuk-textarea--error');
                 $formGroup.removeClass('govuk-form-group--error');
             }
             else {
                 $error.show();
-                $field.addClass('govuk-input--error');
+                if ($field.hasClass('govuk-input')) {
+                    $field.addClass('govuk-input--error');
+                }
+                else {
+                    $field.addClass('govuk-textarea--error');
+                }
                 $formGroup.addClass('govuk-form-group--error');
             }
 
@@ -577,7 +584,12 @@ function prefillRcFormWithTestData() {
             }
             else {
                 $error.show();
-                $field.addClass('govuk-input--error');
+                if ($field.hasClass('govuk-input')) {
+                    $field.addClass('govuk-input--error');
+                }
+                else {
+                    $field.addClass('govuk-textarea--error');
+                }
                 $formGroup.addClass('govuk-form-group--error');
             }
 

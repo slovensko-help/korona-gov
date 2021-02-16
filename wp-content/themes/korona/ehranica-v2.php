@@ -1,4 +1,4 @@
-<?php define('EHR2_ASSETS_VERSION', '2.0.0'); ?>
+<?php define('EHR2_ASSETS_VERSION', '2.0.1'); ?>
     <script>
         var RC_LANGUAGE = '<?php echo apply_filters('wpml_current_language', NULL); ?>';
         var RC_TRANSLATIONS = {
