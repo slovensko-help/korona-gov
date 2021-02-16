@@ -591,7 +591,7 @@
                                         <input class="js-uc-exception govuk-radios__input" id="uc-exception-foreign-permanent-address" name="exception"
                                                type="radio" value="foreign-permanent-address">
                                         <label class="govuk-label govuk-radios__label" for="uc-exception-foreign-permanent-address">
-                                            <?php echo __('Mám doklad o trvalom pobyte v zahraničí.', 'ehranica'); ?>
+                                            <?php echo __('Mám doklad o trvalom alebo prechodnom pobyte v zahraničí.', 'ehranica'); ?>
                                         </label>
                                     </div>
                                     <div class="govuk-radios__item">
@@ -612,7 +612,7 @@
                                         <input class="js-uc-exception govuk-radios__input" id="uc-exception-had-covid" name="exception"
                                                type="radio" value="had-covid">
                                         <label class="govuk-label govuk-radios__label" for="uc-exception-had-covid">
-                                            <?php echo __('Mám doklad o prekonaní ochorenia Covid 19 nie starší ako 90 dní.', 'ehranica'); ?>
+                                            <?php echo __('Mám doklad o prekonaní ochorenia Covid 19 pred nie viac ako 90 dňami.', 'ehranica'); ?>
                                         </label>
                                     </div>
                                 </div>
@@ -621,10 +621,10 @@
 
                         <div class="js-uc-foreign-permanent-address-fields govuk-form-group govuk-!-margin-bottom-1" style="display: none;">
                             <label class="govuk-label" for="uc-foreign-permanent-address">
-                                <strong><?php echo __('Adresa trvalého pobytu v zahraničí', 'ehranica'); ?></strong>
+                                <strong><?php echo __('Adresa trvalého alebo prechodného pobytu v zahraničí', 'ehranica'); ?></strong>
                             </label>
                             <span id="uc-foreign-permanent-address-error" class="govuk-error-message" style="display: none;">
-                              <?php echo __('Zadajte adresu trvalého pobytu v zahraničí.', 'ehranica'); ?>
+                              <?php echo __('Zadajte adresu trvalého alebo prechodného pobytu v zahraničí.', 'ehranica'); ?>
                             </span>
                             <textarea class="govuk-textarea" id="uc-foreign-permanent-address" name="foreign-permanent-address" rows="3"></textarea>
                         </div>
