@@ -366,10 +366,15 @@ function fallbackData(array $manualData)
  */
 function ncziStats($ncziData, array $fallbackData, array $result): array
 {
-    $numberTypes = ['k5' => 'positives', 'k7' => 'cured', 'k8' => 'deceased', 'k9' => 'hospitalized',
-        'k23' => 'lab-tests',];
+    $numberTypes = [
+        'k5' => 'positives',
+//        'k7' => 'cured',
+        'k8' => 'deceased',
+        'k9' => 'hospitalized',
+        'k23' => 'lab-tests',
+        ];
 
-    $everIncreasingSeries = ['k5', 'k7', 'k8', 'k23'];
+    $everIncreasingSeries = ['k5', /*'k7', */'k8', 'k23'];
 
     $ncziStats = [];
     $lastUpdate = 0;
