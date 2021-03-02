@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> class="govuk-template app-no-canvas-background">
 <head>
-<script>
-/*
-PIIP PIIP PIIP
- */
-</script>
     <!-- Google Tag Manager -->
     <script>(function (w, d, s, l, i) {
             w[l] = w[l] || [];
