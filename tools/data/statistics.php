@@ -405,7 +405,7 @@ function ncziStats($ncziData, array $fallbackData, array $result): array
             }
         }
 
-        if (isArrayInTreeEmpty($ncziData, ['tiles', $tileId, 'updated'])) {
+        if (!isArrayInTreeEmpty($ncziData, ['tiles', $tileId, 'updated'])) {
             $lastUpdate = max($lastUpdate, DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $ncziData['tiles'][$tileId]['updated'] . ' 9:15:00')->getTimestamp());
         }
     }
